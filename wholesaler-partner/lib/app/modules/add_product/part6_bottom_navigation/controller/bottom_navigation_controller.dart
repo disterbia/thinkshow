@@ -43,8 +43,17 @@ class AP_Part6Controller extends GetxController {
         ? addProductController.selectedSubCat.value.id
         : 0;
     String productName = addProductController.productNameController.text;
+
     String price = addProductController.priceController.text
         .replaceAll(RegExp(r'[^0-9]'), '');
+
+    try {
+      int.parse(price);
+    } catch (e) {
+      Get.back();
+      mSnackbar(message: '단가를 숫자로 입력해주세요.');
+      return;
+    }
     List<dynamic> imagePath1 = part1controller.imagePath1;
     List<dynamic> imagePath2 = part1controller.imagePath2;
     //String imagePath3 = part1controller.imagePath3.value;
@@ -62,6 +71,14 @@ class AP_Part6Controller extends GetxController {
     for (int i = 0; i < addProductController.optionsControllers.length; i++) {
       String addPrice = addProductController.optionsControllers[i].text;
       if (addPrice.isEmpty) {
+        try {
+          int.parse(addPrice);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '옵션 추가 금액을 숫자로 입력해주세요.');
+          return;
+        }
+
         Get.back();
         mSnackbar(message: '옵션 추가 금액을 입력해 주세요.');
         return;
@@ -73,6 +90,14 @@ class AP_Part6Controller extends GetxController {
       // for (int i = 0; i < addProductController.options.length; i++) {
       for (int i = 0; i < addProductController.optionsControllers.length; i++) {
         String addPrice = addProductController.optionsControllers[i].text;
+        try {
+          int.parse(addPrice);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '옵션 추가 금액을 숫자로 입력해주세요.');
+          return;
+        }
+
         if (addPrice.isEmpty) {
           Get.back();
           mSnackbar(message: '옵션 추가 금액을 입력해 주세요.');
@@ -96,6 +121,14 @@ class AP_Part6Controller extends GetxController {
 
     for (int i = 0; i < part3controller.materialTypeList.length; i++) {
       if (part3controller.materialTypePercentControllers[i].text.isEmpty) {
+        try {
+          int.parse(part3controller.materialTypePercentControllers[i].text);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '혼용률을 숫자로 입력해주세요.');
+          return;
+        }
+
         Get.back();
         mSnackbar(message: "혼용률 입력하세요.");
         return;
@@ -107,6 +140,13 @@ class AP_Part6Controller extends GetxController {
 
     for (int i = 0; i < part3controller.materialTypeList.length; i++) {
       if (part3controller.materialTypePercentControllers[i].text.isNotEmpty) {
+        try {
+          int.parse(part3controller.materialTypePercentControllers[i].text);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '혼용률을 숫자로 입력해주세요.');
+          return;
+        }
         tempPercent +=
             int.parse(part3controller.materialTypePercentControllers[i].text);
         tempisPercent = true;
@@ -114,7 +154,7 @@ class AP_Part6Controller extends GetxController {
     }
 
     print(tempPercent);
-    if(part3controller.materialTypeList.isEmpty) {
+    if (part3controller.materialTypeList.isEmpty) {
       Get.back();
       mSnackbar(message: "소재 입력하세요.");
       return;
@@ -205,6 +245,16 @@ class AP_Part6Controller extends GetxController {
               .textEditingControllers[i.toString() + j.toString()]!
               .text
               .isNotEmpty) {
+            try {
+              int.parse(part2controller
+                  .textEditingControllers[i.toString() + j.toString()]!.text);
+            } catch (e) {
+              isLoading.value = false;
+              Get.back();
+              mSnackbar(message: '사이즈를 숫자로 입력해주세요.');
+              return;
+            }
+
             sizeInfo[sizeChild.english] = part2controller
                 .textEditingControllers[i.toString() + j.toString()]!.text;
           }
@@ -220,6 +270,29 @@ class AP_Part6Controller extends GetxController {
       mSnackbar(message: '사이즈 선택해 주세요.');
       return;
     }
+
+    if (part4controller.modelWeightController.text.isNotEmpty) {
+      try {
+        int.parse(part4controller.modelWeightController.text);
+      } catch (e) {
+        isLoading.value = false;
+        Get.back();
+        mSnackbar(message: '몸무게를 숫자로 입력해주세요.');
+        return;
+      }
+    }
+
+    if (part4controller.modelHeightController.text.isNotEmpty) {
+      try {
+        int.parse(part4controller.modelHeightController.text);
+      } catch (e) {
+        isLoading.value = false;
+        Get.back();
+        mSnackbar(message: '키를 숫자로 입력해주세요.');
+        return;
+      }
+    }
+
     Map<String, dynamic> data = {
       "product_name": productName,
       "main_category_id": mainCategoryId,
@@ -313,8 +386,17 @@ class AP_Part6Controller extends GetxController {
     String productName = addProductController.productNameController.text;
     // print("productName==========$productName");
     // print("productName3333==========${addProductController.productIdforEdit}");
+
     String price = addProductController.priceController.text
         .replaceAll(RegExp(r'[^0-9]'), '');
+
+    try {
+      int.parse(price);
+    } catch (e) {
+      Get.back();
+      mSnackbar(message: '단가를 숫자로 입력해주세요.');
+      return;
+    }
     List<dynamic> imagePath1 = part1controller.imagePath1.value;
     List<dynamic> imagePath2 = part1controller.imagePath2.value;
     //String imagePath3 = part1controller.imagePath3.value;
@@ -332,6 +414,13 @@ class AP_Part6Controller extends GetxController {
     for (int i = 0; i < addProductController.optionsControllers.length; i++) {
       String addPrice = addProductController.optionsControllers[i].text;
       if (addPrice.isEmpty) {
+        try {
+          int.parse(addPrice);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '옵션 추가 금액을 숫자로 입력해주세요.');
+          return;
+        }
         Get.back();
         mSnackbar(message: '옵션 추가 금액을 입력해 주세요.');
         return;
@@ -343,6 +432,13 @@ class AP_Part6Controller extends GetxController {
       // for (int i = 0; i < addProductController.options.length; i++) {
       for (int i = 0; i < addProductController.optionsControllers.length; i++) {
         String addPrice = addProductController.optionsControllers[i].text;
+        try {
+          int.parse(addPrice);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '옵션 추가 금액을 숫자로 입력해주세요.');
+          return;
+        }
         if (addPrice.isEmpty) {
           Get.back();
           mSnackbar(message: '옵션 추가 금액을 입력해 주세요.');
@@ -376,13 +472,21 @@ class AP_Part6Controller extends GetxController {
     bool tempisPercent = false;
     for (int i = 0; i < part3controller.materialTypeList.length; i++) {
       if (part3controller.materialTypePercentControllers[i].text.isNotEmpty) {
+        try {
+          int.parse(part3controller.materialTypePercentControllers[i].text);
+        } catch (e) {
+          Get.back();
+          mSnackbar(message: '혼용률을 숫자로 입력해주세요.');
+          return;
+        }
+
         tempPercent +=
             int.parse(part3controller.materialTypePercentControllers[i].text);
         tempisPercent = true;
       }
     }
 
-    if(part3controller.materialTypeList.isEmpty) {
+    if (part3controller.materialTypeList.isEmpty) {
       Get.back();
       mSnackbar(message: "소재 입력하세요.");
       return;
@@ -471,6 +575,16 @@ class AP_Part6Controller extends GetxController {
         for (int j = 0;
             j < productBodySizeModel.sizeCategory.children.length;
             j++) {
+          try {
+            int.parse(part2controller
+                .textEditingControllers[i.toString() + j.toString()]!.text);
+          } catch (e) {
+            isLoading.value = false;
+            Get.back();
+            mSnackbar(message: '사이즈를 숫자로 입력해주세요.');
+            return;
+          }
+
           SizeChild sizeChild = productBodySizeModel.sizeCategory.children[j];
           sizeInfo[sizeChild.english] = part2controller
               .textEditingControllers[i.toString() + j.toString()]!.text;
@@ -484,6 +598,27 @@ class AP_Part6Controller extends GetxController {
       Get.back();
       mSnackbar(message: '사이즈 선택해 주세요.');
       return;
+    }
+    if (part4controller.modelWeightController.text.isNotEmpty) {
+      try {
+        int.parse(part4controller.modelWeightController.text);
+      } catch (e) {
+        isLoading.value = false;
+        Get.back();
+        mSnackbar(message: '몸무게를 숫자로 입력해주세요.');
+        return;
+      }
+    }
+
+    if (part4controller.modelHeightController.text.isNotEmpty) {
+      try {
+        int.parse(part4controller.modelHeightController.text);
+      } catch (e) {
+        isLoading.value = false;
+        Get.back();
+        mSnackbar(message: '키를 숫자로 입력해주세요.');
+        return;
+      }
     }
 
     print('subCategoryId ${subCategoryId}');
