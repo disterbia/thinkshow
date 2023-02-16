@@ -1,8 +1,8 @@
 name: wholesaler_user
 description: A new Flutter project.
 publish_to: "none"
-version: 0.2.4
-#version: 0.1.11
+#version: 0.2.4
+version: 0.2.5+205
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
