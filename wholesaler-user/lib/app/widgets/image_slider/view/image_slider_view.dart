@@ -36,7 +36,7 @@ class ImageSliderView extends GetView<ImageSliderController> {
                   child: CachedNetworkImage(
                     imageUrl: image.banner_img_url,
                     width: Get.width,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     // placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
