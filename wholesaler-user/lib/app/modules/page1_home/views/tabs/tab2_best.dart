@@ -21,37 +21,56 @@ class Tab2BestView extends GetView<Tab2BestController> {
     return Obx(
       () => ctr.isLoading.value
           ? LoadingWidget()
-          : SingleChildScrollView(
-              controller: ctr.scrollController.value,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Obx(() => HorizontalChipList2().getAllMainCat(
-                        categoryList: ClothCategory.getAllMainCat()
-                            .map((e) => e.name)
-                            .toList(),
-                        onTapped: () async {
-                          await ctr.updateProducts();
-                        })),
+          : Stack(
+              children: [
+                SingleChildScrollView(
+                  controller: ctr.scrollController.value,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Obx(() => HorizontalChipList2().getAllMainCat(
+                            categoryList: ClothCategory.getAllMainCat()
+                                .map((e) => e.name)
+                                .toList(),
+                            onTapped: () async {
+                              await ctr.updateProducts();
+                            })),
+                      ),
+                      SizedBox(height: 5),
+                      _button(),
+                      SizedBox(height: 10),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: ProductGridViewBuilder(
+                          crossAxisCount: 2,
+                          productHeight: 360,
+                          products: ctr.products,
+                          isShowLoadingCircle: ctr.allowCallAPI,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 5),
-                  _button(),
-                  SizedBox(height: 10),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: ProductGridViewBuilder(
-                      crossAxisCount: 2,
-                      productHeight: 360,
-                      products: ctr.products,
-                      isShowLoadingCircle: ctr.allowCallAPI,
+                ),
+                Positioned(
+                  bottom: 20,
+                  right: 20,
+                  child: SizedBox(
+                    width: 45,
+                    height: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.arrow_upward_rounded),
+                      onPressed: () {
+                        ctr.scrollController.value.jumpTo(0);
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
     );
   }

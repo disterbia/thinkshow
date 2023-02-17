@@ -61,28 +61,36 @@ class ProductDetailView extends GetView {
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
-                heroTag: null,
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.arrow_upward_rounded,
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  ctr.arrowsController
-                      .jumpTo(ctr.arrowsController.position.minScrollExtent);
-                }),
+            SizedBox(
+              width: 45,
+              height: 45,
+              child: FloatingActionButton(
+                  heroTag: null,
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.arrow_upward_rounded,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    ctr.arrowsController
+                        .jumpTo(ctr.arrowsController.position.minScrollExtent);
+                  }),
+            ),
             SizedBox(
               height: 10,
             ),
-            FloatingActionButton(
-                heroTag: null,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.arrow_downward_rounded, color: Colors.grey),
-                onPressed: () {
-                  ctr.arrowsController
-                      .jumpTo(ctr.arrowsController.position.maxScrollExtent);
-                }),
+            SizedBox(
+              width: 45,
+              height: 45,
+              child: FloatingActionButton(
+                  heroTag: null,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.arrow_downward_rounded, color: Colors.grey),
+                  onPressed: () {
+                    ctr.arrowsController
+                        .jumpTo(ctr.arrowsController.position.maxScrollExtent);
+                  }),
+            ),
           ],
         ),
         body: ctr.isLoading.value
@@ -173,9 +181,14 @@ class ProductDetailView extends GetView {
       result = (temp / 1000).toStringAsFixed(1) + "k";
     }
     return GestureDetector(
-      onTap: () {
-        Get.to(() => StoreDetailView(storeId: ctr.product.value.store.id),preventDuplicates: true,);
-      },
+      onTap: MyVars.isUserProject()
+          ? () {
+              Get.to(
+                () => StoreDetailView(storeId: ctr.product.value.store.id),
+                preventDuplicates: true,
+              );
+            }
+          : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -245,7 +258,8 @@ class ProductDetailView extends GetView {
                       )),
           ),
           Obx(
-            () => ctr.product.value.store.isBookmarked != null
+            () => ctr.product.value.store.isBookmarked != null &&
+                    MyVars.isUserProject()
                 ? Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: Column(
@@ -306,21 +320,23 @@ class ProductDetailView extends GetView {
                 ),
               ),
             ),
-            InkWell(
-                onTap: () async {
-                  Share.share(
-                    await DynamicLink().getShortLink(
-                      ctr.productId.toString(),
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(
-                    Icons.share_outlined,
-                    color: MyColors.grey4,
-                  ),
-                ))
+            MyVars.isUserProject()
+                ? InkWell(
+                    onTap: () async {
+                      Share.share(
+                        await DynamicLink().getShortLink(
+                          ctr.productId.toString(),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(
+                        Icons.share_outlined,
+                        color: MyColors.grey4,
+                      ),
+                    ))
+                : SizedBox.shrink()
           ],
         ),
         Padding(
@@ -356,6 +372,11 @@ class ProductDetailView extends GetView {
                       onTap: () {
                         ctr.tabController.animateTo(1);
                         tabIndex.value = 1;
+                        ctr.arrowsController.animateTo(
+                          450.0,
+                          curve: Curves.easeOut,
+                          duration: const Duration(milliseconds: 300),
+                        );
                       },
                       child: Text("리뷰 ${ctr3.reviews.length}개 보기")),
             ],
@@ -444,17 +465,17 @@ class ProductDetailView extends GetView {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, top: 5),
-          child: Row(
-            children: [
-              Text("혜택정보   ",
-                  style: MyTextStyles.f16.copyWith(color: MyColors.grey4)),
-              Text("최대 300p 적립",
-                  style: MyTextStyles.f16.copyWith(fontWeight: FontWeight.w500))
-            ],
-          ),
-        )
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 10, top: 5),
+        //   child: Row(
+        //     children: [
+        //       Text("혜택정보   ",
+        //           style: MyTextStyles.f16.copyWith(color: MyColors.grey4)),
+        //       Text("최대 300p 적립",
+        //           style: MyTextStyles.f16.copyWith(fontWeight: FontWeight.w500))
+        //     ],
+        //   ),
+        // )
       ],
     );
   }
