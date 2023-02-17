@@ -16,7 +16,7 @@ class Cart1ShoppingBasketView extends GetView {
   Cart1ShoppingBasketController ctr = Get.put(Cart1ShoppingBasketController());
 
   Cart1ShoppingBasketView();
-  RxDouble expandableHeight = (Get.height / 6).obs;
+  RxDouble expandableHeight = 125.0.obs;
   RxBool isFirstDrag = true.obs;
   RxBool isExpanded = false.obs;
   init() async {
@@ -189,36 +189,37 @@ class Cart1ShoppingBasketView extends GetView {
         context,
         required: true,
       )!;
-      return Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 20, top: 20),
-            child: Text(
-              "결제 예상금액",
-              style: MyTextStyles.f14,
+      return GestureDetector(
+        onTap: () {
+          isExpanded.value = true;
+          controller.toggle();
+          expandableHeight.value = 230.0;
+          isFirstDrag.value = true;
+        },
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, left: 20, top: 20),
+              child: Text(
+                "결제 예상금액",
+                style: MyTextStyles.f14,
+              ),
             ),
-          ),
-          Spacer(),
-          Obx(() => Padding(
-                padding: const EdgeInsets.only(bottom: 10, top: 20),
-                child: Text(
-                  Utils.numberFormat(
-                      number: ctr.totalPaymentPrice.value, suffix: '원'),
-                  style: MyTextStyles.f14_bold,
-                ),
-              )),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10, top: 15, right: 20),
-            child: InkWell(
-                onTap: () {
-                  isExpanded.value = true;
-                  controller.toggle();
-                  expandableHeight.value = Get.height / 3;
-                  isFirstDrag.value = true;
-                },
-                child: Icon(Icons.keyboard_arrow_up_outlined, size: 30)),
-          ),
-        ],
+            Spacer(),
+            Obx(() => Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 20),
+                  child: Text(
+                    Utils.numberFormat(
+                        number: ctr.totalPaymentPrice.value, suffix: '원'),
+                    style: MyTextStyles.f14_bold,
+                  ),
+                )),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10, top: 15, right: 20),
+              child: Icon(Icons.keyboard_arrow_up_outlined, size: 30),
+            ),
+          ],
+        ),
       );
     });
   }
@@ -227,12 +228,18 @@ class Cart1ShoppingBasketView extends GetView {
     return Builder(builder: (context) {
       var controller = ExpandableController.of(context, required: true)!;
       return GestureDetector(
+        onTap: () {
+          isExpanded.value = false;
+          controller.toggle();
+          expandableHeight.value = 125.0;
+          isFirstDrag.value = false;
+        },
         onPanUpdate: (details) {
           if (!isFirstDrag.value) return;
           if (details.delta.dy > 0.2) {
             isExpanded.value = false;
             controller.toggle();
-            expandableHeight.value = Get.height / 6;
+            expandableHeight.value = 125.0;
             isFirstDrag.value = false;
           }
         },

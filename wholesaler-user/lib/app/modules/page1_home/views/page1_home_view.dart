@@ -24,11 +24,11 @@ class Page1HomeView extends GetView<Page1HomeController> {
   Page1HomeController ctr = Get.put(Page1HomeController());
   Cart1ShoppingBasketController cartCtr =
       Get.put(Cart1ShoppingBasketController());
-  Tab1UserHomeController ctr0 = Get.put(Tab1UserHomeController());
-  Tab2BestController ctr1 = Get.put(Tab2BestController());
-  Tab3NewProductsController ctr2 = Get.put(Tab3NewProductsController());
-  Tab4DingDongController ctr3 = Get.put(Tab4DingDongController());
-  Tab5DingPickController ctr4 = Get.put(Tab5DingPickController());
+  // Tab1UserHomeController ctr0 = Get.put(Tab1UserHomeController());
+  // Tab2BestController ctr1 = Get.put(Tab2BestController());
+  // Tab3NewProductsController ctr2 = Get.put(Tab3NewProductsController());
+  // Tab4DingDongController ctr3 = Get.put(Tab4DingDongController());
+  // Tab5DingPickController ctr4 = Get.put(Tab5DingPickController());
 
   Page1HomeView();
 
@@ -44,24 +44,25 @@ class Page1HomeView extends GetView<Page1HomeController> {
       appBar: _mainAppbar(),
       backgroundColor: MyColors.white,
       body: _floatTabBar(),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          child: Icon(Icons.arrow_upward_rounded),
-          onPressed: () {
-            int index = ctr.tabBarIndex.value;
-            switch (index) {
-              case 0:
-                return ctr0.scrollController.value.jumpTo(0);
-              case 1:
-                return ctr1.scrollController.value.jumpTo(0);
-              case 2:
-                return ctr2.scrollController.value.jumpTo(0);
-              case 3:
-                return ctr3.scrollController.value.jumpTo(0);
-              case 4:
-                return ctr4.scrollController.value.jumpTo(0);
-            }
-          }),
+      // floatingActionButton: FloatingActionButton(
+      //     backgroundColor: Colors.white,
+      //     child: Icon(Icons.arrow_upward_rounded),
+      //     onPressed: () {
+      //       int index = ctr.tabBarIndex.value;
+
+      //       switch (index) {
+      //         case 0:
+      //           return ctr0.scrollController.value.jumpTo(0);
+      //         case 1:
+      //           return ctr1.scrollController.value.jumpTo(0);
+      //         case 2:
+      //           return ctr2.scrollController.value.jumpTo(0);
+      //         case 3:
+      //           return ctr3.scrollController.value.jumpTo(0);
+      //         case 4:
+      //           return ctr4.scrollController.value.jumpTo(0);
+      //       }
+      //     }),
     );
   }
 
@@ -115,7 +116,6 @@ class Page1HomeView extends GetView<Page1HomeController> {
                   child: IconButton(
                       onPressed: () {
                         Get.to(() => Cart1ShoppingBasketView());
-
                       },
                       icon: ImageIcon(
                         AssetImage('assets/icons/top_cart.png'),

@@ -26,7 +26,6 @@ class Tab1UserHomeController extends GetxController {
   @override
   Future<void> onInit() async {
     scrollController.value.addListener(() {
-      // print(scrollController.value.position.pixels);
       if (scrollController.value.position.pixels ==
               scrollController.value.position.maxScrollExtent ) {
         offset += mConst.limit;

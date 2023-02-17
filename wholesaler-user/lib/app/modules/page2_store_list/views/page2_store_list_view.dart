@@ -26,15 +26,15 @@ class Page2StoreListView extends GetView {
       backgroundColor: MyColors.white,
       appBar: _mainAppbar(),
       body: _body(),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          child: Icon(Icons.arrow_upward_rounded),
-          onPressed: () {
-            if(ctr4.storeIndex.value==0){
-              ctr.scrollController.jumpTo(0);
-            }else
-            ctr3.scrollController.jumpTo(0);
-          }),
+      // floatingActionButton: FloatingActionButton(
+      //     backgroundColor: Colors.white,
+      //     child: Icon(Icons.arrow_upward_rounded),
+      //     onPressed: () {
+      //       if(ctr4.storeIndex.value==0){
+      //         ctr.scrollController.jumpTo(0);
+      //       }else
+      //       ctr3.scrollController.jumpTo(0);
+      //     }),
     );
   }
 

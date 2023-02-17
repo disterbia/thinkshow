@@ -30,275 +30,292 @@ class Tab1DetailInfo extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    bool bestIsMore3= productDetailCtr.bestProducts.length>=3;
-    bool sameIsMore3=productDetailCtr.sameProducts.length>=3;
+    bool bestIsMore3 = productDetailCtr.bestProducts.length >= 3;
+    bool sameIsMore3 = productDetailCtr.sameProducts.length >= 3;
     List<String> keywords = (productDetailCtr.product.value.keyword!)
         .map((item) => item as String)
         .toList();
     String keyword = "";
     for (var i = 0; i < keywords.length; i++) {
-      keyword = keyword + "#"+keywords[i]+" ";
+      keyword = keyword + "#" + keywords[i] + " ";
     }
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   ctr.clothWashToggleInitilize();
     // });
-    return  Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Webview
-                // Obx(
-                //   () => productDetailCtr.product.value.content != null
-                //       ? WebviewBuilder(
-                //           htmlContent: productDetailCtr.product.value.content!)
-                //       : Container(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Webview
+        // Obx(
+        //   () => productDetailCtr.product.value.content != null
+        //       ? WebviewBuilder(
+        //           htmlContent: productDetailCtr.product.value.content!)
+        //       : Container(),
 
-                // ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Stack(
-                    children: [
-                      Obx(
-                        () => Container(
-                          height: productDetailCtr
-                                      .product.value.imagesColor!.length >=
-                                  2
-                              ? isMore.value
-                                  ? null
-                                  : Get.height * 1.2
-                              : null,
-                          child: ListView.separated(separatorBuilder: (context, index) => SizedBox(height: 2,),
-                            itemCount: productDetailCtr
-                                .product.value.imagesColor!.length,
-                            itemBuilder: (context, index) {
-                              if(index==productDetailCtr
-                                  .product.value.imagesColor!.length-1)
-                                return Column(crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                Container(
-                                height: Get.height * 0.6,
-                                  child: ClipRRect(
-                                    borderRadius: !isMore.value && index == 1
-                                        ? BorderRadius.only(
+        // ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Stack(
+            children: [
+              Obx(
+                () => Container(
+                  height:
+                      productDetailCtr.product.value.imagesColor!.length >= 2
+                          ? isMore.value
+                              ? null
+                              : Get.height * 1.2
+                          : null,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: 2,
+                    ),
+                    itemCount:
+                        productDetailCtr.product.value.imagesColor!.length,
+                    itemBuilder: (context, index) {
+                      if (index ==
+                          productDetailCtr.product.value.imagesColor!.length -
+                              1)
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: Get.height * 0.6,
+                              child: ClipRRect(
+                                borderRadius: !isMore.value && index == 1
+                                    ? BorderRadius.only(
                                         bottomRight: Radius.circular(8),
                                         bottomLeft: Radius.circular(8))
-                                        : BorderRadius.all(Radius.zero),
-                                    child: CachedNetworkImage(
-                                      imageUrl: productDetailCtr
-                                          .product.value.imagesColor![index],
-                                      fit: BoxFit.fill,
-                                      placeholder: (context, url) {
-                                        return Container(
-                                          height: 300,
-                                          child: Center(
-                                              child: CircularProgressIndicator()),
-                                        );
-                                      },
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
-                                    ),
-                                  ),
+                                    : BorderRadius.all(Radius.zero),
+                                child: CachedNetworkImage(
+                                  imageUrl: productDetailCtr
+                                      .product.value.imagesColor![index],
+                                  fit: BoxFit.fill,
+                                  placeholder: (context, url) {
+                                    return Container(
+                                      height: 300,
+                                      child: Center(
+                                          child: CircularProgressIndicator()),
+                                    );
+                                  },
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
-                                    QuillEditor(
-                                      controller: productDetailCtr.quillController!,
-                                      scrollController: ScrollController(),
-                                      scrollable: true,
-                                      focusNode: FocusNode(),
-                                      autoFocus: true,
-                                      readOnly: true,
-                                      expands: false,
-                                      padding: EdgeInsets.all(15),
-                                      showCursor: false,
-                                      enableSelectionToolbar: false,
-                                      enableInteractiveSelection: false,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10.0),
-                                      child: Text(keyword),
-                                    ),
-                                  ],
-                                );
+                              ),
+                            ),
+                            QuillEditor(
+                              controller: productDetailCtr.quillController!,
+                              scrollController: ScrollController(),
+                              scrollable: true,
+                              focusNode: FocusNode(),
+                              autoFocus: true,
+                              readOnly: true,
+                              expands: false,
+                              padding: EdgeInsets.all(15),
+                              showCursor: false,
+                              enableSelectionToolbar: false,
+                              enableInteractiveSelection: false,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Text(keyword),
+                            ),
+                          ],
+                        );
+                      return Container(
+                        height: Get.height * 0.6,
+                        child: ClipRRect(
+                          borderRadius: !isMore.value && index == 1
+                              ? BorderRadius.only(
+                                  bottomRight: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8))
+                              : BorderRadius.all(Radius.zero),
+                          child: CachedNetworkImage(
+                            imageUrl: productDetailCtr
+                                .product.value.imagesColor![index],
+                            fit: BoxFit.fill,
+                            placeholder: (context, url) {
                               return Container(
-                                height: Get.height * 0.6,
-                                child: ClipRRect(
-                                  borderRadius: !isMore.value && index == 1
-                                      ? BorderRadius.only(
-                                          bottomRight: Radius.circular(8),
-                                          bottomLeft: Radius.circular(8))
-                                      : BorderRadius.all(Radius.zero),
-                                  child: CachedNetworkImage(
-                                    imageUrl: productDetailCtr
-                                        .product.value.imagesColor![index],
-                                    fit: BoxFit.fill,
-                                    placeholder: (context, url) {
-                                      return Container(
-                                        height: 300,
-                                        child: Center(
-                                            child: CircularProgressIndicator()),
-                                      );
-                                    },
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                  ),
-                                ),
+                                height: 300,
+                                child:
+                                    Center(child: CircularProgressIndicator()),
                               );
                             },
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
                         ),
-                      ),
-                      Obx(
-                        () => productDetailCtr
-                                    .product.value.imagesColor!.length >=
-                                2
-                            ? isMore.value
-                                ? Container()
-                                : Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    left: 0,
-                                    child: Column(children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                              Colors.white.withOpacity(1),
-                                              Colors.white.withOpacity(0)
-                                            ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter)),
-                                        height: 80,
-                                        width: Get.width,
-                                      ),
-                                      Container(
-                                        height: 60,
-                                        child: CustomButton(
-                                            width: Get.width,
-                                            onPressed: () {
-                                              isMore.value = true;
-                                            },
-                                            backgroundColor: Colors.black,
-                                            borderColor: Colors.black,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "상품정보 더보기",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_outlined,
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ]))
-                            : Container(),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10,),
-                // Obx(() => SizedBox(
-                //       height: isMore.value ? 0 : 30,
-                //     )),
-                Divider(
-                  thickness: 10,
-                  color: MyColors.grey3,
-                ),
-                SizedBox(height: 20,),
-                sameIsMore3?Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "이 상품과 비슷한 상품",
-                    style: MyTextStyles.f18_bold,
-                  ),
-                ):Container(),
-                sameIsMore3? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    primary: false,
-                    shrinkWrap: true,
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ProductItemVertical(
-                        product: productDetailCtr.sameProducts[index],
                       );
                     },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
-                      crossAxisCount: 3,
-                      childAspectRatio:
-                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
-                      // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
-                    ),
-                  ),
-                ):Container(),
-                sameIsMore3?Divider(
-                  thickness: 10,
-                  color: MyColors.grey3,
-                ):Container(),
-                sameIsMore3?SizedBox(height: 20,):Container(),
-                bestIsMore3?Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "스토어에서 인기 있는 상품",
-                    style: MyTextStyles.f18_bold,
-                  ),
-                ):Container(),
-                bestIsMore3?Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
-                    primary: false,
                     shrinkWrap: true,
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ProductItemVertical(
-                        product: productDetailCtr.bestProducts[index]
-                      );
-                    },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
-                      crossAxisCount: 3,
-                      childAspectRatio:
-                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
-                      // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
-                    ),
                   ),
-                ):Container(),
-                // 반품교환정보
-                bestIsMore3?Divider(
-                  thickness: 10,
-                  color: MyColors.grey3,
-                ):Container(),
-                Padding(
+                ),
+              ),
+              Obx(
+                () => productDetailCtr.product.value.imagesColor!.length >= 2
+                    ? isMore.value
+                        ? Container()
+                        : Positioned(
+                            bottom: 0,
+                            right: 0,
+                            left: 0,
+                            child: Column(children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.white.withOpacity(1),
+                                      Colors.white.withOpacity(0)
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                height: 80,
+                                width: Get.width,
+                              ),
+                              Container(
+                                height: 60,
+                                child: CustomButton(
+                                    width: Get.width,
+                                    onPressed: () {
+                                      isMore.value = true;
+                                    },
+                                    backgroundColor: Colors.black,
+                                    borderColor: Colors.black,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "상품정보 더보기",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Icon(
+                                          Icons.keyboard_arrow_down_outlined,
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    )),
+                              ),
+                            ]))
+                    : Container(),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        // Obx(() => SizedBox(
+        //       height: isMore.value ? 0 : 30,
+        //     )),
+        Divider(
+          thickness: 10,
+          color: MyColors.grey3,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        sameIsMore3 && MyVars.isUserProject()
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  "이 상품과 비슷한 상품",
+                  style: MyTextStyles.f18_bold,
+                ),
+              )
+            : Container(),
+        sameIsMore3 && MyVars.isUserProject()
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProductItemVertical(
+                      product: productDetailCtr.sameProducts[index],
+                    );
+                  },
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 3,
+                    childAspectRatio:
+                        context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                    // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                  ),
+                ),
+              )
+            : Container(),
+        sameIsMore3 && MyVars.isUserProject()
+            ? Divider(
+                thickness: 10,
+                color: MyColors.grey3,
+              )
+            : Container(),
+        sameIsMore3 && MyVars.isUserProject()
+            ? SizedBox(
+                height: 20,
+              )
+            : Container(),
+        bestIsMore3 && MyVars.isUserProject()
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  "스토어에서 인기 있는 상품",
+                  style: MyTextStyles.f18_bold,
+                ),
+              )
+            : Container(),
+        bestIsMore3 && MyVars.isUserProject()
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProductItemVertical(
+                        product: productDetailCtr.bestProducts[index]);
+                  },
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 3,
+                    childAspectRatio:
+                        context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                    // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                  ),
+                ),
+              )
+            : Container(),
+        // 반품교환정보
+        bestIsMore3 && MyVars.isUserProject()
+            ? Divider(
+                thickness: 10,
+                color: MyColors.grey3,
+              )
+            : Container(),
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text(
+            '띵쇼 교환 및 반품 안내',
+            style: MyTextStyles.f16.copyWith(color: MyColors.black2),
+          ),
+        ),
+        Obx(
+          () => productDetailCtr.product.value.return_exchange_info != null
+              ? Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    '띵쇼 교환 및 반품 안내',
-                    style: MyTextStyles.f16.copyWith(color: MyColors.black2),
+                    productDetailCtr.product.value.return_exchange_info!,
+                    style: TextStyle(color: MyColors.grey4),
                   ),
-                ),
-                Obx(
-                  () => productDetailCtr.product.value.return_exchange_info !=
-                          null
-                      ? Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            productDetailCtr
-                                .product.value.return_exchange_info!,
-                            style: TextStyle(color: MyColors.grey4),
-                          ),
-                        )
-                      : SizedBox.shrink(),
-                ),
-              ],
-            );
+                )
+              : SizedBox.shrink(),
+        ),
+      ],
+    );
   }
 
   Widget EnableButton(String text, bool isSelected) {

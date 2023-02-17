@@ -21,47 +21,66 @@ class Tab1RankingView extends StatelessWidget {
     return Obx(
       () => ctr.isLoading.value
           ? LoadingWidget()
-          : SingleChildScrollView(
-              controller: ctr.scrollController,
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10.0, top: 10),
-                      child: ToggleButtons(
-                        //direction: vertical ? Axis.vertical : Axis.horizontal,
-                        onPressed: (int index) {
-                          if (index == 0) ctr.getMostStoreData();
-                          if (index == 1) ctr.getRankedStoreData();
-                          // The button that is tapped is set to true, and the others to false.
-                          for (int i = 0; i < _selected.length; i++) {
-                            _selected[i] = i == index;
-                          }
-                        },
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8)),
-                        selectedColor: Colors.white,
-                        fillColor: MyColors.primary,
-                        color: Colors.grey,
-                        constraints: const BoxConstraints(
-                          minHeight: 25.0,
-                          minWidth: 25.0,
+          : Stack(
+              children: [
+                SingleChildScrollView(
+                  controller: ctr.scrollController,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10.0, top: 10),
+                          child: ToggleButtons(
+                            //direction: vertical ? Axis.vertical : Axis.horizontal,
+                            onPressed: (int index) {
+                              if (index == 0) ctr.getMostStoreData();
+                              if (index == 1) ctr.getRankedStoreData();
+                              // The button that is tapped is set to true, and the others to false.
+                              for (int i = 0; i < _selected.length; i++) {
+                                _selected[i] = i == index;
+                              }
+                            },
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            selectedColor: Colors.white,
+                            fillColor: MyColors.primary,
+                            color: Colors.grey,
+                            constraints: const BoxConstraints(
+                              minHeight: 25.0,
+                              minWidth: 25.0,
+                            ),
+                            isSelected: _selected,
+                            children: [Text(" 추천순 "), Text(" 인기순 ")],
+                          ),
                         ),
-                        isSelected: _selected,
-                        children: [Text(" 추천순 "), Text(" 인기순 ")],
                       ),
+                      ListView.builder(
+                          itemCount: ctr.stores.length,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return _storeList(ctr.stores[index], context);
+                          }),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: 20,
+                  right: 20,
+                  child: SizedBox(
+                    width: 45,
+                    height: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.arrow_upward_rounded),
+                      onPressed: () {
+                        ctr.scrollController.jumpTo(0);
+                      },
                     ),
                   ),
-                  ListView.builder(
-                      itemCount: ctr.stores.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return _storeList(ctr.stores[index], context);
-                      }),
-                ],
-              ),
+                ),
+              ],
             ),
     );
   }
@@ -69,10 +88,12 @@ class Tab1RankingView extends StatelessWidget {
   Widget _storeList(Store store, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => StoreDetailView(
-              storeId: store.id,
-              prevPage: prevPage,
-            ),preventDuplicates: true);
+        Get.to(
+            () => StoreDetailView(
+                  storeId: store.id,
+                  prevPage: prevPage,
+                ),
+            preventDuplicates: true);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -286,52 +307,55 @@ class Tab1RankingView extends StatelessWidget {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                Get.to(() => StoreDetailView(
-                                  storeId: ctr.sameId[0],
-                                  prevPage: prevPage,
-                                ),preventDuplicates: true);
+                                Get.to(
+                                    () => StoreDetailView(
+                                          storeId: ctr.sameId[0],
+                                          prevPage: prevPage,
+                                        ),
+                                    preventDuplicates: true);
                               },
                               child: Container(
                                 child: Stack(
                                   children: [
                                     Container(
                                         child: Center(
-                                                child: ClipRRect(
-                                                  child:  ctr.mainImage[0] == ""
-                                                      ? Image.asset(
-                                                        "assets/icons/ic_store.png",
-                                                      )
-                                                      :CachedNetworkImage(
+                                          child: ClipRRect(
+                                            child: ctr.mainImage[0] == ""
+                                                ? Image.asset(
+                                                    "assets/icons/ic_store.png",
+                                                  )
+                                                : CachedNetworkImage(
                                                     imageUrl: ctr.mainImage[0],
                                                     fit: BoxFit.fill,
                                                   ),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(10.0),
-                                                      topRight:
-                                                          Radius.circular(10.0)),
-                                                ),
-                                              ),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10.0),
+                                                topRight:
+                                                    Radius.circular(10.0)),
+                                          ),
+                                        ),
                                         height: 120),
                                     Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Container(
                                           child: Center(
-                                                  child: CircleAvatar(
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(2),
-                                                    child: ClipOval(
-                                                      child: ctr.subImage[0] == ""
-                                                          ? Image.asset(
+                                              child: CircleAvatar(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(2),
+                                              child: ClipOval(
+                                                child: ctr.subImage[0] == ""
+                                                    ? Image.asset(
                                                         "assets/icons/ic_store.png",
-                                                      ):CachedNetworkImage(
-                                                        imageUrl: ctr.subImage[0],
+                                                      )
+                                                    : CachedNetworkImage(
+                                                        imageUrl:
+                                                            ctr.subImage[0],
                                                       ),
-                                                    ),
-                                                  ),
-                                                  radius: 50,
-                                                    backgroundColor: Colors.white,
-                                                )),
+                                              ),
+                                            ),
+                                            radius: 50,
+                                            backgroundColor: Colors.white,
+                                          )),
                                           width: 50,
                                           height: 50,
                                         ))
@@ -346,53 +370,55 @@ class Tab1RankingView extends StatelessWidget {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                Get.to(() => StoreDetailView(
-                                  storeId: ctr.sameId[1],
-                                  prevPage: prevPage,
-                                ),preventDuplicates: true);
+                                Get.to(
+                                    () => StoreDetailView(
+                                          storeId: ctr.sameId[1],
+                                          prevPage: prevPage,
+                                        ),
+                                    preventDuplicates: true);
                               },
                               child: Container(
                                 child: Stack(
                                   children: [
                                     Container(
                                         child: Center(
-                                                child: ClipRRect(
-                                                  child:  ctr.mainImage[1] == ""
-                                                      ? Image.asset(
+                                          child: ClipRRect(
+                                            child: ctr.mainImage[1] == ""
+                                                ? Image.asset(
                                                     "assets/icons/ic_store.png",
                                                   )
-                                                      :CachedNetworkImage(
+                                                : CachedNetworkImage(
                                                     imageUrl: ctr.mainImage[1],
                                                     fit: BoxFit.fill,
                                                   ),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(10.0),
-                                                      topRight:
-                                                          Radius.circular(10.0)),
-                                                ),
-                                              ),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10.0),
+                                                topRight:
+                                                    Radius.circular(10.0)),
+                                          ),
+                                        ),
                                         height: 120),
                                     Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Container(
-                                          child:Center(
+                                          child: Center(
                                               child: CircleAvatar(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(2),
-                                                  child:  ctr.subImage[1] == ""
-                                                      ? Image.asset(
-                                                    "assets/icons/ic_store.png",
-                                                  )
-                                                      : ClipOval(
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: ctr.subImage[1],
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(2),
+                                              child: ctr.subImage[1] == ""
+                                                  ? Image.asset(
+                                                      "assets/icons/ic_store.png",
+                                                    )
+                                                  : ClipOval(
+                                                      child: CachedNetworkImage(
+                                                        imageUrl:
+                                                            ctr.subImage[1],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                radius: 50,
-                                                backgroundColor: Colors.white,
-                                              )),
+                                            ),
+                                            radius: 50,
+                                            backgroundColor: Colors.white,
+                                          )),
                                           width: 50,
                                           height: 50,
                                         ))
@@ -423,7 +449,7 @@ class Tab1RankingView extends StatelessWidget {
 
   Widget _starBuilder(Store store, BuildContext context) {
     double temp = double.parse(store.favoriteCount!.value.toString());
-   RxString result = store.favoriteCount!.value.toString().obs;
+    RxString result = store.favoriteCount!.value.toString().obs;
     if (temp >= 1000) {
       result.value = (temp / 1000).toStringAsFixed(1) + "k";
     }
@@ -432,8 +458,8 @@ class Tab1RankingView extends StatelessWidget {
         store.isBookmarked!.toggle();
         await ctr.starIconPressed(store);
         if (store.isBookmarked!.value) {
-          store.favoriteCount!.value+=1;
-          result.value= (store.favoriteCount!.value).toString();
+          store.favoriteCount!.value += 1;
+          result.value = (store.favoriteCount!.value).toString();
           if (temp >= 1000) {
             result.value = (temp / 1000).toStringAsFixed(1) + "k";
           }
@@ -448,14 +474,13 @@ class Tab1RankingView extends StatelessWidget {
             padding: EdgeInsets.only(top: 10, bottom: 10, left: 20),
             duration: Duration(seconds: 1),
           ));
-        }else{
-          store.favoriteCount!.value-=1;
-          result.value= (store.favoriteCount!.value).toString();
+        } else {
+          store.favoriteCount!.value -= 1;
+          result.value = (store.favoriteCount!.value).toString();
           if (temp >= 1000) {
             result.value = (temp / 1000).toStringAsFixed(1) + "k";
           }
         }
-
       },
       child: Obx(
         () => Column(
