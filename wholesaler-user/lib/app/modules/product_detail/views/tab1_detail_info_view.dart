@@ -25,7 +25,7 @@ class Tab1DetailInfo extends GetView {
   ProductDetailController productDetailCtr = Get.put(ProductDetailController());
   AP_Part3Controller addProduct3Ctr = Get.put(AP_Part3Controller());
   RxBool isMore = false.obs;
-
+  RxBool isHide = false.obs;
   // Tab1DetailInfo();
 
   @override
@@ -42,279 +42,301 @@ class Tab1DetailInfo extends GetView {
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   ctr.clothWashToggleInitilize();
     // });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // Webview
-        // Obx(
-        //   () => productDetailCtr.product.value.content != null
-        //       ? WebviewBuilder(
-        //           htmlContent: productDetailCtr.product.value.content!)
-        //       : Container(),
+    return Obx(
+      ()=> Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Webview
+          // Obx(
+          //   () => productDetailCtr.product.value.content != null
+          //       ? WebviewBuilder(
+          //           htmlContent: productDetailCtr.product.value.content!)
+          //       : Container(),
 
-        // ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Stack(
-            children: [
-              Obx(
-                () => Container(
-                  height:
-                      productDetailCtr.product.value.imagesColor!.length >= 2
-                          ? isMore.value
-                              ? null
-                              : Get.height * 1.2
-                          : null,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: 2,
-                    ),
-                    itemCount:
-                        productDetailCtr.product.value.imagesColor!.length,
-                    itemBuilder: (context, index) {
-                      if (index ==
-                          productDetailCtr.product.value.imagesColor!.length -
-                              1)
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: Get.height * 0.6,
-                              child: ClipRRect(
-                                borderRadius: !isMore.value && index == 1
-                                    ? BorderRadius.only(
-                                        bottomRight: Radius.circular(8),
-                                        bottomLeft: Radius.circular(8))
-                                    : BorderRadius.all(Radius.zero),
-                                child: CachedNetworkImage(
-                                  imageUrl: productDetailCtr
-                                      .product.value.imagesColor![index],
-                                  fit: BoxFit.fill,
-                                  placeholder: (context, url) {
-                                    return Container(
-                                      height: 300,
-                                      child: Center(
-                                          child: CircularProgressIndicator()),
-                                    );
-                                  },
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+          // ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Stack(
+              children: [
+                Obx(
+                  () => Container(
+                    height:
+                        productDetailCtr.product.value.imagesColor!.length >= 2
+                            ? isMore.value
+                                ? null
+                                : Get.height * 1.2
+                            : null,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 2,
+                      ),
+                      itemCount:
+                          productDetailCtr.product.value.imagesColor!.length,
+                      itemBuilder: (context, index) {
+                        if (index ==
+                            productDetailCtr.product.value.imagesColor!.length -
+                                1)
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: Get.height * 0.6,
+                                child: ClipRRect(
+                                  borderRadius: !isMore.value && index == 1
+                                      ? BorderRadius.only(
+                                          bottomRight: Radius.circular(8),
+                                          bottomLeft: Radius.circular(8))
+                                      : BorderRadius.all(Radius.zero),
+                                  child: CachedNetworkImage(
+                                    imageUrl: productDetailCtr
+                                        .product.value.imagesColor![index],
+                                    fit: BoxFit.fill,
+                                    placeholder: (context, url) {
+                                      return Container(
+                                        height: 300,
+                                        child: Center(
+                                            child: CircularProgressIndicator()),
+                                      );
+                                    },
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
+                              QuillEditor(
+                                controller: productDetailCtr.quillController!,
+                                scrollController: ScrollController(),
+                                scrollable: true,
+                                focusNode: FocusNode(),
+                                autoFocus: true,
+                                readOnly: true,
+                                expands: false,
+                                padding: EdgeInsets.all(15),
+                                showCursor: false,
+                                enableSelectionToolbar: false,
+                                enableInteractiveSelection: false,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(keyword),
+                              ),
+                            ],
+                          );
+                        return Container(
+                          height: Get.height * 0.6,
+                          child: ClipRRect(
+                            borderRadius: !isMore.value && index == 1
+                                ? BorderRadius.only(
+                                    bottomRight: Radius.circular(8),
+                                    bottomLeft: Radius.circular(8))
+                                : BorderRadius.all(Radius.zero),
+                            child: CachedNetworkImage(
+                              imageUrl: productDetailCtr
+                                  .product.value.imagesColor![index],
+                              fit: BoxFit.fill,
+                              placeholder: (context, url) {
+                                return Container(
+                                  height: 300,
+                                  child:
+                                      Center(child: CircularProgressIndicator()),
+                                );
+                              },
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
-                            QuillEditor(
-                              controller: productDetailCtr.quillController!,
-                              scrollController: ScrollController(),
-                              scrollable: true,
-                              focusNode: FocusNode(),
-                              autoFocus: true,
-                              readOnly: true,
-                              expands: false,
-                              padding: EdgeInsets.all(15),
-                              showCursor: false,
-                              enableSelectionToolbar: false,
-                              enableInteractiveSelection: false,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Text(keyword),
-                            ),
-                          ],
-                        );
-                      return Container(
-                        height: Get.height * 0.6,
-                        child: ClipRRect(
-                          borderRadius: !isMore.value && index == 1
-                              ? BorderRadius.only(
-                                  bottomRight: Radius.circular(8),
-                                  bottomLeft: Radius.circular(8))
-                              : BorderRadius.all(Radius.zero),
-                          child: CachedNetworkImage(
-                            imageUrl: productDetailCtr
-                                .product.value.imagesColor![index],
-                            fit: BoxFit.fill,
-                            placeholder: (context, url) {
-                              return Container(
-                                height: 300,
-                                child:
-                                    Center(child: CircularProgressIndicator()),
-                              );
-                            },
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
                           ),
-                        ),
-                      );
-                    },
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
+                        );
+                      },
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                    ),
                   ),
                 ),
-              ),
-              Obx(
-                () => productDetailCtr.product.value.imagesColor!.length >= 2
-                    ? isMore.value
-                        ? Container()
-                        : Positioned(
-                            bottom: 0,
-                            right: 0,
-                            left: 0,
-                            child: Column(children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.white.withOpacity(1),
-                                      Colors.white.withOpacity(0)
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                height: 80,
-                                width: Get.width,
-                              ),
-                              Container(
-                                height: 60,
-                                child: CustomButton(
-                                    width: Get.width,
-                                    onPressed: () {
-                                      isMore.value = true;
-                                    },
-                                    backgroundColor: Colors.black,
-                                    borderColor: Colors.black,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "상품정보 더보기",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        Icon(
-                                          Icons.keyboard_arrow_down_outlined,
-                                          color: Colors.white,
-                                        )
+                Obx(
+                  () => productDetailCtr.product.value.imagesColor!.length >= 2
+                      ? isMore.value
+                          ? Container()
+                          : Positioned(
+                              bottom: 0,
+                              right: 0,
+                              left: 0,
+                              child: Column(children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          colors: [
+                                        Colors.white.withOpacity(1),
+                                        Colors.white.withOpacity(0)
                                       ],
-                                    )),
-                              ),
-                            ]))
-                    : Container(),
-              )
-            ],
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter)),
+                                  height: 80,
+                                  width: Get.width,
+                                ),
+                                Container(
+                                  height: 60,
+                                  child: CustomButton(
+                                      width: Get.width,
+                                      onPressed: () {
+                                        isMore.value = true;
+                                      },
+                                      backgroundColor: Colors.black,
+                                      borderColor: Colors.black,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "상품정보 더보기",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_down_outlined,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      )),
+                                ),
+                              ]))
+                      : Container(),
+                )
+              ],
+            ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        // Obx(() => SizedBox(
-        //       height: isMore.value ? 0 : 30,
-        //     )),
-        Divider(
-          thickness: 10,
-          color: MyColors.grey3,
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        sameIsMore3 && MyVars.isUserProject()
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(
-                  "이 상품과 비슷한 상품",
-                  style: MyTextStyles.f18_bold,
-                ),
-              )
-            : Container(),
-        sameIsMore3 && MyVars.isUserProject()
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  primary: false,
-                  shrinkWrap: true,
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ProductItemVertical(
-                      product: productDetailCtr.sameProducts[index],
-                    );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    childAspectRatio:
-                        context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
-                    // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
-                  ),
-                ),
-              )
-            : Container(),
-        sameIsMore3 && MyVars.isUserProject()
-            ? Divider(
-                thickness: 10,
-                color: MyColors.grey3,
-              )
-            : Container(),
-        sameIsMore3 && MyVars.isUserProject()
-            ? SizedBox(
-                height: 20,
-              )
-            : Container(),
-        bestIsMore3 && MyVars.isUserProject()
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(
-                  "스토어에서 인기 있는 상품",
-                  style: MyTextStyles.f18_bold,
-                ),
-              )
-            : Container(),
-        bestIsMore3 && MyVars.isUserProject()
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  primary: false,
-                  shrinkWrap: true,
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ProductItemVertical(
-                        product: productDetailCtr.bestProducts[index]);
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    childAspectRatio:
-                        context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
-                    // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
-                  ),
-                ),
-              )
-            : Container(),
-        // 반품교환정보
-        bestIsMore3 && MyVars.isUserProject()
-            ? Divider(
-                thickness: 10,
-                color: MyColors.grey3,
-              )
-            : Container(),
-        Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Text(
-            '띵쇼 교환 및 반품 안내',
-            style: MyTextStyles.f16.copyWith(color: MyColors.black2),
+          SizedBox(
+            height: 10,
           ),
-        ),
-        Obx(
-          () => productDetailCtr.product.value.return_exchange_info != null
+          // Obx(() => SizedBox(
+          //       height: isMore.value ? 0 : 30,
+          //     )),
+          Divider(
+            thickness: 10,
+            color: MyColors.grey3,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          sameIsMore3 && MyVars.isUserProject()
               ? Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
-                    productDetailCtr.product.value.return_exchange_info!,
-                    style: TextStyle(color: MyColors.grey4),
+                    "이 상품과 비슷한 상품",
+                    style: MyTextStyles.f18_bold,
                   ),
                 )
-              : SizedBox.shrink(),
-        ),
-      ],
+              : Container(),
+          sameIsMore3 && MyVars.isUserProject()
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    primary: false,
+                    shrinkWrap: true,
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductItemVertical(
+                        product: productDetailCtr.sameProducts[index],
+                      );
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 3,
+                      childAspectRatio:
+                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                      // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                    ),
+                  ),
+                )
+              : Container(),
+          sameIsMore3 && MyVars.isUserProject()
+              ? Divider(
+                  thickness: 10,
+                  color: MyColors.grey3,
+                )
+              : Container(),
+          sameIsMore3 && MyVars.isUserProject()
+              ? SizedBox(
+                  height: 20,
+                )
+              : Container(),
+          bestIsMore3 && MyVars.isUserProject()
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    "스토어에서 인기 있는 상품",
+                    style: MyTextStyles.f18_bold,
+                  ),
+                )
+              : Container(),
+          bestIsMore3 && MyVars.isUserProject()
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    primary: false,
+                    shrinkWrap: true,
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductItemVertical(
+                          product: productDetailCtr.bestProducts[index]);
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 3,
+                      childAspectRatio:
+                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                      // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                    ),
+                  ),
+                )
+              : Container(),
+          // 반품교환정보
+          bestIsMore3 && MyVars.isUserProject()
+              ? Divider(
+                  thickness: 10,
+                  color: MyColors.grey3,
+                )
+              : Container(),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Text(
+                  '띵쇼 교환 및 반품 안내 ',
+                  style: MyTextStyles.f16.copyWith(color: MyColors.black2),
+                ),
+                InkWell(
+                  onTap: () async{
+                    isHide.value = !isHide.value;
+                    isHide.value?null:WidgetsBinding.instance
+                        .addPostFrameCallback((_) =>   productDetailCtr.arrowsController.animateTo(
+                      productDetailCtr.arrowsController.position.maxScrollExtent,
+                      curve: Curves.easeOut,
+                      duration: const Duration(milliseconds: 300),
+                    ));
+
+                  },
+                  child: Icon(
+                    isHide.value?Icons.keyboard_arrow_down_outlined:Icons.keyboard_arrow_up_outlined,size: 30,
+                  ),
+                )
+              ],
+            ),
+          ),
+          isHide.value?Container():Obx(
+            () => productDetailCtr.product.value.return_exchange_info != null
+                ? Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      productDetailCtr.product.value.return_exchange_info!,
+                      style: TextStyle(color: MyColors.grey4),
+                    ),
+                  )
+                : SizedBox.shrink(),
+          ),
+          SizedBox(height: 10,)
+        ],
+      ),
     );
   }
 

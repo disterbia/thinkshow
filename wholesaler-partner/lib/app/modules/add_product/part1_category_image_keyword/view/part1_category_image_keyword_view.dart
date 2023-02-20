@@ -228,7 +228,7 @@ class AP_Part1View extends GetView<AP_Part1Controller> {
                                                       shape: BoxShape.circle,
                                                       image: DecorationImage(
                                                           image: imageProvider,
-                                                          fit: BoxFit.cover),
+                                                          fit: BoxFit.fill),
                                                     ),
                                                   ),
                                                   progressIndicatorBuilder:
