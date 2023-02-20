@@ -43,7 +43,6 @@ class HorizontalChipList2 {
       );
     }
 
-    // ctr.selectedMainCatIndex.value = 0;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Wrap(

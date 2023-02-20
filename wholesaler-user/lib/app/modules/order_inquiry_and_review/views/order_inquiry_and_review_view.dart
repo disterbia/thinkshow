@@ -11,16 +11,21 @@ import 'package:wholesaler_user/app/widgets/custom_appbar.dart';
 
 /// 주문조회 or 리뷰
 class OrderInquiryAndReviewView extends GetView {
-  OrderInquiryAndReviewController ctr = Get.put(OrderInquiryAndReviewController());
+  OrderInquiryAndReviewController ctr =
+      Get.put(OrderInquiryAndReviewController());
   bool isBackEnable;
   bool hasHomeButton;
-  OrderInquiryAndReviewView({required this.isBackEnable, required this.hasHomeButton});
+  OrderInquiryAndReviewView(
+      {required this.isBackEnable, required this.hasHomeButton});
 
   @override
   Widget build(BuildContext context) {
-
+    HorizontalChipList6().ctr.selectedMainCatIndex.value = 0;
     return Scaffold(
-      appBar: CustomAppbar(isBackEnable: isBackEnable, hasHomeButton: hasHomeButton, title: Get.arguments ? '리뷰' : 'order_history'.tr),
+      appBar: CustomAppbar(
+          isBackEnable: isBackEnable,
+          hasHomeButton: hasHomeButton,
+          title: Get.arguments ? '리뷰' : 'order_history'.tr),
       body: SingleChildScrollView(
         controller: ctr.scrollController.value,
         child: Column(
@@ -46,12 +51,17 @@ class OrderInquiryAndReviewView extends GetView {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: ctr.items.length,
-                      separatorBuilder: (BuildContext context, int index) => SizedBox.shrink(),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox.shrink(),
                       itemBuilder: (BuildContext context, int itemIndex) {
                         // OrderItem ListView
                         return Container(
-                          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                          decoration: BoxDecoration(border: Border.all(color: MyColors.grey4), borderRadius: BorderRadius.all(Radius.circular(MyDimensions.radius))),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: MyColors.grey4),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(MyDimensions.radius))),
                           child: Column(
                             children: [
                               OrderTopDetailWidget(order: ctr.items[itemIndex]),
