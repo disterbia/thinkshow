@@ -67,7 +67,8 @@ class ReviewView extends GetView {
                   itemBuilder: (context, index2) {
                     return Column(
                       children: [
-                        pruductWidget(ctr.items[index].products[index2], false),
+                        pruductWidget(ctr.items[index].products[index2], false,
+                            option: ctr.items[index].products[index2].OLD_option!),
                         Divider(
                           color: MyColors.grey1,
                           endIndent: 15,
@@ -152,7 +153,8 @@ class ReviewView extends GetView {
                               ReviewDetailView2(review: ctr.myItems[index]));
                         },
                         child: pruductWidget(
-                            ctr.myItems[index].product_info!, true,option:ctr.myItems[index].select_option_name!)),
+                            ctr.myItems[index].product_info!, true,
+                            option: ctr.myItems[index].select_option_name!)),
                     Divider(
                       color: MyColors.grey1,
                       endIndent: 15,
@@ -203,16 +205,21 @@ class ReviewView extends GetView {
                           color: MyColors.black3, fontWeight: FontWeight.w400),
                     ),
                   ),
-                  SizedBox(height: 10,),
-                  option==null?Container():Flexible(
-                    child: Text(
-                      option,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: MyTextStyles.f12.copyWith(
-                          color: MyColors.grey4, fontWeight: FontWeight.w400),
-                    ),
+                  SizedBox(
+                    height: 10,
                   ),
+                  option == null
+                      ? Container()
+                      : Flexible(
+                          child: Text(
+                            option,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: MyTextStyles.f12.copyWith(
+                                color: MyColors.grey4,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
                   SizedBox(
                     height: 5,
                   ),
