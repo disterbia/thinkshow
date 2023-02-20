@@ -19,6 +19,7 @@ class Tab4DingDongView extends GetView<Tab4DingDongController> {
 
   init() {
     ctr.init();
+    HorizontalChipList3().ctr.selectedMainCatIndex.value = 0;
   }
 
   @override

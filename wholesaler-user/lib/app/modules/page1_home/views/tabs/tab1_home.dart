@@ -41,6 +41,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
     ctr.init();
     //Get.delete<CarousalProductHorizontalController>();
     recommendedProductCtr.init();
+    HorizontalChipList1().ctr.selectedMainCatIndex.value = 0;
   }
 
   void _onRefresh() async {
@@ -120,8 +121,8 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 20,
-                                              left: 10,
-                                              right: 10,
+                                              left: 5,
+                                              right: 5,
                                               bottom: 5),
                                           child: Text(
                                             recommendedProductCtr

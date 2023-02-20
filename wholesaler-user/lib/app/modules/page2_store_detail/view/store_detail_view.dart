@@ -27,7 +27,6 @@ class StoreDetailView extends GetView {
   StoreDetailView({required this.storeId, String? prevPage}) {
     print('storeId $storeId');
 
-
     if (prevPage != null) {
       this.prevPage = prevPage;
       print(prevPage);
@@ -47,67 +46,72 @@ class StoreDetailView extends GetView {
   }
 
   Widget _body() {
+    HorizontalChipList4().ctr.selectedMainCatIndex.value = 0;
     return Obx(
-      ()=>ctr.isLoading.value?LoadingWidget(): SingleChildScrollView(
-        controller: ctr.scrollController.value,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                _image(),
-                _starStore(),
-              ],
-            ),
-            SizedBox(height: 10),
-            // 띵동배송
-            Obx(() => ctr.privilateProductsNotEmpty()
-                ? Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
+      () => ctr.isLoading.value
+          ? LoadingWidget()
+          : SingleChildScrollView(
+              controller: ctr.scrollController.value,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
                     children: [
-                      titleBuilder('띵동 배송', 'view_more'.tr, () {
-                        Get.to(() => Tab4DingDongView());
-                      }),
-                      Dingdong3ProductsHorizView(),
-                      SizedBox(height: 10),
+                      _image(),
+                      _starStore(),
                     ],
-                  )
-                : SizedBox()),
+                  ),
+                  SizedBox(height: 10),
+                  // 띵동배송
+                  Obx(() => ctr.privilateProductsNotEmpty()
+                      ? Column(
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            titleBuilder('띵동 배송', 'view_more'.tr, () {
+                              Get.to(() => Tab4DingDongView());
+                            }),
+                            Dingdong3ProductsHorizView(),
+                            SizedBox(height: 10),
+                          ],
+                        )
+                      : SizedBox()),
 
-            // 우리매장 베스트
-            titleBuilder('Best_in_store'.tr, 'manage'.tr, () {}),
-            _top10Products(),
-            SizedBox(height: 20),
-            Divider(thickness: 10, color: MyColors.grey3),
-            SizedBox(height: 20),
-            // Product Category Chips
-            Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: Obx(
-                () => HorizontalChipList4().getAllMainCat(
-                    categoryList:
-                        ClothCategory.getAllMainCat().map((e) => e.name).toList(),
-                    onTapped: () => ctr.updateProducts(isScrolling: false)),
+                  // 우리매장 베스트
+                  titleBuilder('Best_in_store'.tr, 'manage'.tr, () {}),
+                  _top10Products(),
+                  SizedBox(height: 20),
+                  Divider(thickness: 10, color: MyColors.grey3),
+                  SizedBox(height: 20),
+                  // Product Category Chips
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Obx(
+                      () => HorizontalChipList4().getAllMainCat(
+                          categoryList: ClothCategory.getAllMainCat()
+                              .map((e) => e.name)
+                              .toList(),
+                          onTapped: () =>
+                              ctr.updateProducts(isScrolling: false)),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  dropdownBuilder(),
+                  SizedBox(height: 5),
+                  // Products list
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: ProductGridViewBuilder(
+                      crossAxisCount: 2,
+                      productHeight: 360,
+                      products: ctr.products,
+                      isShowLoadingCircle: ctr.allowCallAPI,
+                    ),
+                  ),
+
+                  SizedBox(height: 80),
+                ],
               ),
             ),
-            SizedBox(height: 5),
-            dropdownBuilder(),
-            SizedBox(height: 5),
-            // Products list
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: ProductGridViewBuilder(
-                crossAxisCount: 2,
-                productHeight: 360,
-                products: ctr.products,
-                isShowLoadingCircle: ctr.allowCallAPI,
-              ),
-            ),
-
-            SizedBox(height: 80),
-          ],
-        ),
-      ),
     );
   }
 
@@ -146,7 +150,6 @@ class StoreDetailView extends GetView {
                         } else if (prevPage == 'bookmark')
                           ctr2.getBookmarkedStoreData();
                       }
-                      
                     });
                   },
                   icon: ctr.mainStoreModel.value.isFavorite!.value
@@ -238,7 +241,9 @@ class StoreDetailView extends GetView {
                         );
                       },
                     )
-                  : MyVars.isUserProject()?Center(child: Text('등록 된 상품이 없습니다.')):Center(child: Text('제품을 등록해 주세요.')),
+                  : MyVars.isUserProject()
+                      ? Center(child: Text('등록 된 상품이 없습니다.'))
+                      : Center(child: Text('제품을 등록해 주세요.')),
             ),
           ),
         ),
