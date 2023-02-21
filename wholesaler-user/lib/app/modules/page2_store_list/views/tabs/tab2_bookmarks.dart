@@ -107,6 +107,8 @@ class Tab2BookmarksView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 10),
+
               Row(children: [
                 _storeRankNum(store),
                 SizedBox(width: 10),
@@ -116,6 +118,8 @@ class Tab2BookmarksView extends StatelessWidget {
                 Spacer(),
                 _starBuilder(store),
               ]),
+              SizedBox(height: 10),
+
               // Container(height: Get.height/6,
               //   child: ListView.separated(physics: NeverScrollableScrollPhysics(),
               //       itemCount: 4,

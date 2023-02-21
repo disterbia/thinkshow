@@ -184,20 +184,19 @@ class ReviewDetailView2 extends GetView {
 
       itemBuilder: (context, _) => Icon(
         Icons.star_rounded,
-        color: Colors.amber,
+        color: MyColors.primary,
       ),
       onRatingUpdate: (rating) {},
     );
   }
 
   Widget imagesSlider() {
-    return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
+    return Column(
       children: [
         CarouselSlider(
           carouselController: ctr.indicatorSliderController,
           options: CarouselOptions(
-              height: Get.height * 0.5,
+              height: Get.width,
               autoPlay: false,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
@@ -206,12 +205,13 @@ class ReviewDetailView2 extends GetView {
           items: [
             for (String img in review.image_file_path!)
               Padding(
-                padding: EdgeInsets.all(15.0),
+                padding: EdgeInsets.only(top : 15.0, left: 15.0, right: 15.0, bottom: 5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: CachedNetworkImage(
                     fit: BoxFit.fill,
                     width: Get.width,
+                    height: Get.width,
                     imageUrl: img,
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
@@ -221,12 +221,12 @@ class ReviewDetailView2 extends GetView {
               )
           ],
         ),
-        Positioned(
-          bottom: 20,
-          child: Obx(
-            () => _indicator(review.image_file_path!),
-          ),
+        Obx(
+          () => _indicator(review.image_file_path!),
         ),
+        SizedBox(
+          height: 10,
+        )
       ],
     );
   }
@@ -236,18 +236,18 @@ class ReviewDetailView2 extends GetView {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: imgList.asMap().entries.map((entry) {
           return GestureDetector(
               // onTap: () => ctr.indicatorSliderController.animateToPage(entry.key),
               child: Container(
-            width: 10.0,
-            height: 10.0,
+            width: 7.0,
+            height: 7.0,
             margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: MyColors.primary.withOpacity(
-                    ctr.sliderIndex.value == entry.key ? 0.9 : 0.4)),
+                color: MyColors.black.withOpacity(
+                    ctr.sliderIndex.value == entry.key ? 0.9 : 0.3)),
           ));
         }).toList(),
       ),
