@@ -24,6 +24,7 @@ class StoreDetailView extends GetView {
   Page2StoreListController ctr2 = Get.put(Page2StoreListController());
   String? prevPage;
   int? storeId;
+
   StoreDetailView({required this.storeId, String? prevPage}) {
     print('storeId $storeId');
 
@@ -126,7 +127,10 @@ class StoreDetailView extends GetView {
               // placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )
-          : SizedBox.shrink(),
+          : Container(
+              height: 400,
+              child: Center(child: Text('등록 된 사진 이 없습니다.')),
+            ),
     );
   }
 
@@ -215,11 +219,11 @@ class StoreDetailView extends GetView {
         // 우리매장 베스트
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: SizedBox(
-            height: 240,
-            child: Obx(
-              () => ctr.top10Products.isNotEmpty
-                  ? ListView.separated(
+          child: Obx(
+            () => ctr.top10Products.isNotEmpty
+                ? SizedBox(
+                    height: 240,
+                    child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: ctr.top10Products.length,
@@ -240,11 +244,11 @@ class StoreDetailView extends GetView {
                           ),
                         );
                       },
-                    )
-                  : MyVars.isUserProject()
-                      ? Center(child: Text('등록 된 상품이 없습니다.'))
-                      : Center(child: Text('제품을 등록해 주세요.')),
-            ),
+                    ),
+                  )
+                : MyVars.isUserProject()
+                    ? SizedBox.shrink()
+                    : Center(child: Text('제품을 등록해 주세요.')),
           ),
         ),
       ],

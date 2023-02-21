@@ -281,17 +281,18 @@ class ProductItemVertical extends StatelessWidget {
               Flexible(
                   child: Text(
                 "띵 할인가 ",
-                style: TextStyle(fontSize: 10, color: Colors.redAccent),
+                style: TextStyle(fontSize: 12, color: Colors.redAccent),
               )),
               Flexible(
-                child: Text(
+                child: Text(maxLines: 1,
                   Utils.numberFormat(number: product.normalPrice ?? 0),
                   style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       color: MyColors.grey4,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontFamily: 'SpoqaHanSansNeo-Medium',
-                      fontSize: 10.0,
+                      fontSize: 12.0,
                       decoration: TextDecoration.lineThrough),
                 ),
               ),
