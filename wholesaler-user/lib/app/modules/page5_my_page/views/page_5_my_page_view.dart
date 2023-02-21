@@ -126,7 +126,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
           }),
           // _settingOption('버전 정보 $version', () {}),
           _versionOption('버전 정보 $version', () {
-            LaunchReview.launch();
+            LaunchReview.launch(writeReview: false,iOSAppId: "1635095161");
           }),
           Divider(
             color: MyColors.grey1,

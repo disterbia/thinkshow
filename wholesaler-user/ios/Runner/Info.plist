@@ -77,6 +77,8 @@
 		<string>liivbank</string>
 		<string>supertoss</string>
 		<string>newsmartpib</string>
+		 <string>itms-beta</string>
+          <string>itms</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
