@@ -30,12 +30,14 @@ class ProductItemVertical extends StatelessWidget {
   Function(bool?)? onCheckboxChanged;
   bool? isFavorite;
   bool? onlyPhoto;
+  int? crossAxisCount;
   ProductItemVertical({
     required this.product,
     this.productNumber,
     this.onCheckboxChanged,
     this.isFavorite,
     this.onlyPhoto = false,
+    this.crossAxisCount,
   });
 
   @override
@@ -50,8 +52,7 @@ class ProductItemVertical extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Align(
-            alignment: Alignment.center,
+          Align(alignment: Alignment.center,
             child: Stack(
               children: [
                 // Image
@@ -117,14 +118,14 @@ class ProductItemVertical extends StatelessWidget {
         product.hasBellIconAndBorder != null
             ? Obx(
                 () => Container(
-                  height: product.imgHeight ?? mConst.fixedImgHeight,
+                  height: product.imgHeight??Get.width/3,
                   width: double.infinity,
                   // width: product.imgWidth ?? mConst.fixedImgWidth,
                   decoration: product.hasBellIconAndBorder!.isTrue
                       ? GoldenBorderDecorationBuilder()
                       : null,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(15),
                     child: FittedBox(
                       child: CachedNetworkImage(
                         imageUrl: product.imgUrl,
@@ -137,7 +138,7 @@ class ProductItemVertical extends StatelessWidget {
                 ),
               )
             : Container(
-                height: product.imgHeight ?? mConst.fixedImgHeight,
+                height: product.imgHeight,
                 width: double.infinity,
                 // width: product.imgWidth ?? mConst.fixedImgWidth,
                 decoration: null,
@@ -215,8 +216,8 @@ class ProductItemVertical extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Image.asset(
                           product.isLiked != null && product.isLiked!.value
-                              ? 'assets/icons/ic_heart_filled.png'
-                              : 'assets/icons/ic_heart_rounded.png',
+                              ? 'assets/icons/ico_heart_on.png'
+                              : 'assets/icons/ico_heart_off.png',
                           width: 24,
                           height: 24,
                         ),
@@ -252,7 +253,7 @@ class ProductItemVertical extends StatelessWidget {
       return Text(
         product.store.name!,
         maxLines: 1,
-        style: MyTextStyles.f14.copyWith(color:Colors.black),
+        style: MyTextStyles.f14.copyWith(color:Colors.black,fontSize: crossAxisCount==2?16:14),
         overflow: TextOverflow.ellipsis,
       );
     }
@@ -265,7 +266,7 @@ class ProductItemVertical extends StatelessWidget {
         product.title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: MyTextStyles.f12.copyWith(color: MyColors.black1),
+        style: MyTextStyles.f12.copyWith(color: MyColors.black1,fontSize: crossAxisCount==2?14:12),
       ),
     );
   }
@@ -279,9 +280,9 @@ class ProductItemVertical extends StatelessWidget {
           Row(
             children: [
               Flexible(
-                  child: Text(
+                  child: Text(maxLines: 1,
                 "띵 할인가 ",
-                style: TextStyle(fontSize: 12, color: Colors.redAccent),
+                style: TextStyle(fontSize: crossAxisCount==2?14:12, color: Colors.redAccent,overflow: TextOverflow.ellipsis,),
               )),
               Flexible(
                 child: Text(maxLines: 1,
@@ -292,7 +293,7 @@ class ProductItemVertical extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontFamily: 'SpoqaHanSansNeo-Medium',
-                      fontSize: 12.0,
+                      fontSize: crossAxisCount==2?14:12,
                       decoration: TextDecoration.lineThrough),
                 ),
               ),
@@ -302,12 +303,12 @@ class ProductItemVertical extends StatelessWidget {
             children: [
               Flexible(
                 flex: 2,
-                child: Text(
-                  Utils.numberFormat(
-                      number: product.priceDiscountPercent ?? 0, suffix: '% '),
+                child: Text("${product.priceDiscountPercent ?? 0}% ",
+                  // Utils.numberFormat(
+                  //     number: product.priceDiscountPercent ?? 0, suffix: '% ').toString(),
                   style: MyTextStyles.f18_bold.copyWith(
                       color: MyColors.primary,
-                      fontSize: 14,
+                      fontSize: crossAxisCount==2?16:14,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -320,7 +321,7 @@ class ProductItemVertical extends StatelessWidget {
                     number: product.price ?? 0,
                   ),
                   style: MyTextStyles.f18_bold
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
+                      .copyWith(fontSize: crossAxisCount==2?16:14, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

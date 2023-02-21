@@ -61,7 +61,7 @@ class Tab3NewProductsView extends GetView<Tab3NewProductsController> {
                             ? LoadingWidget()
                             : ProductGridViewBuilder(
                                 crossAxisCount: 3,
-                                productHeight: 280,
+                                productHeight: (Get.width*0.7).floor(),
                                 products: ctr.products,
                                 isShowLoadingCircle: ctr.allowCallAPI,
                               ),

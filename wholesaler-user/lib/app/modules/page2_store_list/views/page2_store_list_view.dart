@@ -43,10 +43,7 @@ class Page2StoreListView extends GetView {
       isBackEnable: false,
       actions: [
         IconButton(
-          icon: Icon(
-            Icons.search,
-            color: MyColors.black,
-          ),
+    icon: Image.asset("assets/icons/top_search.png",color: Colors.black,),
           onPressed: () {
             Get.to(() => SearchPageView());
           },

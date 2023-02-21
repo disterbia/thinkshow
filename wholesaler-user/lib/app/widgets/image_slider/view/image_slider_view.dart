@@ -35,7 +35,6 @@ class ImageSliderView extends GetView<ImageSliderController> {
                   width: Get.width,
                   child: CachedNetworkImage(
                     imageUrl: image.banner_img_url,
-                    width: Get.width,
                     fit: BoxFit.fill,
                     // placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
@@ -50,7 +49,7 @@ class ImageSliderView extends GetView<ImageSliderController> {
             },
             autoPlay: true,autoPlayInterval: Duration(seconds: 3),
             enlargeCenterPage: true,
-            viewportFraction: 0.999,
+            viewportFraction: 1,
           ),
         ),
       ),

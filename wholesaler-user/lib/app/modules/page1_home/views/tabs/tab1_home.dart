@@ -150,7 +150,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: 360,
+                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products1,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -195,7 +195,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: 360,
+                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products2,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -239,7 +239,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: 360,
+                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products3,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -272,7 +272,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: 360,
+                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products4,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -316,7 +316,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: 360,
+                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products5,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,

@@ -58,7 +58,7 @@ class Tab4DingDongView extends GetView<Tab4DingDongController> {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: ProductGridViewBuilder(
                           crossAxisCount: 3,
-                          productHeight: 280,
+                          productHeight: (Get.width*0.7).floor(),
                           products: ctr.products,
                           // products: <Product>[].obs,
                           isShowLoadingCircle: ctr.allowCallAPI,

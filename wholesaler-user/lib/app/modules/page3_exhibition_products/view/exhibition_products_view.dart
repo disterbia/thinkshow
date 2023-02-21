@@ -62,7 +62,7 @@ class ExhibitionProductsView extends GetView {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ProductGridViewBuilder(
                   crossAxisCount: 3,
-                  productHeight: 280,
+                  productHeight: (Get.width/3).floor()+(Get.width/2).floor(),
                   products: ctr.products,
                   isShowLoadingCircle: false.obs,
                 ),

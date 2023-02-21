@@ -103,7 +103,7 @@ class StoreDetailView extends GetView {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: ProductGridViewBuilder(
                       crossAxisCount: 2,
-                      productHeight: 360,
+                      productHeight: (Get.width/3).floor()+(Get.width/2).floor(),
                       products: ctr.products,
                       isShowLoadingCircle: ctr.allowCallAPI,
                     ),

@@ -53,7 +53,7 @@ class Tab2BestView extends GetView<Tab2BestController> {
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             child: ProductGridViewBuilder(
                               crossAxisCount: 2,
-                              productHeight: 360,
+                              productHeight:(Get.width*0.8).floor(),
                               products: ctr.products,
                               isShowLoadingCircle: ctr.allowCallAPI,
                             ),

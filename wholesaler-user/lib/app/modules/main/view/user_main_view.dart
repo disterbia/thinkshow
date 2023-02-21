@@ -53,6 +53,7 @@ class UserMainView extends GetView<UserMainController> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: MyColors.black,
+            selectedFontSize: 12.0,
           ),
         ),
       ),

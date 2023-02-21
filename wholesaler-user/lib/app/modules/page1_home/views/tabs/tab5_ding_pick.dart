@@ -30,7 +30,7 @@ class Tab5DingPickView extends GetView<Tab5DingPickController> {
                       children: [
                         ProductGridViewBuilder(
                           crossAxisCount: 3,
-                          productHeight: 280,
+                          productHeight: (Get.width*0.7).floor(),
                           products: ctr.products,
                           isShowLoadingCircle: ctr.allowCallAPI,
                         ),

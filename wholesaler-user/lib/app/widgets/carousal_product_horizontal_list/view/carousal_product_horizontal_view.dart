@@ -118,7 +118,7 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
                 enableInfiniteScroll: false,padEnds: false,
                 height: 250,
                 autoPlay: false,
-                viewportFraction: 1,
+                viewportFraction: 0.95,
                 onPageChanged: (index, reason) {
                   sliderIndex!.value = index;
                 }),
@@ -126,9 +126,9 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
           ),
        ),
 
-      Obx(
-        () => _indicator(result),
-      ),
+      // Obx(
+      //   () => _indicator(result),
+      // ),
     ]);
   }
 

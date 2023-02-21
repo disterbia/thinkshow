@@ -41,6 +41,7 @@ class ProductGridViewBuilder extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return ProductItemVertical(
               product: products[index],
+              crossAxisCount: crossAxisCount,
               productNumber: productNumbers != null ? productNumbers![index > 9 ? 9 : index] : null,
               onCheckboxChanged: (newValue) {
                 products[index].isChecked!.toggle();
@@ -52,10 +53,9 @@ class ProductGridViewBuilder extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 10,
             crossAxisCount: crossAxisCount,
-            childAspectRatio: columnWidth /
-                (MyVars.isSmallPhone()
-                    ? (productHeight + 10)
-                    : productHeight), // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+            childAspectRatio:
+                crossAxisCount==2?
+            columnWidth /(productHeight+40 ):columnWidth /(productHeight )// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
           ),
         ),
         Obx(() => isShowLoadingCircle.isTrue
