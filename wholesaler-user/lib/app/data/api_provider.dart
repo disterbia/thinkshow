@@ -316,7 +316,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           price: json['price'],
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
@@ -408,7 +408,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: (Get.width/2)+10,
+          imgHeight: (Get.width / 2) + 10,
           price: json['price'],
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
@@ -462,7 +462,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: (Get.width/2)+10,
+          imgHeight: (Get.width / 2) + 10,
           price: json['price'],
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
@@ -479,13 +479,12 @@ class uApiProvider extends GetConnect {
     }
   }
 
-
   Future<List<Product>> getProductsWithCat2(
       {required int categoryId,
-        required int offset,
-        required int limit,
-        int? storeId,
-        String? sort}) async {
+      required int offset,
+      required int limit,
+      int? storeId,
+      String? sort}) async {
     print('getProductsWithCat> cat id: $categoryId');
     print('getProductsWithCat> offset: $offset');
     print('getProductsWithCat> limit: $limit');
@@ -517,7 +516,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           price: json['price'],
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
@@ -610,7 +609,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -647,7 +646,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: (Get.width/2)+10,
+          imgHeight: (Get.width / 2) + 10,
           imgWidth: 184,
           price: json['price'],
           normalPrice: json['normal_price'],
@@ -688,7 +687,7 @@ class uApiProvider extends GetConnect {
           id: json['id'],
           title: json['product_name'],
           store: tempStore,
-          imgHeight: (Get.width/2)+10,
+          imgHeight: (Get.width / 2) + 10,
           //imgWidth: 184,
           price: json['price'],
           normalPrice: json['normal_price'],
@@ -731,7 +730,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -831,7 +830,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -911,7 +910,7 @@ class uApiProvider extends GetConnect {
             topImagePath: jsonList[i]['top_image_path'] != null
                 ? (jsonList[i]['top_image_path'] as List<dynamic>).obs
                 : null,
-            favoriteCount: ((jsonList[i]['favorite_count']??0 )as int).obs,
+            favoriteCount: ((jsonList[i]['favorite_count'] ?? 0) as int).obs,
             categories: jsonList[i]["categories"]);
         stores.add(tempStore);
       }
@@ -996,7 +995,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -1182,11 +1181,23 @@ class uApiProvider extends GetConnect {
 
   /// 마이페이지 > 주문 조회
   Future<List<OrderOrReview>> getOrderInquiry(
-      {required int offset, required int limit, required String period}) async {
+      {required int offset,
+      required int limit,
+      required String period,
+      String startDate = '',
+      String endDate = ''}) async {
     print(' getOrderInquiry offset: $offset, limit: $limit, period: $period');
-    String url = mConst.API_BASE_URL +
-        mConst.API_USER_PATH +
-        '/orders?offset=$offset&limit=$limit&periodType=$period';
+    String url = '';
+    if (period == 'during') {
+      url = mConst.API_BASE_URL +
+          mConst.API_USER_PATH +
+          '/orders?offset=$offset&limit=$limit&periodType=$period&startDate=$startDate&endDate=$endDate';
+    } else {
+      url = mConst.API_BASE_URL +
+          mConst.API_USER_PATH +
+          '/orders?offset=$offset&limit=$limit&periodType=$period';
+    }
+
     final response = await get(url, headers: headers);
 
     if (response.statusCode == 200) {
@@ -1437,12 +1448,16 @@ class uApiProvider extends GetConnect {
         materials: materials,
         mainCategoryId: json['category_id'],
         subCategoryId: json['sub_category_id'],
-        country:json["country"],
-        keyword:json["keyword"],
+        country: json["country"],
+        keyword: json["keyword"],
         isPrivilege: json['is_privilege'] ? true : false,
       );
 
       return tempProduct;
+    } else if (response.statusCode == 400) {
+      Get.back();
+      mSnackbar(message: jsonDecode(response.bodyString!)['description']);
+      return Future.error(response.statusText!);
     } else {
       log('error getProductDetail: ${response.bodyString}');
       return Future.error(response.statusText!);
@@ -2056,7 +2071,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -2324,7 +2339,7 @@ class uApiProvider extends GetConnect {
           title: json['product_name'],
           store: tempStore,
           price: json['price'],
-          imgHeight: Get.width/3,
+          imgHeight: Get.width / 3,
           normalPrice: json['normal_price'],
           priceDiscountPercent: json['price_discount_percent'],
           isLiked: json['is_favorite'] ? true.obs : false.obs,
@@ -2513,6 +2528,18 @@ class uApiProvider extends GetConnect {
       log('changeQuantityInBasket error:' + response.bodyString!);
       mSnackbar(message: response.bodyString!['description']);
       return false;
+    }
+  }
+
+  getAppVersion(String os) async {
+    final response =
+        await get(mConst.API_BASE_URL + mConst.API_USER_PATH + '/version/$os');
+    if (response.statusCode == 200) {
+      // final json = jsonDecode(response.bodyString!);
+      // return json.toString();
+      return response.bodyString!;
+    } else {
+      return Future.error(response.statusText!);
     }
   }
 }

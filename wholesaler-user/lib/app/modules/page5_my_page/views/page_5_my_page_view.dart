@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
@@ -44,6 +46,8 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     version = packageInfo.version;
+
+    ctr.getAppVersion();
   }
 
   @override
@@ -125,9 +129,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
                 arguments: PrivacyOrTerms.privacy);
           }),
           // _settingOption('버전 정보 $version', () {}),
-          _versionOption('버전 정보 $version', () {
-            LaunchReview.launch(writeReview: false,iOSAppId: "1635095161");
-          }),
+          _versionOption('버전 정보 $version'),
           Divider(
             color: MyColors.grey1,
             indent: 15,
@@ -151,8 +153,8 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
         children: [
           Text(
             title,
-            style: MyTextStyles.f16.copyWith(
-                color: MyColors.black3, fontWeight: FontWeight.w500),
+            style: MyTextStyles.f16
+                .copyWith(color: MyColors.black3, fontWeight: FontWeight.w500),
           ),
           Container(
             height: 10,
@@ -371,26 +373,32 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
     );
   }
 
-  Widget _versionOption(String title, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(15),
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: MyTextStyles.f16.copyWith(
-                  color: MyColors.black3, fontWeight: FontWeight.w500),
-            ),
-            Text(
-              "업데이트 하기",
-              style: MyTextStyles.f14.copyWith(
-                  color: MyColors.primary, fontWeight: FontWeight.w500),
-            ),
-          ],
+  Widget _versionOption(String title) {
+    return Obx(
+      () => InkWell(
+        onTap: ctr.serviceVersion.value != '' && ctr.serviceVersion != version ? (() {
+          LaunchReview.launch(writeReview: false, iOSAppId: "1635095161");
+        }) : null,
+        child: Container(
+          padding: EdgeInsets.all(15),
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: MyTextStyles.f16.copyWith(
+                    color: MyColors.black3, fontWeight: FontWeight.w500),
+              ),
+              ctr.serviceVersion.value != '' && ctr.serviceVersion != version
+                  ? Text(
+                      "업데이트 하기",
+                      style: MyTextStyles.f14.copyWith(
+                          color: MyColors.primary, fontWeight: FontWeight.w500),
+                    )
+                  : SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
     );

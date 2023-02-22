@@ -38,7 +38,7 @@ class OrderInquiryAndReviewView extends GetView {
                     () => Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: HorizontalChipList6().getAllMainCat(
-                        categoryList: ["3개월"],
+                        categoryList: ctr.category,
                         onTapped: () => ctr.periodChipPressed(),
                       ),
                     ),
