@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/constants/functions.dart';
@@ -12,6 +14,7 @@ class Page5MyPageController extends GetxController {
   RxBool isLoading = false.obs;
   Rx<User> user = User(userID: 'userID', userName: 'userName').obs;
 
+  RxString serviceVersion = ''.obs;
   init() async {
     isLoading.value = true;
 
@@ -53,5 +56,14 @@ class Page5MyPageController extends GetxController {
     if (isSuccess) {
       user.value.isAgreeNotificaiton!.value = value;
     }
+  }
+
+  getAppVersion() async {
+    if (Platform.isAndroid)
+      serviceVersion.value = await _apiProvider.getAppVersion('android');
+    else if (Platform.isIOS)
+      serviceVersion.value = await _apiProvider.getAppVersion('ios');
+    else
+      serviceVersion.value = await _apiProvider.getAppVersion('web');
   }
 }
