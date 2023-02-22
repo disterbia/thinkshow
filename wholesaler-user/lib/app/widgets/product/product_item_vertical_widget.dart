@@ -138,7 +138,7 @@ class ProductItemVertical extends StatelessWidget {
                 ),
               )
             : Container(
-                height: product.imgHeight,
+                height: product.imgHeight??Get.width/3,
                 width: double.infinity,
                 // width: product.imgWidth ?? mConst.fixedImgWidth,
                 decoration: null,

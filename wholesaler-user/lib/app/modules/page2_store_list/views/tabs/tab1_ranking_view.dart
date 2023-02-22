@@ -44,11 +44,11 @@ class Tab1RankingView extends StatelessWidget {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(8)),
                             selectedColor: Colors.white,
-                            fillColor: MyColors.primary,
+                            fillColor: Colors.yellow,
                             color: Colors.grey,
                             constraints: const BoxConstraints(
-                              minHeight: 25.0,
-                              minWidth: 25.0,
+                              minHeight: 30.0,
+                              minWidth: 30.0,
                             ),
                             isSelected: _selected,
                             children: [Text(" 추천순 "), Text(" 인기순 ")],
@@ -237,7 +237,7 @@ class Tab1RankingView extends StatelessWidget {
       children: [
         Text(
           store.name!,
-          style: MyTextStyles.f16.copyWith(color: MyColors.black3),
+          style: MyTextStyles.f16_bold.copyWith(color: Colors.black),
         ),
         SizedBox(
           height: 5,
@@ -298,7 +298,7 @@ class Tab1RankingView extends StatelessWidget {
                       height: 20,
                     ),
                     Container(
-                      height: 140,
+                      height: 180,
                       child: Row(
                         children: [
                           SizedBox(
@@ -326,6 +326,7 @@ class Tab1RankingView extends StatelessWidget {
                                                   )
                                                 : CachedNetworkImage(
                                                     imageUrl: ctr.mainImage[0],
+                                              width: (Get.width/2)-20,
                                                     fit: BoxFit.fill,
                                                   ),
                                             borderRadius: BorderRadius.only(
@@ -334,30 +335,35 @@ class Tab1RankingView extends StatelessWidget {
                                                     Radius.circular(10.0)),
                                           ),
                                         ),
-                                        height: 120),
+                                        height: 130),
                                     Align(
                                         alignment: Alignment.bottomCenter,
-                                        child: Container(
-                                          child: Center(
-                                              child: CircleAvatar(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(2),
-                                              child: ClipOval(
-                                                child: ctr.subImage[0] == ""
-                                                    ? Image.asset(
-                                                        "assets/icons/ic_store.png",
-                                                      )
-                                                    : CachedNetworkImage(
-                                                        imageUrl:
-                                                            ctr.subImage[0],
-                                                      ),
-                                              ),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              child: Center(
+                                                  child: CircleAvatar(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(2),
+                                                  child: ClipOval(
+                                                    child: ctr.subImage[0] == ""
+                                                        ? Image.asset(
+                                                            "assets/icons/ic_store.png",
+                                                          )
+                                                        : CachedNetworkImage(
+                                                            imageUrl:
+                                                                ctr.subImage[0],
+                                                          ),
+                                                  ),
+                                                ),
+                                                radius: 50,
+                                                backgroundColor: Colors.white,
+                                              )),
+                                              width: 50,
+                                              height: 50,
                                             ),
-                                            radius: 50,
-                                            backgroundColor: Colors.white,
-                                          )),
-                                          width: 50,
-                                          height: 50,
+                                            Text(store.name!,style: MyTextStyles.f18_bold,)
+                                          ],
                                         ))
                                   ],
                                 ),
@@ -389,6 +395,7 @@ class Tab1RankingView extends StatelessWidget {
                                                   )
                                                 : CachedNetworkImage(
                                                     imageUrl: ctr.mainImage[1],
+                                              width: (Get.width/2)-20,
                                                     fit: BoxFit.fill,
                                                   ),
                                             borderRadius: BorderRadius.only(
@@ -397,7 +404,7 @@ class Tab1RankingView extends StatelessWidget {
                                                     Radius.circular(10.0)),
                                           ),
                                         ),
-                                        height: 120),
+                                        height: 140),
                                     Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Container(
@@ -485,11 +492,11 @@ class Tab1RankingView extends StatelessWidget {
       child: Obx(
         () => Column(
           children: [
-            Icon(
-              size: 25,
-              store.isBookmarked!.isTrue ? Icons.star : Icons.star_border,
-              color: MyColors.primary,
-            ),
+            Image.asset(
+                height: 25,
+                store.isBookmarked!.isTrue ? "assets/icons/ico_star_on.png" : "assets/icons/ico_star_off.png",
+              ),
+
             Text(
               result.value,
               style: TextStyle(

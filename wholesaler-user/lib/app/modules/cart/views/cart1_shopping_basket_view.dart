@@ -21,7 +21,7 @@ class Cart1ShoppingBasketView extends GetView {
   RxBool isExpanded = false.obs;
   init() async {
     await ctr.init();
-    await ctr.SelectAllCheckboxOnChanged(false);
+    await ctr.SelectAllCheckboxOnChanged(true);
   }
 
   @override
@@ -102,7 +102,7 @@ class Cart1ShoppingBasketView extends GetView {
                           //     collapsed: _collaspeSection(), expanded: _expandSection()),
                           ),
                     ),
-                    Container(height: Get.height / 15, child: _paymentButton()),
+                    Container(height: 50, child: _paymentButton()),
                     SizedBox(
                       height: 10,
                     )
@@ -193,7 +193,7 @@ class Cart1ShoppingBasketView extends GetView {
         onTap: () {
           isExpanded.value = true;
           controller.toggle();
-          expandableHeight.value = 230.0;
+          expandableHeight.value = 240.0;
           isFirstDrag.value = true;
         },
         child: Row(
@@ -215,8 +215,8 @@ class Cart1ShoppingBasketView extends GetView {
                   ),
                 )),
             Padding(
-              padding: EdgeInsets.only(bottom: 10, top: 15, right: 20),
-              child: Icon(Icons.keyboard_arrow_up_outlined, size: 30),
+              padding: EdgeInsets.only(left: 5,bottom: 10, top: 20, right: 20),
+              child: Image.asset("assets/icons/ico_arrow_up.png",height: 25,),
             ),
           ],
         ),
@@ -261,71 +261,74 @@ class Cart1ShoppingBasketView extends GetView {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: MyColors.grey3,
-                    borderRadius: BorderRadius.circular(5),
+                    color: MyColors.grey1,
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 8, left: 8, bottom: 5),
+                            const EdgeInsets.only(top: 8, left: 10, bottom: 5),
                         child: Row(
                           children: [
                             Text(
                               "총 상품금액",
-                              style: TextStyle(color: Colors.grey),
+                              style: MyTextStyles.f16.copyWith(color: Colors.grey)
                             ),
                             Spacer(),
                             Obx(() => Padding(
                                   padding: EdgeInsets.only(
-                                      top: 8, right: 8, bottom: 5),
+                                      top: 8, right: 10, bottom: 5),
                                   child: Text(
                                     Utils.numberFormat(
                                       number: ctr.totalPaymentPrice.value,
                                       suffix: '원',
                                     ),
-                                    style: MyTextStyles.f14_bold,
+                                      style: MyTextStyles.f16
                                   ),
                                 )),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8, bottom: 5),
+                        padding: const EdgeInsets.only(left: 10, bottom: 5),
                         child: Row(
                           children: [
-                            Text("총 배송비", style: TextStyle(color: Colors.grey)),
+                            Text("총 배송비",  style: MyTextStyles.f16.copyWith(color: Colors.grey)),
                             Spacer(),
                             Padding(
-                              padding: EdgeInsets.only(right: 8, bottom: 5),
+                              padding: EdgeInsets.only(right: 10, bottom: 5),
                               child: Text(
                                 Utils.numberFormat(number: 0, suffix: '원'),
-                                style: MyTextStyles.f14_bold,
+                                  style: MyTextStyles.f16
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Divider(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 8,
+                          left: 10,
                           bottom: 10,
                         ),
                         child: Row(
                           children: [
                             Text(
                               "결제 예상금액",
-                              style: MyTextStyles.f14,
+                                style: MyTextStyles.f16
                             ),
                             Spacer(),
                             Obx(() => Padding(
-                                  padding: EdgeInsets.only(right: 8),
+                                  padding: EdgeInsets.only(right: 10),
                                   child: Text(
                                     Utils.numberFormat(
                                         number: ctr.totalPaymentPrice.value,
                                         suffix: '원'),
-                                    style: MyTextStyles.f14_bold,
+                                    style: MyTextStyles.f16,
                                   ),
                                 )),
                           ],
@@ -346,7 +349,12 @@ class Cart1ShoppingBasketView extends GetView {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
-      child: ElevatedButton(
+      child: ElevatedButton(style: ButtonStyle( shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+
+          )
+      )),
           onPressed: () async {
             if (ctr.getTotalSelectedProducts() != 0) {
               await ctr.postOrderCheckout();
@@ -356,7 +364,7 @@ class Cart1ShoppingBasketView extends GetView {
           },
           child: Obx(() => Text(
               "총 ${ctr.getTotalSelectedProducts().toString()}개 주문하기",
-              style: MyTextStyles.f14.copyWith(color: MyColors.white)))),
+              style: MyTextStyles.f18.copyWith(color: MyColors.white)))),
     );
   }
 }

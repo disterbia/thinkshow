@@ -11,7 +11,7 @@ class ImagesCarouselSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = Get.height * 0.5;
+    double height = Get.width;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
@@ -55,10 +55,10 @@ class ImagesCarouselSlider extends StatelessWidget {
           return GestureDetector(
               // onTap: () => ctr.indicatorSliderController.animateToPage(entry.key),
               child: Container(
-            width: 10.0,
-            height: 10.0,
-            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-            decoration: BoxDecoration(shape: BoxShape.circle, color: MyColors.primary.withOpacity(ctr.sliderIndex.value == entry.key ? 0.9 : 0.4)),
+            width: 8.0,
+            height: 8.0,
+            margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 4.0),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: MyColors.white.withOpacity(ctr.sliderIndex.value == entry.key ? 0.9 : 0.4)),
           ));
         }).toList(),
       ),

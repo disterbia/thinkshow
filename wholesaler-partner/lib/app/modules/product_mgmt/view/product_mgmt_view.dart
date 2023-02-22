@@ -104,7 +104,7 @@ class ProductMgmtView extends GetView {
                           ),
                           ProductGridViewBuilder(
                             crossAxisCount: 3,
-                            productHeight: 260,
+                            productHeight: (Get.width*0.7).floor(),
                             products: ctr.products,
                             addProductsId: (int id) {
                               var temp = ctr.productsId;

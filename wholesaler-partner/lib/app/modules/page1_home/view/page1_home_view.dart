@@ -398,7 +398,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
           SizedBox(height: 10),
           ProductGridViewBuilder(
             crossAxisCount: 3,
-            productHeight: 300,
+            productHeight: (Get.width*0.7).floor(),
             products: ctr.products,
             isShowLoadingCircle: ctr.allowCallAPI,
           ),
@@ -441,10 +441,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
-                      childAspectRatio: columnWidth /
-                          (MyVars.isSmallPhone()
-                              ? 270
-                              : 260), // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                      childAspectRatio:
+                      columnWidth /(Get.width*0.7), // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
               //     ListView.separated(

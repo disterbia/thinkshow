@@ -25,7 +25,7 @@ class Tab1DetailInfo extends GetView {
   ProductDetailController productDetailCtr = Get.put(ProductDetailController());
   AP_Part3Controller addProduct3Ctr = Get.put(AP_Part3Controller());
   RxBool isMore = false.obs;
-  RxBool isHide = false.obs;
+  RxBool isHide = true.obs;
   // Tab1DetailInfo();
 
   @override

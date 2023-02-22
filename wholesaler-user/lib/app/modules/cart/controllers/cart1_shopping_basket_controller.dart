@@ -18,7 +18,7 @@ import 'package:wholesaler_user/app/constants/functions.dart';
 class Cart1ShoppingBasketController extends GetxController {
   uApiProvider _apiProvider = uApiProvider();
 
-  RxBool isSelectAllChecked = false.obs;
+  RxBool isSelectAllChecked = true.obs;
   RxList<Cart> cartItems = <Cart>[].obs;
   RxInt totalPaymentPrice = 0.obs;
   RxBool isLoading = false.obs;

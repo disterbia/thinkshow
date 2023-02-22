@@ -69,7 +69,6 @@ class Page1HomeView extends GetView<Page1HomeController> {
   Widget _floatTabBar() {
     return SimpleTabBar(
       initialIndex: 0,
-      borderColor: MyColors.white,
       tabs: [
         Tab(text: 'home'.tr),
         Tab(text: 'best'.tr),
@@ -92,7 +91,7 @@ class Page1HomeView extends GetView<Page1HomeController> {
       isBackEnable: false,
       actions: [
         IconButton(
-          icon: Image.asset("assets/icons/top_search.png",color: Colors.black,),
+          icon: Image.asset("assets/icons/top_search.png",color: Colors.black,height: 21,),
           onPressed: () {
             Get.to(() => SearchPageView());
           },

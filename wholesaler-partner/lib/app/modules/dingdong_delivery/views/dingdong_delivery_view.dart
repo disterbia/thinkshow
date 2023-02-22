@@ -37,7 +37,7 @@ class DingdongDeliveryView extends GetView {
               ),
               ProductGridViewBuilder(
                 crossAxisCount: 3,
-                productHeight: 270,
+                productHeight: (Get.width*0.7).floor(),
                 products: ctr.products,
                 isShowLoadingCircle: ctr.allowCallAPI,
               ),

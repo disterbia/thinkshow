@@ -48,31 +48,46 @@ class CartItemsList extends StatelessWidget {
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
-            child: Card(
-              elevation: 0,
-              color: Colors.white,
-              //margin: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
-              ),
-              child: Column(
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // show store only if it contains products
-                  products.length > 0
-                      ? Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10.0, bottom: 0, left: 10),
-                          child: _store(cartItems[cartIndex].store),
-                        )
-                      : SizedBox.shrink(),
-                  Divider(),
-                  // if cart 2 page, only show selected products
-                  ...products.map(
-                    (product) => _orderedProductBuilder(cartIndex,
-                        products.indexOf(product), product, products.length),
-                  ),
+            child: Container(
+              decoration: new BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.5),
+                    blurRadius: 10, // soften the shadow
+                    spreadRadius: 0.0, //extend the shadow
+                    // offset: Offset(
+                    //   5.0, // Move to right 10  horizontally
+                    //   0.0, // Move to bottom 10 Vertically
+                    // ),
+                  )
                 ],
+              ),
+              child: Card(
+                color: Colors.white,
+                //margin: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Column(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // show store only if it contains products
+                    products.length > 0
+                        ? Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10.0, bottom: 0, left: 10),
+                            child: _store(cartItems[cartIndex].store),
+                          )
+                        : SizedBox.shrink(),
+                    Divider(),
+                    // if cart 2 page, only show selected products
+                    ...products.map(
+                      (product) => _orderedProductBuilder(cartIndex,
+                          products.indexOf(product), product, products.length),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -97,7 +112,7 @@ class CartItemsList extends StatelessWidget {
           children: [
             Text(
               store.name ?? '',
-              style: MyTextStyles.f18_bold.copyWith(color: MyColors.black3),
+              style: MyTextStyles.f18_bold.copyWith(color: MyColors.black3,fontWeight: FontWeight.bold),
             ),
           ],
         )

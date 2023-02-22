@@ -109,15 +109,16 @@ class ProductDetailView extends GetView {
                         storeInfo(),
                         Divider(),
                         _titleRatingPrice(context),
-                        SizedBox(height: 15),
+                        SizedBox(height: 10),
+                        Divider(thickness: 3,color: MyColors.grey3,),
                         TabBar(
                           controller: ctr.tabController,
                           onTap: (index) {
                             print(tabIndex);
                             tabIndex.value = index;
                           },
-                          indicatorColor: MyColors.primary,
-                          labelColor: Colors.black,
+                          indicatorColor: Colors.black,
+                          labelColor: Colors.black,unselectedLabelColor: Colors.grey,
                           isScrollable: false,
                           tabs: [
                             ...tabTitles.map((title) => Tab(text: title)),
@@ -194,7 +195,7 @@ class ProductDetailView extends GetView {
         children: [
           Obx(
             () => Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.only(top: 15,bottom: 10,left: 10),
                 child: ctr.product.value.store.imgUrl != null
                     ? Row(
                         children: [
@@ -267,15 +268,11 @@ class ProductDetailView extends GetView {
                         ctr.product.value.store.isBookmarked!.isTrue
                             ? InkWell(
                                 onTap: () => ctr.storeBookmarkPressed(),
-                                child: Icon(
-                                  Icons.star,
-                                  color: MyColors.primary,
-                                ),
+                                child: Image.asset("assets/icons/ico_star_on.png",height: 25,),
                               )
                             : InkWell(
                                 onTap: () => ctr.storeBookmarkPressed(),
-                                child: Icon(Icons.star_border,
-                                    color: MyColors.grey4)),
+                                child: Image.asset("assets/icons/ico_star_off.png",height: 25,)),
                         Text(
                           result,
                           style: TextStyle(
@@ -314,7 +311,8 @@ class ProductDetailView extends GetView {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text(
+                child: Text(maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   ctr.product.value.title,
                   style: MyTextStyles.f16_bold.copyWith(color: Colors.black),
                 ),
@@ -378,7 +376,7 @@ class ProductDetailView extends GetView {
                           duration: const Duration(milliseconds: 300),
                         );
                       },
-                      child: Text("리뷰 ${ctr3.reviews.length}개 보기")),
+                      child: Text("리뷰 ${ctr3.reviews.length}개 보기",style: TextStyle(color: Colors.grey),)),
             ],
           ),
           // Row(
@@ -403,7 +401,7 @@ class ProductDetailView extends GetView {
                 Utils.numberFormat(
                     number: ctr.product.value.normalPrice ?? 0, suffix: '원'),
                 style: TextStyle(
-                    color: MyColors.grey4,
+                    color: Colors.grey,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontFamily: 'SpoqaHanSansNeo-Medium',
@@ -418,9 +416,7 @@ class ProductDetailView extends GetView {
           child: Row(
             children: [
               Text(
-                Utils.numberFormat(
-                    number: ctr.product.value.priceDiscountPercent ?? 0,
-                    suffix: '% '),
+                (ctr.product.value.priceDiscountPercent ?? 0).toString()+"% ",
                 style: MyTextStyles.f18_bold.copyWith(
                     color: MyColors.primary,
                     fontSize: 20,
@@ -442,7 +438,7 @@ class ProductDetailView extends GetView {
             children: [
               Text(
                 "배송정보   ",
-                style: MyTextStyles.f16.copyWith(color: MyColors.grey4),
+                style: MyTextStyles.f16.copyWith(color: Colors.grey),
               ),
               ctr.product.value.hasBellIconAndBorder!.value
                   ? Row(

@@ -211,11 +211,11 @@ class Tab2BookmarksView extends StatelessWidget {
       child: Obx(
         () => Column(
           children: [
-            Icon(
-              size: 30,
-              store.isBookmarked!.isTrue ? Icons.star : Icons.star_border,
-              color: MyColors.primary,
+            Image.asset(
+              height: 25,
+              store.isBookmarked!.isTrue ? "assets/icons/ico_star_on.png" : "assets/icons/ico_star_off.png",
             ),
+
             Text(
               result,
               style: TextStyle(
