@@ -105,7 +105,7 @@ class User_LoginPageController extends GetxController {
     print(usernameController.text);
     print(passwordController.text);
     if (response.statusCode == 200) {
-      Get.to(() => UserMainView());
+      Get.offAll(() => UserMainView());
       return true;
     } else {
       mSnackbar(message: response.message);

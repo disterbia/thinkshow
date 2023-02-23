@@ -28,12 +28,13 @@ class Page5MyPageController extends GetxController {
 
         print('logout');
         mSnackbar(message: '로그인 후 이용 가능합니다.');
-        mFuctions.userLogout();
+         mFuctions.userLogout();
       } else {
         user.value = await _apiProvider.getUserInfo();
       }
     } else {
-      mFuctions.userLogout();
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
+       mFuctions.userLogout();
     }
     isLoading.value = false;
 

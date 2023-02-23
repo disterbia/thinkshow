@@ -23,7 +23,6 @@ class CartItemsList extends StatelessWidget {
       {required this.isCart1Page,
       required this.cartItems,
       required this.showClose});
-
   @override
   Widget build(BuildContext context) {
     List<Product> products = [];
@@ -184,6 +183,9 @@ class CartItemsList extends StatelessWidget {
                       onChanged: (bool value) {
                         product.isCheckboxSelected!.toggle();
                         ctr.updateTotalPaymentPrice();
+                        value? ctr.checkCount++ :ctr.checkCount--;
+                        ctr.checkCount==0 ?ctr.isSelectAllChecked.value=true:ctr.isSelectAllChecked.value=false;
+
                       },
                     ),
                   )

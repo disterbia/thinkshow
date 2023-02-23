@@ -10,8 +10,6 @@ class mFuctions {
   static void userLogout() {
     CacheProvider cacheProvider = CacheProvider();
     // delete all Get Controllers
-    Get.delete<PasswordResetController>();
-    Get.delete<UserMainController>();
 
     cacheProvider.removeToken();
     cacheProvider.removeOwner();

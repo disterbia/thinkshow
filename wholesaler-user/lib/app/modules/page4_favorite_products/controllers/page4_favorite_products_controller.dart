@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_user/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/data/cache_provider.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
+import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_login_view.dart';
 import 'package:wholesaler_user/app/widgets/snackbar.dart';
 import 'package:wholesaler_user/app/constants/functions.dart';
 
@@ -27,7 +28,7 @@ class Page4Favorite_RecentlyViewedController extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
     } else {
       products.clear();
 
@@ -54,7 +55,7 @@ class Page4Favorite_RecentlyViewedController extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
     } else {
       products.clear();
 

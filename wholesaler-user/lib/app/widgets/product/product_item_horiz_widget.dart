@@ -181,9 +181,8 @@ class ProductItemHorizontal extends StatelessWidget {
                                       },
                                       rBtnOnPressed: () => Get.find<
                                               Cart1ShoppingBasketController>()
-                                          .callDeleteSelectedProductsAPI(
-                                              isIcon: true,
-                                              cartId: product.cartId),
+                                          .oneDelete(
+                                              product.cartId!),
                                     ),
                                   );
                                 },
@@ -322,7 +321,7 @@ class ProductItemHorizontal extends StatelessWidget {
   TitleBuilder() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
-      child: Text(
+      child: Text(maxLines: 2,overflow:TextOverflow.ellipsis,
         product.title,
         // overflow: TextOverflow.ellipsis,
         style: MyTextStyles.f14,

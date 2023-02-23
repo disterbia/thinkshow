@@ -1734,7 +1734,8 @@ class uApiProvider extends GetConnect {
   }
 
   /// Cart 1 : Shoppint basket
-  Future<List<Cart>> getCart1ShoppintBasket() async {
+  Future<List<Cart>> getCart1ShoppintBasket({Map<String, String>? header}) async {
+    if(header!=null) headers=header;
     String url = mConst.API_BASE_URL + mConst.API_USER_PATH + '/carts';
     final response = await get(url, headers: headers);
     if (response.statusCode == 200) {
@@ -2382,13 +2383,12 @@ class uApiProvider extends GetConnect {
     }
   }
 
-  Future<bool> dealCheck({required List<int> ids, required List<int> prices}) async {
+  Future<bool> dealCheck({required List<dynamic> productList}) async {
     String url =
         mConst.API_BASE_URL + mConst.API_USER_PATH + '/order/dealcheck';
 
     Map<String, dynamic> data = {
-      'ids': ids,
-      'prices' : prices,
+      'product': productList,
     };
 
     final response = await post(url, data, headers: headers);

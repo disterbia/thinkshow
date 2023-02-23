@@ -25,7 +25,7 @@ class Page2StoreListController2 extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getStoreRanking(offset: 0, limit: 80);
     }
@@ -39,13 +39,13 @@ class Page2StoreListController2 extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getStorebookmarked();
     }
     // if (CacheProvider().getToken().isEmpty) {
     //   WidgetsBinding.instance.addPostFrameCallback((_) {
-    //     Get.to(() => User_LoginPageView());
+    //      mFuctions.userLogout();
     //   });
     // } else {
     //   Future.delayed(Duration.zero,() => isLoading.value=true);
@@ -59,7 +59,8 @@ class Page2StoreListController2 extends GetxController {
   Future<void> starIconPressed(Store store) async {
     isLoading.value=true;
     if (CacheProvider().getToken().isEmpty) {
-      mFuctions.userLogout();
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
+       mFuctions.userLogout();
       return;
     }
 
@@ -67,7 +68,7 @@ class Page2StoreListController2 extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
       return;
     }
     log('store id ${store.id}');

@@ -51,7 +51,7 @@ class Tab2FindUserPasswordView
               //     isLoadingRight: ctr.isLoading.value,
               //     leftBtnText: '취소',
               //     lBtnOnPressed: () {
-              //       Get.to(() => User_LoginPageView());
+              //        mFuctions.userLogout();
               //     },
               //     rightBtnText: '비밀번호 찾기',
               //     rBtnOnPressed: ctr.findPassword),

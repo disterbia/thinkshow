@@ -30,7 +30,7 @@ class CacheProvider {
   void logOut() {}
 
   void removeToken() {
-   // print("제거됨");
+    print("제거됨");
     data.write(_tokenKey, '');
   }
 

@@ -41,7 +41,7 @@ class ExhibitionProductsController extends GetxController {
               imgUrl: dynamicList[i]['thumbnail_image_url'],
               normalPrice: dynamicList[i]['normal_price'],
               priceDiscountPercent: dynamicList[i]['price_discount_percent'],
-              store: Store(id: dynamicList[i]['store_id'])));
+              store: Store(id: dynamicList[i]['store_id'],name:dynamicList[i]['store_name'] )));
         }
 
     });

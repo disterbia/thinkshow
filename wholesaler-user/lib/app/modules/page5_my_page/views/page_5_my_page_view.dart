@@ -119,7 +119,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
             ),
           ),
           // _settingOption('알림 설정', () {}),
-          _alarmSwitchOption('알림 설정'),
+          //_alarmSwitchOption('알림 설정'),
           _settingOption('이용약관', () {
             Get.to(() => User_RegisterPrivacyTermsView(),
                 arguments: PrivacyOrTerms.terms);

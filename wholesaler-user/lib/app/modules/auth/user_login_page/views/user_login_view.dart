@@ -14,6 +14,7 @@ import 'package:wholesaler_user/app/modules/auth/user_sign_up/views/user_sign_up
 import 'package:wholesaler_user/app/modules/main/view/user_main_view.dart';
 import 'package:wholesaler_user/app/widgets/custom_appbar.dart';
 import 'package:wholesaler_user/app/widgets/custom_field.dart';
+import 'package:wholesaler_user/app/widgets/main_appbar.dart';
 
 class User_LoginPageView extends GetView<User_LoginPageController> {
   User_LoginPageController ctr = Get.put(User_LoginPageController());
@@ -24,7 +25,7 @@ class User_LoginPageView extends GetView<User_LoginPageController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        // appBar: CustomAppbar(isBackEnable: true, title: ''),
+         appBar: MyVars.isUserProject()?MainAppbar(isBackEnable: true, title: '',):null,
         backgroundColor: MyColors.white,
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

@@ -143,7 +143,7 @@ class ProductItemVertical extends StatelessWidget {
                 // width: product.imgWidth ?? mConst.fixedImgWidth,
                 decoration: null,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(15),
                   child: FittedBox(
                     child: CachedNetworkImage(
                       imageUrl: product.imgUrl,
@@ -185,6 +185,7 @@ class ProductItemVertical extends StatelessWidget {
               onTap: () async {
                 //
                 if (CacheProvider().getToken().isEmpty) {
+                  mSnackbar(message: '로그인 후 이용 가능합니다.');
                   mFuctions.userLogout();
                   return;
                 }
@@ -193,7 +194,7 @@ class ProductItemVertical extends StatelessWidget {
                 if (!result) {
                   print('logout');
                   mSnackbar(message: '로그인 후 이용 가능합니다.');
-                  mFuctions.userLogout();
+                   mFuctions.userLogout();
                   return;
                 }
                 product.isLiked!.toggle();

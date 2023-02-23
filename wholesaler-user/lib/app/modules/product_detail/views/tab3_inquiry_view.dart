@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_user/app/Constants/functions.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/constants/variables.dart';
@@ -59,7 +60,7 @@ class Tab3InquiryView extends GetView {
     //   child: OutlinedButton(
     //     onPressed: (() {
     //       if (CacheProvider().getToken().isEmpty) {
-    //         Get.to(() => User_LoginPageView());
+    //          mFuctions.userLogout();
     //         return;
     //       }
     //       Get.to(() => InquityRegisterView());
@@ -87,7 +88,7 @@ class Tab3InquiryView extends GetView {
             ),
             onPressed: () {
               if (CacheProvider().getToken().isEmpty) {
-                Get.to(() => User_LoginPageView());
+                 mFuctions.userLogout();
                 return;
               }
               Get.to(() => InquityRegisterView());

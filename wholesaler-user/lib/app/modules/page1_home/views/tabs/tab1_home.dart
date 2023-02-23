@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -35,14 +36,14 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
   CarousalProductHorizontalController recommendedProductCtr =
       Get.put(CarousalProductHorizontalController());
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
   init() {
     ctr.init();
     //Get.delete<CarousalProductHorizontalController>();
     recommendedProductCtr.init();
     HorizontalChipList1().ctr.selectedMainCatIndex.value = 0;
   }
+
+  RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   Future<void> _onRefresh() async {
     await ctr.updateProducts();
@@ -63,7 +64,10 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
           ? LoadingWidget()
           : Stack(
               children: [
-                SmartRefresher(header: MaterialClassicHeader(),
+                SmartRefresher(header: GetPlatform.isIOS?CustomHeader(builder: (context, mode) => Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: CupertinoActivityIndicator(radius: 20),
+                ),):null,
                   controller: _refreshController,
                   enablePullDown: true,
                   enablePullUp: false,

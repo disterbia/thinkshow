@@ -41,7 +41,7 @@ class ProductDetailView extends GetView {
 
   init() {
     //print("ddddddqqqqqq");
-    //ctr2.init();
+    ctr2.init();
     if (Get.arguments != null) {
       CacheProvider().addRecentlyViewedProduct(Get.arguments);
       // print('ProductDetailView > addRecentlyViewedProduct: Get.arguments ${Get.arguments}');
@@ -476,54 +476,56 @@ class ProductDetailView extends GetView {
   }
 
   Widget User_BottomNavbar() {
-    return SafeArea(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Row(
-            children: [
-              MyVars.isUserProject()
-                  ? Obx(
-                      () => ctr.product.value.isLiked != null
-                          ? IconButton(
-                              onPressed: () => ctr.likeBtnPressed(
-                                  newValue: !ctr.product.value.isLiked!.value),
-                              icon: ctr.product.value.isLiked!.isTrue
-                                  ? Icon(
-                                      Icons.favorite,
-                                      color: MyColors.primary,
-                                    )
-                                  : Icon(
-                                      Icons.favorite_border,
-                                      color: MyColors.primary,
-                                    ),
-                            )
-                          : IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: MyColors.primary,
-                              )),
-                    )
-                  : SizedBox.shrink(),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Container(
-                    height: 50,
-                    child: CustomButton(
-                      textColor: MyColors.white,
-                      text: MyVars.isUserProject() ? '구매하기' : '수정하기',
-                      onPressed: () {
-                        MyVars.isUserProject()
-                            ? SelectOptionBottomSheet()
-                            : ctr.editProductBtnPressed();
-                      },
+    return Obx(
+      ()=>ctr.isLoading.value?LoadingWidget(): SafeArea(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              children: [
+                MyVars.isUserProject()
+                    ? Obx(
+                        () => ctr.product.value.isLiked != null
+                            ? IconButton(
+                                onPressed: () => ctr.likeBtnPressed(
+                                    newValue: !ctr.product.value.isLiked!.value),
+                                icon: ctr.product.value.isLiked!.isTrue
+                                    ? Icon(
+                                        Icons.favorite,
+                                        color: MyColors.primary,
+                                      )
+                                    : Icon(
+                                        Icons.favorite_border,
+                                        color: MyColors.primary,
+                                      ),
+                              )
+                            : IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.favorite_border,
+                                  color: MyColors.primary,
+                                )),
+                      )
+                    : SizedBox.shrink(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      height: 50,
+                      child: CustomButton(
+                        textColor: MyColors.white,
+                        text: MyVars.isUserProject() ? '구매하기' : '수정하기',
+                        onPressed: () {
+                          MyVars.isUserProject()
+                              ? SelectOptionBottomSheet()
+                              : ctr.editProductBtnPressed();
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

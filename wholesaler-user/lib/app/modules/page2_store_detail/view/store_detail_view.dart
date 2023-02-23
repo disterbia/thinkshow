@@ -3,12 +3,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
+import 'package:wholesaler_user/app/Constants/functions.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/constants.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/constants/variables.dart';
+import 'package:wholesaler_user/app/data/api_provider.dart';
+import 'package:wholesaler_user/app/data/cache_provider.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
 import 'package:wholesaler_user/app/models/product_number_model.dart';
+import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_login_view.dart';
 import 'package:wholesaler_user/app/modules/page1_home/views/tabs/tab4_ding_dong.dart';
 import 'package:wholesaler_user/app/modules/page2_store_detail/controller/store_detail_controller.dart';
 import 'package:wholesaler_user/app/modules/page2_store_list/controllers/shopping_controller.dart';
@@ -18,6 +22,7 @@ import 'package:wholesaler_user/app/widgets/category_tags/cloth_category.dart';
 import 'package:wholesaler_user/app/widgets/dingdong_3products_horiz/dingdong_3products_horiz_view.dart';
 import 'package:wholesaler_user/app/widgets/product/product_item_vertical_widget.dart';
 import 'package:wholesaler_user/app/widgets/product_gridview_builder/product_gridview_builder.dart';
+import 'package:wholesaler_user/app/widgets/snackbar.dart';
 
 class StoreDetailView extends GetView {
   StoreDetailController ctr = Get.put(StoreDetailController());
@@ -103,7 +108,7 @@ class StoreDetailView extends GetView {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: ProductGridViewBuilder(
                       crossAxisCount: 2,
-                      productHeight: (Get.width/3).floor()+(Get.width/2).floor(),
+                      productHeight: (Get.width*0.8).floor(),
                       products: ctr.products,
                       isShowLoadingCircle: ctr.allowCallAPI,
                     ),
@@ -142,7 +147,12 @@ class StoreDetailView extends GetView {
         child: Obx(
           () => ctr.mainStoreModel.value.isFavorite != null
               ? IconButton(
-                  onPressed: () {
+                  onPressed: () async{
+                    bool result = await uApiProvider().chekToken();
+                    if(!result) {
+                       mFuctions.userLogout();
+                      return mSnackbar(message: "로그인 후 이용 가능합니다.");
+                    }
                     bool value = ctr.mainStoreModel.value.isFavorite!.value;
                     ctr.mainStoreModel.value.isFavorite!.value = !value;
                     print('new value ${!value}');

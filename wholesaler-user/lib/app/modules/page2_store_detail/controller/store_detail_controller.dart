@@ -84,15 +84,16 @@ class StoreDetailController extends GetxController {
 
   Future<void> starIconPressed() async {
     if (CacheProvider().getToken().isEmpty) {
-      mFuctions.userLogout();
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
+       mFuctions.userLogout();
       return;
     }
 
     bool result = await uApiProvider().chekToken();
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 후 이용 가능합니다.');
-      mFuctions.userLogout();
+       mFuctions.userLogout();
+      // mFuctions.userLogout();
       return;
     }
 

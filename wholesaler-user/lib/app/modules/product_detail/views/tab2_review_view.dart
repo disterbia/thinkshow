@@ -353,7 +353,7 @@ class Tab2ReviewView extends GetView {
   //     child: OutlinedButton(
   //       onPressed: (() {
   //         if (CacheProvider().getToken().isEmpty) {
-  //           Get.to(() => User_LoginPageView());
+  //            mFuctions.userLogout();
   //           return;
   //         }
   //         Get.to(() => ReviewDetailView(
