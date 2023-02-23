@@ -2382,13 +2382,12 @@ class uApiProvider extends GetConnect {
     }
   }
 
-  Future<bool> dealCheck({required List<int> ids, required List<int> prices}) async {
+  Future<bool> dealCheck({required List<dynamic> productList}) async {
     String url =
         mConst.API_BASE_URL + mConst.API_USER_PATH + '/order/dealcheck';
 
     Map<String, dynamic> data = {
-      'ids': ids,
-      'prices' : prices,
+      'product': productList,
     };
 
     final response = await post(url, data, headers: headers);

@@ -199,16 +199,21 @@ class Cart1ShoppingBasketController extends GetxController {
   }
 
   getDealCheck() async {
-    List<int> productIdList = [];
-    List<int> productPrice = [];
+    List<dynamic> temp = [];
     for (Cart cart in cartItems) {
       for (Product product in cart.products) {
         if (product.isCheckboxSelected!.value) {
-          productIdList.add(product.id);
-          productPrice.add(product.price!);
+          // productIdList.add(product.id);
+          // productPrice.add(product.price!);
+
+          Map<String, dynamic> data = {
+            'id': product.id,
+            'price': product.price! + product.selectedOptionAddPrice!,
+          };
+          temp.add(data);
         }
       }
     }
-    return await _apiProvider.dealCheck(ids: productIdList, prices : productPrice);
+    return await _apiProvider.dealCheck(productList: temp);
   }
 }
