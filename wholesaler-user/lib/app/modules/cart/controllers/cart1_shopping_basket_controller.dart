@@ -24,7 +24,7 @@ class Cart1ShoppingBasketController extends GetxController {
   RxBool isLoading = false.obs;
 
   init() async {
-    Future.delayed(Duration.zero,()=> isLoading.value = true);
+    Future.delayed(Duration.zero, () => isLoading.value = true);
 
     if (CacheProvider().getToken().isNotEmpty) {
       // WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -45,7 +45,7 @@ class Cart1ShoppingBasketController extends GetxController {
     } else {
       mFuctions.userLogout();
     }
-    Future.delayed(Duration.zero,()=> isLoading.value = false);
+    Future.delayed(Duration.zero, () => isLoading.value = false);
   }
 
   /// returns total number of products in the cart
@@ -100,7 +100,8 @@ class Cart1ShoppingBasketController extends GetxController {
     );
   }
 
-  callDeleteSelectedProductsAPI({bool isDeleteAll = false,bool isIcon = false, int? cartId}) async {
+  callDeleteSelectedProductsAPI(
+      {bool isDeleteAll = false, bool isIcon = false, int? cartId}) async {
     List<int> cart_id_list = [];
 
     for (Cart cart in cartItems) {
@@ -110,7 +111,7 @@ class Cart1ShoppingBasketController extends GetxController {
         }
         if (isIcon) {
           cart_id_list.add(cartId!);
-          isIcon=false;
+          isIcon = false;
         }
       }
     }
@@ -195,5 +196,19 @@ class Cart1ShoppingBasketController extends GetxController {
       //   }
       // }
     }
+  }
+
+  getDealCheck() async {
+    List<int> productIdList = [];
+    List<int> productPrice = [];
+    for (Cart cart in cartItems) {
+      for (Product product in cart.products) {
+        if (product.isCheckboxSelected!.value) {
+          productIdList.add(product.id);
+          productPrice.add(product.price!);
+        }
+      }
+    }
+    return await _apiProvider.dealCheck(ids: productIdList, prices : productPrice);
   }
 }

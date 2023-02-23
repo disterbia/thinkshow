@@ -215,8 +215,11 @@ class Cart1ShoppingBasketView extends GetView {
                   ),
                 )),
             Padding(
-              padding: EdgeInsets.only(left: 5,bottom: 10, top: 20, right: 20),
-              child: Image.asset("assets/icons/ico_arrow_up.png",height: 25,),
+              padding: EdgeInsets.only(left: 5, bottom: 10, top: 20, right: 20),
+              child: Image.asset(
+                "assets/icons/ico_arrow_up.png",
+                height: 25,
+              ),
             ),
           ],
         ),
@@ -271,21 +274,19 @@ class Cart1ShoppingBasketView extends GetView {
                             const EdgeInsets.only(top: 8, left: 10, bottom: 5),
                         child: Row(
                           children: [
-                            Text(
-                              "총 상품금액",
-                              style: MyTextStyles.f16.copyWith(color: Colors.grey)
-                            ),
+                            Text("총 상품금액",
+                                style: MyTextStyles.f16
+                                    .copyWith(color: Colors.grey)),
                             Spacer(),
                             Obx(() => Padding(
                                   padding: EdgeInsets.only(
                                       top: 8, right: 10, bottom: 5),
                                   child: Text(
-                                    Utils.numberFormat(
-                                      number: ctr.totalPaymentPrice.value,
-                                      suffix: '원',
-                                    ),
-                                      style: MyTextStyles.f16
-                                  ),
+                                      Utils.numberFormat(
+                                        number: ctr.totalPaymentPrice.value,
+                                        suffix: '원',
+                                      ),
+                                      style: MyTextStyles.f16),
                                 )),
                           ],
                         ),
@@ -294,14 +295,15 @@ class Cart1ShoppingBasketView extends GetView {
                         padding: const EdgeInsets.only(left: 10, bottom: 5),
                         child: Row(
                           children: [
-                            Text("총 배송비",  style: MyTextStyles.f16.copyWith(color: Colors.grey)),
+                            Text("총 배송비",
+                                style: MyTextStyles.f16
+                                    .copyWith(color: Colors.grey)),
                             Spacer(),
                             Padding(
                               padding: EdgeInsets.only(right: 10, bottom: 5),
                               child: Text(
-                                Utils.numberFormat(number: 0, suffix: '원'),
-                                  style: MyTextStyles.f16
-                              ),
+                                  Utils.numberFormat(number: 0, suffix: '원'),
+                                  style: MyTextStyles.f16),
                             ),
                           ],
                         ),
@@ -317,10 +319,7 @@ class Cart1ShoppingBasketView extends GetView {
                         ),
                         child: Row(
                           children: [
-                            Text(
-                              "결제 예상금액",
-                                style: MyTextStyles.f16
-                            ),
+                            Text("결제 예상금액", style: MyTextStyles.f16),
                             Spacer(),
                             Obx(() => Padding(
                                   padding: EdgeInsets.only(right: 10),
@@ -349,15 +348,16 @@ class Cart1ShoppingBasketView extends GetView {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
-      child: ElevatedButton(style: ButtonStyle( shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-
-          )
-      )),
+      child: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ))),
           onPressed: () async {
             if (ctr.getTotalSelectedProducts() != 0) {
-              await ctr.postOrderCheckout();
+              bool isSuccess = await ctr.getDealCheck();
+              if (isSuccess) await ctr.postOrderCheckout();
             } else {
               mSnackbar(message: '상품을 선택해주세요.');
             }

@@ -2382,6 +2382,28 @@ class uApiProvider extends GetConnect {
     }
   }
 
+  Future<bool> dealCheck({required List<int> ids, required List<int> prices}) async {
+    String url =
+        mConst.API_BASE_URL + mConst.API_USER_PATH + '/order/dealcheck';
+
+    Map<String, dynamic> data = {
+      'ids': ids,
+      'prices' : prices,
+    };
+
+    final response = await post(url, data, headers: headers);
+
+    if (response.statusCode == 200) {
+      log('response ${response.bodyString}');
+      return true;
+    } else {
+      log('error:' + response.bodyString!);
+      mSnackbar(message: jsonDecode(response.bodyString!)['description']);
+      return false;
+      // return Future.error(response.statusText!);
+    }
+  }
+
   Future<bool> changePassword(
       {required String originalPassword,
       required String newPassword,

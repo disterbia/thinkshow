@@ -319,7 +319,7 @@ class Cart2PaymentView extends GetView {
   Widget _paymentButton() {
     return CustomButton(
       width: Get.width,
-      onPressed: () {
+      onPressed: () async {
         ctr.paymentBtnPressed();
       },
       text: '결제하기',

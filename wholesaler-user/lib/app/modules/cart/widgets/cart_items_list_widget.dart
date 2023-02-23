@@ -45,7 +45,7 @@ class CartItemsList extends StatelessWidget {
                 .where((tempProduct) => tempProduct.isCheckboxSelected == true)
                 .toList();
           }
-
+          
           return Padding(
             padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
             child: Container(
