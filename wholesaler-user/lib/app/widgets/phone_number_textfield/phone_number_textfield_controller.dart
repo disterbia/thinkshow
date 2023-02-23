@@ -56,12 +56,12 @@ class PhoneNumberPhoneVerifyController extends GetxController {
     startTimer();
   }
 
-  Future<void> verifyCodeBtnPressed() async {
+  Future<bool> verifyCodeBtnPressed() async {
     log('verifyCode');
     // check if only number
     if (!numberController.text.contains(RegExp(r'^[0-9]*$'))) {
       mSnackbar(message: '휴대폰 번호는 숫자만 입력하세요.');
-      return;
+      return false;;
     }
     isPhoneVerifyFinished = await apiProvider.putPhoneNumVerify(
         phoneNumber: numberController.text,
@@ -73,5 +73,6 @@ class PhoneNumberPhoneVerifyController extends GetxController {
     timer.cancel();
     verifyIsEnable.value = true;
     verifyCount.value = mConst.verifyCountSecounds;
+    return isPhoneVerifyFinished;
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wholesaler_user/app/constants/constants.dart';
+import 'package:wholesaler_user/app/modules/auth/find_id_find_password/controllers/find_user_id_controller.dart';
 import 'package:wholesaler_user/app/widgets/field_with_button.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/widgets/phone_number_textfield/phone_number_textfield_controller.dart';
@@ -10,9 +11,12 @@ import 'package:wholesaler_user/app/widgets/phone_number_textfield/phone_number_
 class PhoneNumberPhoneVerify extends GetView {
   PhoneNumberPhoneVerifyController ctr =
       Get.put(PhoneNumberPhoneVerifyController());
+  User_FindID_FindPasswordController ctr2 =
+  Get.put(User_FindID_FindPasswordController());
 
   double spaceBetween;
-  PhoneNumberPhoneVerify({required this.spaceBetween});
+  bool? isPassword;
+  PhoneNumberPhoneVerify({required this.spaceBetween, this.isPassword});
 
   formatedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
@@ -62,8 +66,9 @@ class PhoneNumberPhoneVerify extends GetView {
                     fieldController: ctr.numberVerifyController,
                     buttonText: 'ok'.tr,
                     onTap: !ctr.verifyIsEnable.value
-                        ? () {
-                            ctr.verifyCodeBtnPressed();
+                        ? () async{
+                            bool result=await ctr.verifyCodeBtnPressed();
+                            if(result) isPassword! ? ctr2.findPassword(): ctr2.getAccountId();
                           }
                         : null,
                     inputFormatters: [

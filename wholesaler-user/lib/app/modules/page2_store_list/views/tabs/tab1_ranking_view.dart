@@ -44,7 +44,7 @@ class Tab1RankingView extends StatelessWidget {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(8)),
                             selectedColor: Colors.white,
-                            fillColor: Colors.yellow,
+                            fillColor: MyColors.primary,
                             color: Colors.grey,
                             constraints: const BoxConstraints(
                               minHeight: 30.0,
@@ -86,7 +86,7 @@ class Tab1RankingView extends StatelessWidget {
   }
 
   Widget _storeList(Store store, BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Get.to(
             () => StoreDetailView(
@@ -267,7 +267,7 @@ class Tab1RankingView extends StatelessWidget {
         context: context,
         builder: (context) {
           return Container(
-            height: Get.height / 3,
+            height: 300,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -362,7 +362,7 @@ class Tab1RankingView extends StatelessWidget {
                                               width: 50,
                                               height: 50,
                                             ),
-                                            Text(store.name!,style: MyTextStyles.f18_bold,)
+                                            Text(ctr.storeName[0]!,style: MyTextStyles.f18_bold,)
                                           ],
                                         ))
                                   ],
@@ -404,30 +404,35 @@ class Tab1RankingView extends StatelessWidget {
                                                     Radius.circular(10.0)),
                                           ),
                                         ),
-                                        height: 140),
+                                        height: 130),
                                     Align(
                                         alignment: Alignment.bottomCenter,
-                                        child: Container(
-                                          child: Center(
-                                              child: CircleAvatar(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(2),
-                                              child: ctr.subImage[1] == ""
-                                                  ? Image.asset(
-                                                      "assets/icons/ic_store.png",
-                                                    )
-                                                  : ClipOval(
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            ctr.subImage[1],
-                                                      ),
-                                                    ),
+                                        child: Column(mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              child: Center(
+                                                  child: CircleAvatar(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(2),
+                                                  child: ctr.subImage[1] == ""
+                                                      ? Image.asset(
+                                                          "assets/icons/ic_store.png",
+                                                        )
+                                                      : ClipOval(
+                                                          child: CachedNetworkImage(
+                                                            imageUrl:
+                                                                ctr.subImage[1],
+                                                          ),
+                                                        ),
+                                                ),
+                                                radius: 50,
+                                                backgroundColor: Colors.white,
+                                              )),
+                                              width: 50,
+                                              height: 50,
                                             ),
-                                            radius: 50,
-                                            backgroundColor: Colors.white,
-                                          )),
-                                          width: 50,
-                                          height: 50,
+                                            Text(ctr.storeName[1]!,style: MyTextStyles.f18_bold,)
+                                          ],
                                         ))
                                   ],
                                 ),

@@ -44,8 +44,8 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
     HorizontalChipList1().ctr.selectedMainCatIndex.value = 0;
   }
 
-  void _onRefresh() async {
-    ctr.updateProducts();
+  Future<void> _onRefresh() async {
+    await ctr.updateProducts();
 
     _refreshController.refreshCompleted();
   }
@@ -63,7 +63,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
           ? LoadingWidget()
           : Stack(
               children: [
-                SmartRefresher(
+                SmartRefresher(header: MaterialClassicHeader(),
                   controller: _refreshController,
                   enablePullDown: true,
                   enablePullUp: false,

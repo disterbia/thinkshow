@@ -192,7 +192,7 @@ class ProductItemVertical extends StatelessWidget {
                 bool result = await uApiProvider().chekToken();
                 if (!result) {
                   print('logout');
-                  mSnackbar(message: '로그인 세션이 만료되었습니다.');
+                  mSnackbar(message: '로그인 후 이용 가능합니다.');
                   mFuctions.userLogout();
                   return;
                 }

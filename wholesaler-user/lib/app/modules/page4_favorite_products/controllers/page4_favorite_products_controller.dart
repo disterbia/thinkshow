@@ -26,7 +26,7 @@ class Page4Favorite_RecentlyViewedController extends GetxController {
 
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
     } else {
       products.clear();
@@ -53,7 +53,7 @@ class Page4Favorite_RecentlyViewedController extends GetxController {
 
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
     } else {
       products.clear();

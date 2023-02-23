@@ -18,6 +18,7 @@ class Page2StoreListController extends GetxController {
   ScrollController scrollController = ScrollController();
   RxList<String> mainImage=<String>[].obs;
   RxList<String> subImage=<String>[].obs;
+  RxList<String> storeName=<String>[].obs;
   RxList<int> sameId=<int>[].obs;
   Future<void> getRankedStoreData() async {
     Future.delayed(Duration.zero, () => isLoading.value = true);
@@ -26,7 +27,7 @@ class Page2StoreListController extends GetxController {
 
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getStoreRanking(offset: 0, limit: 80);
@@ -40,7 +41,7 @@ class Page2StoreListController extends GetxController {
 
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getMostStoreData(offset: 0, limit: 80);
@@ -56,7 +57,7 @@ class Page2StoreListController extends GetxController {
 
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getStorebookmarked();
@@ -83,7 +84,7 @@ class Page2StoreListController extends GetxController {
     bool result = await uApiProvider().chekToken();
     if (!result) {
       print('logout');
-      mSnackbar(message: '로그인 세션이 만료되었습니다.');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
       mFuctions.userLogout();
       return;
     }
@@ -99,7 +100,9 @@ class Page2StoreListController extends GetxController {
         for(var imgUrl in json["similar_store_list"]){
           String? mainImageTemp = imgUrl["store_main_image_url"];
           String? subImageTemp = imgUrl["store_thumbnail_image_url"];
+          String? name = imgUrl["store_name"];
           sameId.add(imgUrl["store_id"]);
+          storeName.add(imgUrl["store_name"]);
           if(mainImageTemp!=null){
             mainImage.add(imgUrl["store_main_image_url"]);
           }else {
@@ -114,7 +117,7 @@ class Page2StoreListController extends GetxController {
         }
         //mSnackbar(message: '스토어 찜 설정이 완료되었습니다.');
       } else {
-         mSnackbar(message: '스토어 찜 설정이 취소되었습니다.');
+         mSnackbar(message: '즐겨찾기가 취소 되었습니다.');
       }
 
   }

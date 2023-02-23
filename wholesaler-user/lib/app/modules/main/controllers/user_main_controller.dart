@@ -40,7 +40,8 @@ class UserMainController extends GetxController {
   void changeTabIndex(int index) {
     changed.value++;
     if (index == UseBottomNavTabs.favorites.index ||
-        index == UseBottomNavTabs.my_page.index) {
+        index == UseBottomNavTabs.my_page.index ||
+        index == UseBottomNavTabs.store.index) {
       // check if user is logged in
       if (CacheProvider().getToken().isEmpty) {
         Get.to(() => User_LoginPageView());

@@ -329,9 +329,8 @@ class ProductDetailView extends GetView {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Icon(
-                        Icons.share_outlined,
-                        color: MyColors.grey4,
+                      child: Image.asset(
+                        "assets/icons/ic_share.png",height: 25,
                       ),
                     ))
                 : SizedBox.shrink()
