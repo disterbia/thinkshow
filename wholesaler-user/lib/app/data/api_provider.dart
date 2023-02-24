@@ -2021,13 +2021,17 @@ class uApiProvider extends GetConnect {
 
   /// Product detail > add to basket
   Future<bool> postAddToShoppingBasket(
-      int product_option_id, int quantity) async {
-    Map<String, dynamic> data = {
-      'product_option_id': product_option_id,
-      'qty': quantity,
-    };
+      List<ProductOptionModel> optionList, List<int> quantityList) async {
+    List<Map<String,dynamic>> body=[];
+
+    for(var i=0;i<optionList.length;i++){
+      body.add({
+        'product_option_id': optionList[i].id,
+        'qty': quantityList[i],
+      });
+    }
     Map<String, dynamic> dataHolder = {
-      'carts': [data],
+      'carts': body,
     };
 
     String url = mConst.API_BASE_URL + mConst.API_USER_PATH + '/cart';

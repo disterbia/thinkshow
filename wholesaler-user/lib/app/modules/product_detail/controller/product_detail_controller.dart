@@ -8,6 +8,7 @@ import 'package:wholesaler_partner/app/modules/add_product/add_product_view.dart
 import 'package:wholesaler_user/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/data/cache_provider.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
+import 'package:wholesaler_user/app/models/product_option_model.dart';
 import 'package:wholesaler_user/app/models/store_model.dart';
 import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_login_view.dart';
 import 'package:wholesaler_user/app/modules/cart/controllers/cart1_shopping_basket_controller.dart';
@@ -23,7 +24,9 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   RxInt sliderIndex = 0.obs;
   CarouselController indicatorSliderController = CarouselController();
 
-  RxInt selectedOptionIndex = (-1).obs; // Wraning: don't change -1
+  //RxInt selectedOptionIndex = (-1).obs; // Wraning: don't change -1
+  RxList<ProductOptionModel> optionList=<ProductOptionModel>[].obs;
+  RxList<int> quantityList = <int>[].obs;
   RxInt totalPrice = 0.obs;
   Rx<Product> product = Product(
           id: -1,
@@ -99,10 +102,10 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
       quillController = QuillController.basic();
     }
 
-    if (product.value.quantity == null) {
-      product.value.quantity = 1.obs;
-    }
-    totalPrice.value = product.value.price!;
+    // if (product.value.quantity == null) {
+    //   product.value.quantity = 1.obs;
+    // }
+    // totalPrice.value = product.value.price!;
     isLoading.value = false;
   }
 
@@ -117,26 +120,38 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   // }
   void UpdateTotalPrice() {
     print('UpdateTotalPrice');
-    int addPrice = selectedOptionIndex.value != -1
-        ? product.value.options![selectedOptionIndex.value].add_price!
-        : 0;
-    totalPrice.value =
-        (product.value.price! + addPrice) * product.value.quantity!.value;
+    int temp=0;
+    for(var i =0;i<optionList.length;i++ ){
+      int addPrice= optionList[i].add_price ??0;
+      temp+=(product.value.price!+addPrice)*quantityList[i];
+    }
+    totalPrice.value=temp;
+    // int addPrice = selectedOptionIndex.value != -1
+    //     ? product.value.options![selectedOptionIndex.value].add_price!
+    //     : 0;
+    // totalPrice.value =
+    //     (product.value.price! + addPrice) * product.value.quantity!.value;
   }
 
   Future<void> purchaseBtnPressed({required bool isDirectBuy}) async {
     if (!isOptionSelected()) {
       return;
     }
-    if (CacheProvider().getToken().isEmpty) {
+    bool temp = await _apiProvider.chekToken();
+    if (!temp) {
+      mSnackbar(message: "로그인 후 이용 가능합니다.");
        mFuctions.userLogout();
       return;
     }
-    int product_option_id =
-        product.value.options![selectedOptionIndex.value].id!;
-    bool isSuccess = await _apiProvider.postAddToShoppingBasket(
-        product_option_id, product.value.quantity!.value);
+    // int product_option_id =0;
+    // product.value.options![selectedOptionIndex.value].id!;
+    //
+    // bool isSuccess = await _apiProvider.postAddToShoppingBasket(
+    //     product_option_id, product.value.quantity!.value);
 
+    bool isSuccess= await _apiProvider.postAddToShoppingBasket(
+      optionList,quantityList
+    );
     if (isDirectBuy) {
       Get.to(() => Cart1ShoppingBasketView());
     } else {
@@ -154,7 +169,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   }
 
   bool isOptionSelected() {
-    if (selectedOptionIndex.value == -1) {
+    if (optionList.length== 0) {
       Get.back();
       mSnackbar(message: '옵션을 선택하세요.');
       return false;
