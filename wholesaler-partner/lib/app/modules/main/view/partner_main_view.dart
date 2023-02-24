@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/page1_home/view/page1_home_view.dart';
 import 'package:wholesaler_partner/app/modules/page2_order_history/views/page2_order_history_view.dart';
@@ -12,22 +13,29 @@ import 'package:wholesaler_user/app/data/firebase_service.dart';
 import '../controller/partner_main_controller.dart';
 
 class PartnerMainView extends GetView<BottomNavbarController> {
- // PartnerMainController ctr = Get.put(PartnerMainController());
+  PartnerMainController ctr = Get.put(PartnerMainController());
   BottomNavbarController navbarCtr = Get.put(BottomNavbarController());
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     FirebaseService.init();
-    return Scaffold(
-      backgroundColor: MyColors.white,
-      appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 50),
-        child: Obx(
-          () => appBarBuilder(navbarCtr.tabIndex.value),
+    return WillPopScope(
+      onWillPop: () => ctr.onWillPop(),
+      child: Scaffold(
+        backgroundColor: MyColors.white,
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 50),
+          child: Obx(
+            () => appBarBuilder(navbarCtr.tabIndex.value),
+          ),
         ),
+        bottomNavigationBar: PartnerBottomNavbarView(),
+        body: Obx(() => bodyBuilder.elementAt(navbarCtr.tabIndex.value)),
       ),
-      bottomNavigationBar: PartnerBottomNavbarView(),
-      body: Obx(() => bodyBuilder.elementAt(navbarCtr.tabIndex.value)),
     );
   }
 }

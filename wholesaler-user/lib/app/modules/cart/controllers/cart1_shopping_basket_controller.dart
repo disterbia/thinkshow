@@ -26,6 +26,9 @@ class Cart1ShoppingBasketController extends GetxController {
 
   init() async {
     checkCount = 0;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      isSelectAllChecked.value=true;
+    });
     Future.delayed(Duration.zero, () => isLoading.value = true);
 
     // if (CacheProvider()

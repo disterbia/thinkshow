@@ -32,6 +32,7 @@ class mOptionDropDownButton extends StatelessWidget {
               ctr.quantityList.add(1);
               ctr.UpdateTotalPrice();
             }else {
+              if(ctr.product.value.isDeal!) return;
             ctr.quantityList[ctr.optionList.indexOf(newOption)]++;
             ctr.UpdateTotalPrice();
           }

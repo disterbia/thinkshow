@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/data/firebase_service.dart';
@@ -25,6 +26,10 @@ class UserMainView extends GetView<UserMainController> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     FirebaseService.init();
     return WillPopScope(
       onWillPop: () => ctr.onWillPop(),

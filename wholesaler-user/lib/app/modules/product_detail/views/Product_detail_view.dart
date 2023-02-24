@@ -47,7 +47,6 @@ class ProductDetailView extends GetView {
       // print('ProductDetailView > addRecentlyViewedProduct: Get.arguments ${Get.arguments}');
     }
   }
-
   @override
   Widget build(BuildContext context) {
     init();

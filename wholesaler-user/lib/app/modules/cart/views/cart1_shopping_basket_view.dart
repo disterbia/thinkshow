@@ -21,7 +21,7 @@ class Cart1ShoppingBasketView extends GetView {
   RxBool isExpanded = false.obs;
   init() async {
     await ctr.init();
-    await ctr.SelectAllCheckboxOnChanged(true);
+    ctr.SelectAllCheckboxOnChanged(true);
   }
 
   @override

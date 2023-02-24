@@ -1451,6 +1451,7 @@ class uApiProvider extends GetConnect {
         country: json["country"],
         keyword: json["keyword"],
         isPrivilege: json['is_privilege'] ? true : false,
+        isDeal:json['is_deal']
       );
 
       return tempProduct;
@@ -1771,7 +1772,8 @@ class uApiProvider extends GetConnect {
             isSoldout: productJSON['is_sold_out'] == "Y" ? true.obs : false.obs,
             imgHeight: 90,
             imgWidth: 72,
-            isCheckboxSelected: false.obs,
+            isDeal:productJSON['is_deal'],
+            isCheckboxSelected: true.obs,
             cartId: productJSON['cart_id'],
           );
           products.add(tempProduct);

@@ -13,6 +13,7 @@ import 'package:wholesaler_user/app/modules/cart/widgets/circular_checkbox.dart'
 import 'package:wholesaler_user/app/modules/page2_store_detail/view/store_detail_view.dart';
 import 'package:wholesaler_user/app/utils/utils.dart';
 import 'package:wholesaler_user/app/widgets/product/product_item_horiz_widget.dart';
+import 'package:wholesaler_user/app/widgets/snackbar.dart';
 
 class CartItemsList extends StatelessWidget {
   Cart1ShoppingBasketController ctr = Get.put(Cart1ShoppingBasketController());
@@ -26,7 +27,6 @@ class CartItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Product> products = [];
-
     return Obx(
       () => ListView.builder(
         //padding: EdgeInsets.all(15),
@@ -148,7 +148,6 @@ class CartItemsList extends StatelessWidget {
   Widget _orderedProductBuilder(
       int cartIndex, int productIndex, Product product, int length) {
     int productPrice = product.price!;
-
     // Customize our ProductItemHorizontal view to match the design.
     Product tempProduct = Product(
       id: product.id,
@@ -164,6 +163,8 @@ class CartItemsList extends StatelessWidget {
       imgWidth: product.imgWidth,
       showQuantityPlusMinus: product.showQuantityPlusMinus,
       cartId: product.cartId,
+      isDeal: product.isDeal,
+      isCheckboxSelected: true.obs
     );
     return Column(
       children: [
@@ -201,7 +202,7 @@ class CartItemsList extends StatelessWidget {
                 price: productPrice,
                 // totalPrice: productTotalPrice,
                 // normalTotalPrice:normalTotalPrice,
-                quantityPlusMinusOnPressed: (value) =>
+                quantityPlusMinusOnPressed: (value) =>tempProduct.isDeal!?value?mSnackbar(message: "해당 상품은 1개만 구매 가능합니다."):null:
                     ctr.quantityPlusMinusOnPressed(
                   value: value,
                   cartId: tempProduct.cartId!,

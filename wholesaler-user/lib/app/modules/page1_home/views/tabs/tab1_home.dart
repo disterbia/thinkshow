@@ -405,12 +405,12 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
         children: [
           Text(
             'recommended_item'.tr,
-            style: MyTextStyles.f16,
+            style: MyTextStyles.f16_bold.copyWith(color: Colors.black),
           ),
-          Text(
-            'Sponsored',
-            style: MyTextStyles.f14.copyWith(color: MyColors.black1),
-          )
+          // Text(
+          //   'Sponsored',
+          //   style: MyTextStyles.f14_bold.copyWith(color: Colors.grey),
+          // )
         ],
       ),
     );

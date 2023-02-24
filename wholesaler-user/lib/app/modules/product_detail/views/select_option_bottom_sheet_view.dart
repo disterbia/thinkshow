@@ -9,12 +9,13 @@ import 'package:wholesaler_user/app/modules/product_detail/controller/product_de
 import 'package:wholesaler_user/app/utils/utils.dart';
 import 'package:wholesaler_user/app/widgets/dropdown_widget.dart';
 import 'package:wholesaler_user/app/widgets/product/quantity_plus_minus_widget.dart';
+import 'package:wholesaler_user/app/widgets/snackbar.dart';
 import 'package:wholesaler_user/app/widgets/two_buttons.dart';
 
 Future<dynamic> SelectOptionBottomSheet() {
   ProductDetailController ctr = Get.put(ProductDetailController());
   Cart1ShoppingBasketController ctr2 = Get.put(Cart1ShoppingBasketController());
-  RxInt result = 0.obs;
+
   return showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -65,7 +66,7 @@ Future<dynamic> SelectOptionBottomSheet() {
                           return Row(
                             children: [
                               Text(ctr.optionList[index].name!),
-                              Obx(
+                              ctr.product.value.isDeal!?Container():Obx(
                                 () => QuantityPlusMinusWidget(
                                   quantity: ctr.quantityList[index],
                                   onTap: (isRightTapped) {
@@ -82,6 +83,7 @@ Future<dynamic> SelectOptionBottomSheet() {
                                   },
                                 ),
                               ),
+                              Spacer(),
                               Obx(() => Text(
                                   ((ctr.product.value.price! + addPrice) *
                                               ctr.quantityList[index])
