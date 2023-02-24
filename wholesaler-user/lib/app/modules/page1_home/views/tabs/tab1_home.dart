@@ -322,7 +322,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           crossAxisCount: 2,
                                           productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products5,
-                                          isShowLoadingCircle: false.obs
+                                          isShowLoadingCircle: ctr.allowCallAPI
                                           // isShowLoadingCircle: ctr.allowCallAPI,
                                           ),
                                     ),

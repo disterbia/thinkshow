@@ -19,15 +19,15 @@ class Tab1UserHomeController extends GetxController {
   RxList<Product> products5 = <Product>[].obs;
   
   Rx<ScrollController> scrollController = ScrollController().obs;
-  int offset = 30;
+  int offset = 24;
   RxBool allowCallAPI = true.obs;
   RxBool isLoading = false.obs;
 
   @override
   Future<void> onInit() async {
     scrollController.value.addListener(() {
-      if (scrollController.value.position.pixels ==
-              scrollController.value.position.maxScrollExtent ) {
+      if (scrollController.value.position.pixels >=
+              scrollController.value.position.maxScrollExtent-10) {
         offset += mConst.limit;
         addDataToList();
       }
@@ -37,7 +37,7 @@ class Tab1UserHomeController extends GetxController {
 
   Future<void> init() async {
     isLoading.value = true;
-    offset = 30;
+    offset = 24;
     products1.value =
         await _apiProvider.getAllProducts(offset: 0, limit: 6);
     products2.value =
@@ -45,9 +45,9 @@ class Tab1UserHomeController extends GetxController {
     products3.value =
     await _apiProvider.getAllProducts(offset: 14, limit: 4);
     products4.value =
-    await _apiProvider.getAllProducts(offset: 18, limit: 12);
+    await _apiProvider.getAllProducts(offset: 18, limit: 6);
     products5.value =
-    await _apiProvider.getAllProducts(offset: 30, limit: mConst.limit);
+    await _apiProvider.getAllProducts(offset: 24, limit: mConst.limit);
 
 
 
@@ -74,7 +74,7 @@ class Tab1UserHomeController extends GetxController {
     products4.clear();
     products5.clear();
 
-    offset = 30;
+    offset = 24;
     allowCallAPI.value = true;
     isLoading.value=true;
     // Note: we have two APIs. API 1: When "ALL" chip is called (index == 0), API 2: when categories are called.
@@ -114,18 +114,18 @@ class Tab1UserHomeController extends GetxController {
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products4, show ALL');
       products4.value = await _apiProvider.getAllProducts(
-          offset: 18, limit: 12);
+          offset: 18, limit: 6);
     } else {
       print('products4 , show categories');
       products4.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
           offset: 18,
-          limit: 12);
+          limit: 6);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products5, show ALL');
       products5.value = await _apiProvider.getAllProducts(
-          offset: 18, limit: 12);
+          offset: offset, limit:  mConst.limit);
     } else {
       print('products5 , show categories');
       products5.value = await _apiProvider.getProductsWithCat(
@@ -141,6 +141,7 @@ class Tab1UserHomeController extends GetxController {
   }
 
   addDataToList() async {
+    allowCallAPI.value = true;
     List<Product> tempProducts = [];
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('index 0, show ALL');
