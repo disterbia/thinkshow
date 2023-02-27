@@ -38,27 +38,23 @@ class Tab1UserHomeController extends GetxController {
 
   Future<void> init() async {
     int firstLimit=6;
-    int offset1 = 6;
-    int offset2 = 14;
-    int offset3 = 18;
+    int firstOffset = 6;
     isLoading.value = true;
     offset = 24;
     List<Product> isDealProduct = await _apiProvider.getDealProducts();
     if(isDealProduct.isNotEmpty){
       firstLimit-=1;
-      offset1-=1;
-      offset2-=1;
-      offset3-=1;
+      firstOffset-=1;
       offset-=1;
     }
     products1.value =
         await _apiProvider.getAllProducts(offset: 0, limit: firstLimit);
     products2.value =
-    await _apiProvider.getAllProducts(offset: offset1, limit: 8);
+    await _apiProvider.getAllProducts(offset: firstOffset, limit: 8);
     products3.value =
-    await _apiProvider.getAllProducts(offset: offset2, limit: 4);
+    await _apiProvider.getAllProducts(offset: firstOffset+8, limit: 4);
     products4.value =
-    await _apiProvider.getAllProducts(offset: offset3, limit: 6);
+    await _apiProvider.getAllProducts(offset: firstOffset+4, limit: 6);
     products5.value =
     await _apiProvider.getAllProducts(offset: offset, limit: mConst.limit);
 
@@ -82,9 +78,7 @@ class Tab1UserHomeController extends GetxController {
 
   Future<void> updateProducts() async {
     int firstLimit=6;
-    int offset1 = 6;
-    int offset2 = 14;
-    int offset3 = 18;
+    int firstOffset = 6;
     offset = 24;
 
 
@@ -105,9 +99,7 @@ class Tab1UserHomeController extends GetxController {
       List<Product> isDealProduct = await _apiProvider.getDealProducts();
       if(isDealProduct.isNotEmpty){
         firstLimit-=1;
-        offset1-=1;
-        offset2-=1;
-        offset3-=1;
+        firstOffset-=1;
         offset-=1;
       }
       print('products1, show ALL');
@@ -120,9 +112,7 @@ class Tab1UserHomeController extends GetxController {
       List<Product> isDealProductwithCat = await _apiProvider.getDealProductsWithCat(categoryTagCtr.selectedMainCatIndex.value);
       if(isDealProductwithCat.isNotEmpty){
         firstLimit-=1;
-        offset1-=1;
-        offset2-=1;
-        offset3-=1;
+        firstOffset-=1;
         offset-=1;
       }
       print('products1 , show categories');
@@ -138,34 +128,34 @@ class Tab1UserHomeController extends GetxController {
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products2 show ALL');
       products2.value = await _apiProvider.getAllProducts(
-          offset: offset1, limit: 8);
+          offset: firstOffset, limit: 8);
     } else {
       print('products2 , show categories');
       products2.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: offset1,
+          offset: firstOffset,
           limit: 8);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products3, show ALL');
       products3.value = await _apiProvider.getAllProducts(
-          offset: offset2, limit: 4);
+          offset: firstOffset+8, limit: 4);
     } else {
       print('products3 , show categories');
       products3.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: offset2,
+          offset: firstOffset+8,
           limit: 4);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products4, show ALL');
       products4.value = await _apiProvider.getAllProducts(
-          offset: offset3, limit: 6);
+          offset: firstOffset+4, limit: 6);
     } else {
       print('products4 , show categories');
       products4.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: offset3,
+          offset: firstOffset+4,
           limit: 6);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
