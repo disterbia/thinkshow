@@ -512,7 +512,7 @@ class ProductDetailView extends GetView {
                     child: Container(
                       height: 50,
                       child: CustomButton(
-                        textColor: MyColors.white,
+                        textColor: MyColors.black,
                         text: MyVars.isUserProject() ? '구매하기' : '수정하기',
                         onPressed: () {
                           MyVars.isUserProject()

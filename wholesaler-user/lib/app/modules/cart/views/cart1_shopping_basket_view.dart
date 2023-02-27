@@ -364,7 +364,7 @@ class Cart1ShoppingBasketView extends GetView {
           },
           child: Obx(() => Text(
               "총 ${ctr.getTotalSelectedProducts().toString()}개 주문하기",
-              style: MyTextStyles.f18.copyWith(color: MyColors.white)))),
+              style: MyTextStyles.f18.copyWith(color: MyColors.black)))),
     );
   }
 }

@@ -23,6 +23,7 @@ class Tab1UserHomeController extends GetxController {
   RxBool allowCallAPI = true.obs;
   RxBool isLoading = false.obs;
 
+
   @override
   Future<void> onInit() async {
     scrollController.value.addListener(() {
@@ -36,21 +37,34 @@ class Tab1UserHomeController extends GetxController {
   }
 
   Future<void> init() async {
+    int firstLimit=6;
+    int offset1 = 6;
+    int offset2 = 14;
+    int offset3 = 18;
     isLoading.value = true;
     offset = 24;
+    List<Product> isDealProduct = await _apiProvider.getDealProducts();
+    if(isDealProduct.isNotEmpty){
+      firstLimit-=1;
+      offset1-=1;
+      offset2-=1;
+      offset3-=1;
+      offset-=1;
+    }
     products1.value =
-        await _apiProvider.getAllProducts(offset: 0, limit: 6);
+        await _apiProvider.getAllProducts(offset: 0, limit: firstLimit);
     products2.value =
-    await _apiProvider.getAllProducts(offset: 6, limit: 8);
+    await _apiProvider.getAllProducts(offset: offset1, limit: 8);
     products3.value =
-    await _apiProvider.getAllProducts(offset: 14, limit: 4);
+    await _apiProvider.getAllProducts(offset: offset2, limit: 4);
     products4.value =
-    await _apiProvider.getAllProducts(offset: 18, limit: 6);
+    await _apiProvider.getAllProducts(offset: offset3, limit: 6);
     products5.value =
-    await _apiProvider.getAllProducts(offset: 24, limit: mConst.limit);
+    await _apiProvider.getAllProducts(offset: offset, limit: mConst.limit);
 
-
-
+    if(isDealProduct.isNotEmpty){
+     products1.insert(0, isDealProduct[0]);
+    }
 
     isLoading.value = false;
     super.onInit();
@@ -67,6 +81,14 @@ class Tab1UserHomeController extends GetxController {
   // }
 
   Future<void> updateProducts() async {
+    int firstLimit=6;
+    int offset1 = 6;
+    int offset2 = 14;
+    int offset3 = 18;
+    offset = 24;
+
+
+
     // reset variables
     products1.clear();
     products2.clear();
@@ -74,52 +96,76 @@ class Tab1UserHomeController extends GetxController {
     products4.clear();
     products5.clear();
 
-    offset = 24;
+
+
     allowCallAPI.value = true;
     isLoading.value=true;
     // Note: we have two APIs. API 1: When "ALL" chip is called (index == 0), API 2: when categories are called.
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
+      List<Product> isDealProduct = await _apiProvider.getDealProducts();
+      if(isDealProduct.isNotEmpty){
+        firstLimit-=1;
+        offset1-=1;
+        offset2-=1;
+        offset3-=1;
+        offset-=1;
+      }
       print('products1, show ALL');
       products1.value = await _apiProvider.getAllProducts(
-          offset: 0, limit: 6);
+          offset: 0, limit: firstLimit);
+      if(isDealProduct.isNotEmpty){
+        products1.insert(0, isDealProduct[0]);
+      }
     } else {
+      List<Product> isDealProductwithCat = await _apiProvider.getDealProductsWithCat(categoryTagCtr.selectedMainCatIndex.value);
+      if(isDealProductwithCat.isNotEmpty){
+        firstLimit-=1;
+        offset1-=1;
+        offset2-=1;
+        offset3-=1;
+        offset-=1;
+      }
       print('products1 , show categories');
       products1.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
           offset: 0,
-          limit: 6);
+          limit: firstLimit);
+      if(isDealProductwithCat.isNotEmpty){
+        products1.insert(0, isDealProductwithCat[0]);
+      }
     }
+
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products2 show ALL');
       products2.value = await _apiProvider.getAllProducts(
-          offset: 6, limit: 8);
+          offset: offset1, limit: 8);
     } else {
       print('products2 , show categories');
       products2.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: 6,
+          offset: offset1,
           limit: 8);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products3, show ALL');
       products3.value = await _apiProvider.getAllProducts(
-          offset: 14, limit: 4);
+          offset: offset2, limit: 4);
     } else {
       print('products3 , show categories');
       products3.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: 14,
+          offset: offset2,
           limit: 4);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products4, show ALL');
       products4.value = await _apiProvider.getAllProducts(
-          offset: 18, limit: 6);
+          offset: offset3, limit: 6);
     } else {
       print('products4 , show categories');
       products4.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: 18,
+          offset: offset3,
           limit: 6);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {

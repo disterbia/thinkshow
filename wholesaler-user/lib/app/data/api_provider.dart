@@ -373,6 +373,89 @@ class uApiProvider extends GetConnect {
     }
   }
 
+  Future<List<Product>> getDealProducts() async {
+
+    String url = mConst.API_BASE_URL +
+        mConst.API_USER_PATH +
+        '/products/deal';
+
+    print('getAllProducts url $url');
+
+    final response = await get(url, headers: headers);
+    // log('getAllProducts response ${response.body}');
+
+    if (response.statusCode == 200) {
+      var jsonList = jsonDecode(response.bodyString!);
+      List<Product> products = [];
+
+      for (var json in jsonList) {
+        Store tempStore = Store(
+          id: json['store_id'],
+          name: json['store_name'],
+        );
+
+        Product tempProduct = Product(
+          id: json['id'],
+          title: json['product_name'],
+          store: tempStore,
+          imgHeight: (Get.width / 2) + 10,
+          price: json['price'],
+          normalPrice: json['normal_price'],
+          priceDiscountPercent: json['price_discount_percent'],
+          isLiked: json['is_favorite'] ? true.obs : false.obs,
+          imgUrl: json['thumbnail_image_url'],
+          hasBellIconAndBorder: (json['is_privilege'] as bool).obs,
+        );
+        products.add(tempProduct);
+      }
+      return products;
+    } else {
+      log('error getProducts : ${response.bodyString}');
+      return Future.error(response.statusText!);
+    }
+  }
+  Future<List<Product>> getDealProductsWithCat(int categoryId) async {
+
+    String url = mConst.API_BASE_URL +
+        mConst.API_USER_PATH +
+        '/category/$categoryId/products/deal';
+
+    print('getAllProductsWithCat url $url');
+
+    final response = await get(url, headers: headers);
+    // log('getAllProducts response ${response.body}');
+
+    if (response.statusCode == 200) {
+      var jsonList = jsonDecode(response.bodyString!);
+      List<Product> products = [];
+
+      for (var json in jsonList) {
+        Store tempStore = Store(
+          id: json['store_id'],
+          name: json['store_name'],
+        );
+
+        Product tempProduct = Product(
+          id: json['id'],
+          title: json['product_name'],
+          store: tempStore,
+          imgHeight: (Get.width / 2) + 10,
+          price: json['price'],
+          normalPrice: json['normal_price'],
+          priceDiscountPercent: json['price_discount_percent'],
+          isLiked: json['is_favorite'] ? true.obs : false.obs,
+          imgUrl: json['thumbnail_image_url'],
+          hasBellIconAndBorder: (json['is_privilege'] as bool).obs,
+        );
+        products.add(tempProduct);
+      }
+      return products;
+    } else {
+      log('error getProducts : ${response.bodyString}');
+      return Future.error(response.statusText!);
+    }
+  }
+
   Future<List<Product>> getAllProducts({
     required int offset,
     required int limit,
