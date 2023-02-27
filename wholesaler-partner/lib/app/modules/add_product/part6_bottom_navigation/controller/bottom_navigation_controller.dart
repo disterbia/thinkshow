@@ -601,6 +601,7 @@ class AP_Part6Controller extends GetxController {
     }
 
     if (sizeInfoList.isEmpty) {
+      isLoading.value = false;
       Get.back();
       mSnackbar(message: '사이즈 선택해 주세요.');
       return;

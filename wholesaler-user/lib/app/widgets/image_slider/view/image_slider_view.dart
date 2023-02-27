@@ -50,6 +50,7 @@ class ImageSliderView extends GetView<ImageSliderController> {
             autoPlay: true,autoPlayInterval: Duration(seconds: 3),
             enlargeCenterPage: true,
             viewportFraction: 1,
+            height: Get.width*0.56
           ),
         ),
       ),
