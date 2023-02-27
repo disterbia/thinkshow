@@ -104,7 +104,7 @@ class User_LoginPageView extends GetView<User_LoginPageController> {
             },
             child: Text(
               '로그인',
-              style: MyTextStyles.f18.copyWith(color: Colors.white),
+              style: MyTextStyles.f18.copyWith(color: Colors.black),
             )),
       ),
     );

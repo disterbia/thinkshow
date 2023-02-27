@@ -16,7 +16,8 @@ import 'package:wholesaler_user/app/modules/cart/views/cart1_shopping_basket_vie
 import 'package:wholesaler_user/app/widgets/snackbar.dart';
 import 'package:wholesaler_user/app/constants/functions.dart';
 
-class ProductDetailController extends GetxController with GetSingleTickerProviderStateMixin{
+class ProductDetailController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   uApiProvider _apiProvider = uApiProvider();
   int productId = -1;
 
@@ -25,7 +26,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   CarouselController indicatorSliderController = CarouselController();
 
   //RxInt selectedOptionIndex = (-1).obs; // Wraning: don't change -1
-  RxList<ProductOptionModel> optionList=<ProductOptionModel>[].obs;
+  RxList<ProductOptionModel> optionList = <ProductOptionModel>[].obs;
   RxList<int> quantityList = <int>[].obs;
   RxInt totalPrice = 0.obs;
   Rx<Product> product = Product(
@@ -46,7 +47,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   RxBool isLoading = false.obs;
 
   QuillController? quillController;
-  
+
   List<String> tabTitles = ['상세정보', '리뷰', "사이즈", '문의'];
   late TabController tabController;
 
@@ -88,6 +89,13 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
       return;
     }
     product.value = await _apiProvider.getProductDetail(productId: productId);
+    print(product.value.sizes![0].size);
+    print(product.value.sizes![0].size);
+    print(product.value.sizes![0].size);
+    print(product.value.sizes![0].size);
+    print(product.value.sizes![0].size);
+    print(product.value.sizes![0].size);
+
     sameProducts.value = await _apiProvider.getSimilarCat(
         offset: 0, limit: 3, productId: productId!, sort: "latest");
     bestProducts.value =
@@ -120,12 +128,12 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   // }
   void UpdateTotalPrice() {
     print('UpdateTotalPrice');
-    int temp=0;
-    for(var i =0;i<optionList.length;i++ ){
-      int addPrice= optionList[i].add_price ??0;
-      temp+=(product.value.price!+addPrice)*quantityList[i];
+    int temp = 0;
+    for (var i = 0; i < optionList.length; i++) {
+      int addPrice = optionList[i].add_price ?? 0;
+      temp += (product.value.price! + addPrice) * quantityList[i];
     }
-    totalPrice.value=temp;
+    totalPrice.value = temp;
     // int addPrice = selectedOptionIndex.value != -1
     //     ? product.value.options![selectedOptionIndex.value].add_price!
     //     : 0;
@@ -140,7 +148,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
     bool temp = await _apiProvider.chekToken();
     if (!temp) {
       mSnackbar(message: "로그인 후 이용 가능합니다.");
-       mFuctions.userLogout();
+      mFuctions.userLogout();
       return;
     }
     // int product_option_id =0;
@@ -149,9 +157,8 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
     // bool isSuccess = await _apiProvider.postAddToShoppingBasket(
     //     product_option_id, product.value.quantity!.value);
 
-    bool isSuccess= await _apiProvider.postAddToShoppingBasket(
-      optionList,quantityList
-    );
+    bool isSuccess =
+        await _apiProvider.postAddToShoppingBasket(optionList, quantityList);
     if (isDirectBuy) {
       Get.to(() => Cart1ShoppingBasketView());
     } else {
@@ -169,7 +176,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   }
 
   bool isOptionSelected() {
-    if (optionList.length== 0) {
+    if (optionList.length == 0) {
       Get.back();
       mSnackbar(message: '옵션을 선택하세요.');
       return false;
@@ -181,14 +188,14 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
   storeBookmarkPressed() async {
     if (CacheProvider().getToken().isEmpty) {
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-       mFuctions.userLogout();
+      mFuctions.userLogout();
       return;
     }
     bool result = await uApiProvider().chekToken();
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-       mFuctions.userLogout();
+      mFuctions.userLogout();
       return;
     }
 
@@ -207,7 +214,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
 
   likeBtnPressed({required bool newValue}) async {
     if (CacheProvider().getToken().isEmpty) {
-       mFuctions.userLogout();
+      mFuctions.userLogout();
       return;
     }
 
@@ -216,7 +223,7 @@ class ProductDetailController extends GetxController with GetSingleTickerProvide
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-       mFuctions.userLogout();
+      mFuctions.userLogout();
       return;
     }
 
