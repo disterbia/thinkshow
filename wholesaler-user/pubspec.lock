@@ -1189,7 +1189,7 @@ packages:
       path: "../wholesaler-partner"
       relative: true
     source: path
-    version: "0.2.7"
+    version: "0.2.5+207"
   win32:
     dependency: transitive
     description:
