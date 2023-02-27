@@ -31,30 +31,38 @@ class ExhibitionProductsView extends GetView {
       ()=>ctr.isLoading.value?LoadingWidget(): SingleChildScrollView(
           child: Column(
             children: [
-              // Obx(
-              //   () => ctr.bannerPicture != ''
-              //       ? CachedNetworkImage(
-              //           imageUrl: ctr.bannerPicture.value,
-              //           fadeInDuration: Duration(milliseconds: 0),
-              //           fadeOutDuration: Duration(milliseconds: 0),
-              //           placeholderFadeInDuration: Duration(milliseconds: 0),
-              //           width: Get.width,
-              //           fit: BoxFit.fitWidth,
-              //           errorWidget: (context, url, error) => Icon(Icons.error),
-              //         )
-              //       : LoadingWidget(),
-              // ),
-               Container(color: MyColors.primary,height: 50,
-                 child: Center(
+               ListView.separated(padding: EdgeInsets.zero,
+                  separatorBuilder: (context, index) => SizedBox(height: 5,),
+                    itemCount:ctr.bannerPicture.length ,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
+                    itemBuilder: (context,index) {
+                        return CachedNetworkImage(placeholder:(context, url) =>  Container(height: Get.height),
+                            imageUrl: ctr.bannerPicture[index],
+                            fadeInDuration: Duration(milliseconds: 0),
+                            fadeOutDuration: Duration(milliseconds: 0),
+                            placeholderFadeInDuration: Duration(milliseconds: 0),
+                            width: Get.width,
+                            fit: BoxFit.fitWidth,
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                          );
+                      }
+                    )
+                    ,
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Container(height: 50,decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: MyColors.black,),
+                  child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        ctr.title.value,
-                        style: MyTextStyles.f16_bold.copyWith(color: Colors.white)
+                          ctr.title.value,
+                          style: MyTextStyles.f16_bold.copyWith(color: Colors.white)
                       ),
                     ),
                   ),
-               ),
+                ),
+              ),
+
               ctr.products.isEmpty?Text(
                   "상품 없음",
                   style: MyTextStyles.f16_bold,

@@ -4,7 +4,7 @@ import 'package:wholesaler_user/app/models/product_model.dart';
 import 'package:wholesaler_user/app/models/store_model.dart';
 
 class ExhibitionProductsController extends GetxController {
-  RxString bannerPicture = ''.obs;
+  RxList<String> bannerPicture = <String>[].obs;
   RxString title = ''.obs;
   pApiProvider _apiProvider = pApiProvider();
   int imageId = 0;
@@ -23,9 +23,9 @@ class ExhibitionProductsController extends GetxController {
     await _apiProvider.getExhibitDetails(imageId.toString()).then((response) {
     //  print(' ressssssssssss ${response}');
       if (response['detail_img_url'] != null) {
-        bannerPicture.value = (response['detail_img_url'] as String);
+        bannerPicture.value =  List<String>.from(response['detail_img_url'] as List);
       } else {
-        bannerPicture.value = (response['banner_img_url'] as String);
+        bannerPicture.add (response['banner_img_url'] as String);
       }
       dynamic dynamicList = response['products'];
 
