@@ -349,11 +349,13 @@ class Cart1ShoppingBasketView extends GetView {
       padding: EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
       child: ElevatedButton(
-          style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ))),
+          style: ElevatedButton.styleFrom(
+            primary: MyColors.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15), // <-- Radius
+            ),
+          ),
+
           onPressed: () async {
             if (ctr.getTotalSelectedProducts() != 0) {
               bool isSuccess = await ctr.getDealCheck();

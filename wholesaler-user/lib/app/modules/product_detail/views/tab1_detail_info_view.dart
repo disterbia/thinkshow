@@ -327,9 +327,19 @@ class Tab1DetailInfo extends GetView {
             () => productDetailCtr.product.value.return_exchange_info != null
                 ? Padding(
                     padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      productDetailCtr.product.value.return_exchange_info!,
-                      style: TextStyle(color: MyColors.grey4),
+                    child: Builder(
+                      builder: (context) {
+                        String str=productDetailCtr.product.value.return_exchange_info!;
+                        List<String> result = str.split('\n');
+                        return ListView.separated(separatorBuilder: (context, index) => SizedBox(height: 5,),
+                          padding: EdgeInsets.zero,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
+                          itemCount: result.length,
+                          itemBuilder: (context, index) {
+                          return Text(result[index],style: TextStyle(color: MyColors.grey4),); 
+
+                        },
+                        );
+                      }
                     ),
                   )
                 : SizedBox.shrink(),

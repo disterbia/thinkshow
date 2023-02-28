@@ -189,103 +189,104 @@ class ProductDetailView extends GetView {
               );
             }
           : null,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Obx(
-            () => Padding(
-                padding: const EdgeInsets.only(top: 15,bottom: 10,left: 10),
-                child: ctr.product.value.store.imgUrl != null
-                    ? Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                ctr.product.value.store.imgUrl!.value),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                ctr.product.value.store.name!,
-                                style: MyTextStyles.f14_bold,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                  categoris.isNotEmpty ? category : "스토어 정보 없음",
-                                  style: MyTextStyles.f12
-                                      .copyWith(color: Colors.grey))
-                            ],
-                          )
-                        ],
-                      )
-                    : Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/ic_store.png',
-                            width: 40,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Obx(() => ctr.product.value.store.name != null
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      ctr.product.value.store.name!,
-                                      style: MyTextStyles.f14_bold,
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                        categoris.isNotEmpty
-                                            ? category
-                                            : "스토어 정보 없음",
-                                        style: MyTextStyles.f12
-                                            .copyWith(color: Colors.grey))
-                                  ],
-                                )
-                              : SizedBox.shrink()),
-                        ],
-                      )),
-          ),
-          Obx(
-            () => ctr.product.value.store.isBookmarked != null &&
-                    MyVars.isUserProject()
-                ? Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Column(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10,bottom: 3,left: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(
+              () => ctr.product.value.store.imgUrl != null
+                  ? Row(
                       children: [
-                        ctr.product.value.store.isBookmarked!.isTrue
-                            ? InkWell(
-                                onTap: () => ctr.storeBookmarkPressed(),
-                                child: Image.asset("assets/icons/ico_star_on.png",height: 25,),
-                              )
-                            : InkWell(
-                                onTap: () => ctr.storeBookmarkPressed(),
-                                child: Image.asset("assets/icons/ico_star_off.png",height: 25,)),
-                        Text(
-                          result,
-                          style: TextStyle(
-                            color: MyColors.grey4,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              ctr.product.value.store.imgUrl!.value),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              ctr.product.value.store.name!,
+                              style: MyTextStyles.f14_bold,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                                categoris.isNotEmpty ? category : "스토어 정보 없음",
+                                style: MyTextStyles.f12
+                                    .copyWith(color: Colors.grey))
+                          ],
                         )
                       ],
+                    )
+                  : Row(
+                      children: [
+                        Image.asset(
+                          'assets/icons/ic_store.png',
+                          width: 40,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Obx(() => ctr.product.value.store.name != null
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    ctr.product.value.store.name!,
+                                    style: MyTextStyles.f14_bold,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                      categoris.isNotEmpty
+                                          ? category
+                                          : "스토어 정보 없음",
+                                      style: MyTextStyles.f12
+                                          .copyWith(color: Colors.grey))
+                                ],
+                              )
+                            : SizedBox.shrink()),
+                      ],
                     ),
-                  )
-                : SizedBox.shrink(),
-          ),
-        ],
+            ),
+            Obx(
+              () => ctr.product.value.store.isBookmarked != null &&
+                      MyVars.isUserProject()
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Column(
+                        children: [
+                          ctr.product.value.store.isBookmarked!.isTrue
+                              ? InkWell(
+                                  onTap: () => ctr.storeBookmarkPressed(),
+                                  child: Image.asset("assets/icons/ico_star_on.png",height: 25,),
+                                )
+                              : InkWell(
+                                  onTap: () => ctr.storeBookmarkPressed(),
+                                  child: Image.asset("assets/icons/ico_star_off.png",height: 25,)),
+                          Text(
+                            result,
+                            style: TextStyle(
+                              color: MyColors.grey4,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  : SizedBox.shrink(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -416,7 +417,7 @@ class ProductDetailView extends GetView {
               Text(
                 (ctr.product.value.priceDiscountPercent ?? 0).toString()+"% ",
                 style: MyTextStyles.f18_bold.copyWith(
-                    color: MyColors.primary,
+                    color: MyColors.primary2,
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),

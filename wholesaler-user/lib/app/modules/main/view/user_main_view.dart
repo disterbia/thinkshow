@@ -59,6 +59,7 @@ class UserMainView extends GetView<UserMainController> {
             backgroundColor: Colors.white,
             selectedItemColor: MyColors.black,
             selectedFontSize: 12.0,
+
           ),
         ),
       ),
@@ -68,13 +69,9 @@ class UserMainView extends GetView<UserMainController> {
   BottomNavigationBarItem ItemBuilder(
       String label, String imgSelected, String imgNotSelected, int itemIndex) {
     return BottomNavigationBarItem(
-      icon: ctr.tabIndex.value == itemIndex
-          ? Image.asset(
-              imgSelected,
-              width: 22,
-            )
-          : Image.asset(
-              imgNotSelected,
+      icon: Image.asset(
+        ctr.tabIndex.value == itemIndex
+            ? imgSelected:imgNotSelected,gaplessPlayback: true,
               width: 22,
             ),
       label: label,

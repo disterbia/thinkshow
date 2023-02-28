@@ -308,7 +308,7 @@ class ProductItemVertical extends StatelessWidget {
                   // Utils.numberFormat(
                   //     number: product.priceDiscountPercent ?? 0, suffix: '% ').toString(),
                   style: MyTextStyles.f18_bold.copyWith(
-                      color: MyColors.primary,
+                      color: MyColors.primary2,
                       fontSize: crossAxisCount==2?16:14,
                       fontWeight: FontWeight.bold),
                 ),
