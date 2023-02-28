@@ -41,6 +41,7 @@ class PhoneNumberPhoneVerify extends GetView {
             onTap: ctr.verifyIsEnable.value
                 ? () {
                     ctr.verifyPhoneBtnPressed();
+                    FocusManager.instance.primaryFocus?.unfocus();
                   }
                 : null,
             inputFormatters: [
@@ -69,6 +70,7 @@ class PhoneNumberPhoneVerify extends GetView {
                         ? () async{
                             bool result=await ctr.verifyCodeBtnPressed();
                             if(result) isPassword! ? ctr2.findPassword(): ctr2.getAccountId();
+                            FocusManager.instance.primaryFocus?.unfocus();
                           }
                         : null,
                     inputFormatters: [

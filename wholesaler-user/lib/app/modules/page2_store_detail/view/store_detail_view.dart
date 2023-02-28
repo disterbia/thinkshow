@@ -127,13 +127,13 @@ class StoreDetailView extends GetView {
           ? CachedNetworkImage(
               imageUrl: ctr.mainStoreModel.value.mainTopImageUrl!.value,
               width: Get.width,
-              height: 400,
-              fit: BoxFit.fitHeight,
+              height: Get.width,
+              fit: BoxFit.fitWidth,
               // placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )
           : Container(
-              height: 400,
+              height: Get.width,
               child: Center(child: Text('등록 된 사진 이 없습니다.')),
             ),
     );
@@ -241,7 +241,7 @@ class StoreDetailView extends GetView {
                           SizedBox(width: 14),
                       itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
-                          width: 105,
+                          width: Get.width/3-30,
                           child: ProductItemVertical(
                             product: ctr.top10Products.elementAt(index),
                             productNumber: ProductNumber(

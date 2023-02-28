@@ -31,7 +31,9 @@ class ChangeNumberView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: CustomButton(
               width: Get.width,
-              onPressed: () => ctr.editBtnPressed(),
+              onPressed: ()  {
+                FocusManager.instance.primaryFocus?.unfocus();
+                ctr.editBtnPressed();},
               text: '수정',
             ),
           )

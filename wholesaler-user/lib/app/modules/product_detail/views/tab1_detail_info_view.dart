@@ -335,7 +335,7 @@ class Tab1DetailInfo extends GetView {
                           padding: EdgeInsets.zero,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
                           itemCount: result.length,
                           itemBuilder: (context, index) {
-                          return Text(result[index],style: TextStyle(color: MyColors.grey4),); 
+                          return Text(result[index],style: TextStyle(color: MyColors.grey4),);
 
                         },
                         );

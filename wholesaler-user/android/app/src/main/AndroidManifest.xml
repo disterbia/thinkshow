@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thinksmk.user">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
    <application
         android:label="띵쇼마켓"
@@ -11,7 +12,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="high_importance_channel" 
             />
-            
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

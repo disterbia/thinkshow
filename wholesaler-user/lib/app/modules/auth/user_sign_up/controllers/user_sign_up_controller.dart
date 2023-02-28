@@ -143,6 +143,7 @@ class SignupOrEditController extends GetxController {
 
       bool isSuccess = await _apiProvider.putUserInfoEdit();
       if (isSuccess) {
+        await init();
         mSnackbar(message: '수정 완료되었습니다.');
         Get.back();
         return;

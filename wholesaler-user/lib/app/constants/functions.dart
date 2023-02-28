@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/main/view/partner_main_view.dart';
 import 'package:wholesaler_partner/app/modules/page3_my_info_mgmt/controllers/my_info_mgmt_controller.dart';
@@ -15,6 +16,7 @@ class mFuctions {
     cacheProvider.removeOwner();
     cacheProvider.removePrivilege();
     cacheProvider.removeRecentlyViewedProduct();
+    FirebaseMessaging.instance.deleteToken();
 
     Get.offAll(() => User_LoginPageView());
   }

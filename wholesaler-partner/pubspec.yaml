@@ -1,6 +1,6 @@
 name: wholesaler_partner
-#version: 0.2.7
-version: 0.2.5+207
+version: 0.2.8
+#version: 0.2.5+208
 publish_to: none
 description: A new Flutter project.
 environment:

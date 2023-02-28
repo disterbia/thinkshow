@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/constants/functions.dart';
 import 'package:wholesaler_user/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/data/cache_provider.dart';
+import 'package:wholesaler_user/app/data/firebase_service.dart';
 import 'package:wholesaler_user/app/models/user_model.dart';
 import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_login_view.dart';
 import 'package:wholesaler_user/app/widgets/snackbar.dart';
@@ -54,8 +56,11 @@ class Page5MyPageController extends GetxController {
 
   notificationToggled(bool value) async {
     bool isSuccess = await _apiProvider.updateNotification();
+
     if (isSuccess) {
       user.value.isAgreeNotificaiton!.value = value;
+      if(value) await FirebaseService.init();
+      else await FirebaseMessaging.instance.deleteToken();
     }
   }
 

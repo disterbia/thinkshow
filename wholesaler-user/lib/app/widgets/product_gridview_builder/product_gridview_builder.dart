@@ -31,7 +31,6 @@ class ProductGridViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double columnWidth = context.width / crossAxisCount;
     return Obx(() => products.isEmpty?Container():Column(
       children: [
         GridView.builder(
@@ -55,7 +54,7 @@ class ProductGridViewBuilder extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             childAspectRatio:
                 crossAxisCount==2?
-            columnWidth /(productHeight+40 ):columnWidth /(productHeight )// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                9/16:8/16// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
           ),
         ),
         Obx(() => isShowLoadingCircle.isTrue
