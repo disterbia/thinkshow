@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -118,11 +119,10 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                 Get.to(() => ExhibitionProductsView(),
                     arguments: {'imageId': ctr.imageBanners[index].id});
               },
-              child: CachedNetworkImage(
-                imageUrl: ctr.imageBanners[index].banner_img_url,
+              child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                ctr.imageBanners[index].banner_img_url,
                 width: Get.width,
                 // placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             );
           },

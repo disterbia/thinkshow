@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -33,11 +34,13 @@ class ImageSliderView extends GetView<ImageSliderController> {
                 },
                 child: Container(
                   width: Get.width,
-                  child: CachedNetworkImage(
-                    imageUrl: image.banner_img_url,
+                  child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                 image.banner_img_url,
                     fit: BoxFit.fill,
+                    // //cacheHeight:Get.width.ceil(),
+                    // //cacheWidth:Get.width.ceil() ,
                     // placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+
                   ),
                 ),
               ),

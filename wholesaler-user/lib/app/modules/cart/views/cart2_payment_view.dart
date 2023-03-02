@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -216,13 +217,12 @@ class Cart2PaymentView extends GetView {
 
   Widget _productImage(String imageUrl) {
     return ClipRRect(
-      child: CachedNetworkImage(
-        imageUrl: imageUrl,
+      child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+       imageUrl,
         width: 35,
         height: 35,
         fit: BoxFit.fill,
         // placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
       ),
       borderRadius: BorderRadius.circular(50),
     );

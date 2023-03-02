@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -129,7 +130,7 @@ class Tab2BookmarksView extends StatelessWidget {
               //         if(store.topImagePath!.length<4){
               //           return Container();
               //         }
-              //       return CachedNetworkImage(imageUrl: store.topImagePath![index],width: (Get.width/4)-10,);
+              //       return ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,imageUrl: store.topImagePath![index],width: (Get.width/4)-10,);
               //
               //     },),
               // )
@@ -151,13 +152,13 @@ class Tab2BookmarksView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
-          ? CachedNetworkImage(
-              imageUrl: store.imgUrl!.value,
+          ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+          store.imgUrl!.value,
               width: 50,
               height: 50,
               fit: BoxFit.cover,
               // placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+
             )
           : Image.asset(
               'assets/icons/ic_store.png',

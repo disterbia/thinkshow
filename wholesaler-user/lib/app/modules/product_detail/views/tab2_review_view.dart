@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -161,13 +162,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 0
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: CachedNetworkImage(
-                                      imageUrl: ctr.photoReviews[0].images![0],
+                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                     ctr.photoReviews[0].images![0],
                                       width: 80,
                                       height: 80,
                                       fit: BoxFit.fill,
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+
                                     ),
                                   )
                                 : ClipRRect(
@@ -181,13 +181,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 1
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: CachedNetworkImage(
-                                      imageUrl: ctr.photoReviews[1].images![0],
+                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                      ctr.photoReviews[1].images![0],
                                       width: 80,
                                       height: 80,
                                       fit: BoxFit.fill,
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+
                                     ),
                                   )
                                 : ClipRRect(
@@ -201,13 +200,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 2
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: CachedNetworkImage(
-                                      imageUrl: ctr.photoReviews[2].images![0],
+                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                   ctr.photoReviews[2].images![0],
                                       width: 80,
                                       height: 80,
                                       fit: BoxFit.fill,
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+
                                     ),
                                   )
                                 : ClipRRect(
@@ -401,7 +399,7 @@ class Tab2ReviewView extends GetView {
           // if (review.images != null)
           //   for (String imageUrl in review.images!) _imageBuilder(imageUrl),
           // review.reviewImageUrl != null
-          //     ? CachedNetworkImage(
+          //     ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
           //         imageUrl: review.reviewImageUrl!,
           //         fit: BoxFit.contain,
           //         // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
@@ -465,14 +463,12 @@ class Tab2ReviewView extends GetView {
         for (String img in review.images!)
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: CachedNetworkImage(
+            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
               fit: BoxFit.fill,
               width: Get.width,
               height: Get.width,
-              imageUrl: img,
-              placeholder: (context, url) =>
-                  Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+             img,
+
             ),
           )
       ],
@@ -695,13 +691,11 @@ class Tab2ReviewView extends GetView {
       alignment: Alignment.bottomLeft,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
+        child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+        imageUrl,
           width: 100,
           height: 150,
           fit: BoxFit.cover,
-          // placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -270,15 +271,17 @@ class ProductItemHorizontal extends StatelessWidget {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
-      child: CachedNetworkImage(
-        fit: BoxFit.fitWidth,
-        imageUrl: product.imgUrl.contains(",")
+      child: ExtendedImage.network(
+        product.imgUrl.contains(",")
             ? product.imgUrl.substring(0, product.imgUrl.indexOf(','))
             : product.imgUrl,
+        clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+        //cacheWidth:70,
+        //cacheHeight: 70,
+        fit: BoxFit.fitWidth,
         height: 70,
         width: 70,
         // placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
@@ -27,10 +28,12 @@ class ImagesCarouselSlider extends StatelessWidget {
                 }),
             items: [
               for (String img in ctr.product.value.images!)
-                CachedNetworkImage(fit: BoxFit.fitWidth,width: Get.width,
-                  imageUrl: img,
-                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ExtendedImage.network(img,
+                  clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                  fit: BoxFit.fitWidth,width: Get.width,
+
+                  //cacheWidth:  Get.width.ceil(),
+                  // cacheHeight:  Get.width.ceil(),
                 )
             ],
           ),

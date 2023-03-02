@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -127,10 +128,11 @@ class ProductItemVertical extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: FittedBox(
-                      child: CachedNetworkImage(
-                        imageUrl: product.imgUrl,
+                      child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false, enableLoadState: false,
+                        product.imgUrl,
+                        //cacheWidth:(Get.width).ceil() ,
+                        //cacheHeight: (product.imgHeight??Get.width/3).ceil(),
                         // placeholder: (context, url) => null,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                       fit: BoxFit.fill,
                     ),
@@ -145,10 +147,11 @@ class ProductItemVertical extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: FittedBox(
-                    child: CachedNetworkImage(
-                      imageUrl: product.imgUrl,
+                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false, enableLoadState: false,
+                       product.imgUrl,
+                      //cacheWidth:Get.width.ceil() ,
+                      //cacheHeight: (product.imgHeight??Get.width/3).ceil(),
                       // placeholder: (context, url) => null,
-                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     fit: BoxFit.fill,
                   ),

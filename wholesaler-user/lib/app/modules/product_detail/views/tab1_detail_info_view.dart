@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable/expandable.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
@@ -80,26 +81,19 @@ class Tab1DetailInfo extends GetView {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: Get.height * 0.6,
+                                height: Get.width*1.1,
                                 child: ClipRRect(
                                   borderRadius: !isMore.value && index == 1
                                       ? BorderRadius.only(
                                           bottomRight: Radius.circular(8),
                                           bottomLeft: Radius.circular(8))
                                       : BorderRadius.all(Radius.zero),
-                                  child: CachedNetworkImage(
-                                    imageUrl: productDetailCtr
+                                  child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,cache: true,
+                                    cacheHeight: (Get.width*1.1).ceil(),
+                                    cacheWidth: Get.width.ceil(),
+                                     productDetailCtr
                                         .product.value.imagesColor![index],
                                     fit: BoxFit.fill,
-                                    placeholder: (context, url) {
-                                      return Container(
-                                        height: 300,
-                                        child: Center(
-                                            child: CircularProgressIndicator()),
-                                      );
-                                    },
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
                                   ),
                                 ),
                               ),
@@ -123,26 +117,19 @@ class Tab1DetailInfo extends GetView {
                             ],
                           );
                         return Container(
-                          height: Get.height * 0.6,
+                          height: Get.width*1.1,
                           child: ClipRRect(
                             borderRadius: !isMore.value && index == 1
                                 ? BorderRadius.only(
                                     bottomRight: Radius.circular(8),
                                     bottomLeft: Radius.circular(8))
                                 : BorderRadius.all(Radius.zero),
-                            child: CachedNetworkImage(
-                              imageUrl: productDetailCtr
+                            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,cache: true,
+                              productDetailCtr
                                   .product.value.imagesColor![index],
+                              cacheHeight:(Get.width*1.1).ceil(),
+                              cacheWidth: Get.width.ceil(),
                               fit: BoxFit.fill,
-                              placeholder: (context, url) {
-                                return Container(
-                                  height: 300,
-                                  child:
-                                      Center(child: CircularProgressIndicator()),
-                                );
-                              },
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
                             ),
                           ),
                         );

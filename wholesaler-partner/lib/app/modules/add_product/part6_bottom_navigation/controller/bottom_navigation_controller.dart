@@ -246,7 +246,7 @@ class AP_Part6Controller extends GetxController {
               .text
               .isNotEmpty) {
             try {
-              int.parse(part2controller
+              double.parse(part2controller
                   .textEditingControllers[i.toString() + j.toString()]!.text);
             } catch (e) {
               isLoading.value = false;
@@ -581,7 +581,7 @@ class AP_Part6Controller extends GetxController {
               .text
               .isNotEmpty) {
             try {
-              int.parse(part2controller
+              double.parse(part2controller
                   .textEditingControllers[i.toString() + j.toString()]!.text);
             } catch (e) {
               isLoading.value = false;

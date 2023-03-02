@@ -120,7 +120,7 @@ class CartItemsList extends StatelessWidget {
         //     ClipRRect(
         //       borderRadius: BorderRadius.circular(50),
         //       child: store.imgUrl != null
-        //           ? CachedNetworkImage(
+        //           ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
         //               imageUrl: store.imgUrl!.value,
         //               width: 35,
         //               height: 35,

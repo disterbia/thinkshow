@@ -23,6 +23,7 @@ class ExhibitionProductsController extends GetxController {
     await _apiProvider.getExhibitDetails(imageId.toString()).then((response) {
     //  print(' ressssssssssss ${response}');
       if (response['detail_img_url'] != null) {
+        print(response['detail_img_url']);
         bannerPicture.value =  List<String>.from(response['detail_img_url'] as List);
       } else {
         bannerPicture.add (response['banner_img_url'] as String);

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -124,13 +125,11 @@ class StoreDetailView extends GetView {
   Widget _image() {
     return Obx(
       () => ctr.mainStoreModel.value.mainTopImageUrl != null
-          ? CachedNetworkImage(
-              imageUrl: ctr.mainStoreModel.value.mainTopImageUrl!.value,
+          ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+             ctr.mainStoreModel.value.mainTopImageUrl!.value,
               width: Get.width,
               height: Get.width,
               fit: BoxFit.fitWidth,
-              // placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
             )
           : Container(
               height: Get.width,
