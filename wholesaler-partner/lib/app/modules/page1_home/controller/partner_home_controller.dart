@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
 import 'package:wholesaler_partner/app/models/best_products_model.dart';
 import 'package:wholesaler_partner/app/models/bulletin_model.dart';
@@ -12,6 +14,7 @@ import 'package:wholesaler_user/app/models/product_image_model.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
 import 'package:wholesaler_user/app/models/store_model.dart';
 import 'package:wholesaler_user/app/widgets/dingdong_3products_horiz/dingdong_3products_horiz_controller.dart';
+import 'package:wholesaler_user/app/widgets/snackbar.dart';
 import '../../../data/api_provider.dart';
 import '../../../models/main_store_model.dart';
 
@@ -76,30 +79,36 @@ class PartnerHomeController extends GetxController {
 
   Future<void> uploadImageBtnPressed() async {
     print('inside uploadMainTopImage1234');
-    _pickedImage = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 50);
-    print('_pickedImage $_pickedImage');
-    if (_pickedImage != null) {
-      isLoadingImage.value = true;
-      ProductImageModel? imageModel =
-          await _apiProvider.uploadStoreImage(pickedImage: _pickedImage!);
-      print('imageModel $imageModel');
-      if (imageModel != null) {
-        mainStoreInfo.value.mainTopImageUrl = imageModel.url.obs;
-        print('uploadMainTopImage imageModel.path  ${imageModel.path}');
-        await _apiProvider
-            .uploadMainTopImage(data: {'image_path': imageModel.path});
-        isLoadingImage.value = false;
+    try{
+      _pickedImage = await ImagePicker()
+          .pickImage(source: ImageSource.gallery, imageQuality: 50);
+      print('_pickedImage $_pickedImage');
+      if (_pickedImage != null) {
+        isLoadingImage.value = true;
+        ProductImageModel? imageModel =
+        await _apiProvider.uploadStoreImage(pickedImage: _pickedImage!);
+        print('imageModel $imageModel');
+        if (imageModel != null) {
+          mainStoreInfo.value.mainTopImageUrl = imageModel.url.obs;
+          print('uploadMainTopImage imageModel.path  ${imageModel.path}');
+          await _apiProvider
+              .uploadMainTopImage(data: {'image_path': imageModel.path});
+          isLoadingImage.value = false;
+        }
       }
-    }
-    // if (imagePath.value.isNotEmpty) {
-    //   mSnackbar(message: 'image_uploaded'.tr);
-    // }
-    isImagePicked.value = true;
-    if (_pickedImage != null) {
+      // if (imagePath.value.isNotEmpty) {
+      //   mSnackbar(message: 'image_uploaded'.tr);
+      // }
       isImagePicked.value = true;
-      // imagePath = pickedFile.path;
+      if (_pickedImage != null) {
+        isImagePicked.value = true;
+        // imagePath = pickedFile.path;
+      }
+    }on PlatformException catch(e){
+      mSnackbar(message: "설정에서 사진 접근을 허용 해주세요.");
+      openAppSettings();
     }
+
   }
 
   // Future<bool> uploadMainTopImage() async {

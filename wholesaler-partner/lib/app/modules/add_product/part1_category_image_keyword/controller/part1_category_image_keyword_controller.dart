@@ -2,8 +2,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wholesaler_partner/app/data/api_provider.dart';
 import 'package:wholesaler_user/app/data/cache_provider.dart';
 import 'package:wholesaler_user/app/models/product_image_model.dart';
@@ -58,12 +60,18 @@ class AP_Part1Controller extends GetxController
   }
 
   Future<void> uploadImageBtnPressed() async {
-    pickedImage1.value = await ImagePicker().pickMultiImage();
-    if (pickedImage1.length == 3) {
-      uploadImage();
-    } else {
-      return mSnackbar(message: "대표이미지는 반드시 3장이어야 합니다.");
+    try{
+      pickedImage1.value = await ImagePicker().pickMultiImage();
+      if (pickedImage1.length == 3) {
+        uploadImage();
+      } else {
+        return mSnackbar(message: "대표이미지는 반드시 3장이어야 합니다.");
+      }
+    }on PlatformException catch(e){
+      mSnackbar(message: "설정에서 사진 접근을 허용해 주세요.");
+      openAppSettings();
     }
+
   }
 
   Future<void> uploadImage() async {
@@ -119,14 +127,20 @@ class AP_Part1Controller extends GetxController
   }
 
   Future<void> uploadImageBtnPressed2() async {
-    pickedImage2.value = await ImagePicker().pickMultiImage();
-    // print(pickedImage2.value);
-    if (pickedImage2.length < 30 && pickedImage2.isNotEmpty) {
-      uploadImage2();
-    } else if (pickedImage2.isEmpty) {
-      return mSnackbar(message: "상세이미지는 반드시 1장 이상 업로드 해야합니다.");
-    } else {
-      return mSnackbar(message: "상세이미지는 30장 이상 업로드 할 수 없습니다.");
+    try{
+      pickedImage2.value = await ImagePicker().pickMultiImage();
+      // print(pickedImage2.value);
+      if (pickedImage2.length < 30 && pickedImage2.isNotEmpty) {
+        uploadImage2();
+      } else if (pickedImage2.isEmpty) {
+        return mSnackbar(message: "상세이미지는 반드시 1장 이상 업로드 해야합니다.");
+      } else {
+        return mSnackbar(message: "상세이미지는 30장 이상 업로드 할 수 없습니다.");
+      }
+    }
+    on PlatformException catch(e){
+      mSnackbar(message: "설정에서 사진 접근을 허용해 주세요.");
+      openAppSettings();
     }
   }
 

@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wholesaler_partner/app/modules/page3_my_page/controllers/page3_my_page_controller.dart';
 import 'package:wholesaler_user/app/data/cache_provider.dart';
 import 'package:wholesaler_user/app/models/product_image_model.dart';
@@ -34,8 +36,14 @@ class MyInfoMgmtController extends GetxController {
   RxString imagePath = ''.obs;
 
   Future<void> uploadImageBtnPressed() async {
-    _pickedImage = await pickImage();
-    uploadImage();
+    try{
+      _pickedImage = await pickImage();
+      uploadImage();
+    }
+    on PlatformException catch(e){
+    mSnackbar(message: "설정에서 사진 접근을 허용 해주세요.");
+    openAppSettings();
+    }
   }
 
   Future<XFile?> pickImage() async {

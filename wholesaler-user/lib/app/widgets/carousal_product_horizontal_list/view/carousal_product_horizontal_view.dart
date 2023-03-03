@@ -20,7 +20,7 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
   RxList<Product>? products;
   RxInt? sliderIndex = 0.obs;
   int repeatCount=0;
-
+  RxBool isfullSize = true.obs;
   @override
   Widget build(BuildContext context) {
 
@@ -109,7 +109,7 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
     for(var rowProduct in rowList){
       result.add(Row(mainAxisAlignment:MainAxisAlignment.spaceAround,children:rowProduct));
     }
-
+    isfullSize.value=result.length>1?false:true;
     return Column(children: [
        Obx(
         ()=>CarouselSlider(
@@ -118,8 +118,9 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
                 enableInfiniteScroll: false,padEnds: false,
                 height: 250,
                 autoPlay: false,
-                viewportFraction: 0.95,
+                viewportFraction: isfullSize.value?1:0.95,
                 onPageChanged: (index, reason) {
+                  isfullSize.value= result.length>index+1 ?false :true;
                   sliderIndex!.value = index;
                 }),
             items:result

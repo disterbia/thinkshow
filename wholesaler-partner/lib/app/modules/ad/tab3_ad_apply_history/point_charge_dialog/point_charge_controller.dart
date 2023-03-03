@@ -26,11 +26,13 @@ class PointChargeController extends GetxController {
   chargeBtnPressed() async {
     // check if textfield is empty
     if (pointChargeController.text.isEmpty) {
+      FocusManager.instance.primaryFocus?.unfocus();
       mSnackbar(message: '충전 포인트를 입력해 주세요.');
       return;
     }
     // check if name is empty
     if (nameController.text.isEmpty) {
+      FocusManager.instance.primaryFocus?.unfocus();
       mSnackbar(message: '입금자명 을 입력해 주세요.');
       return;
     }
@@ -40,12 +42,14 @@ class PointChargeController extends GetxController {
     try {
       pointInt = int.parse(pointChargeController.text);
     } catch (e) {
+      FocusManager.instance.primaryFocus?.unfocus();
       mSnackbar(message: '숫자만 입력해 주세요.');
       return;
     }
 
     // check if point is atleast 1000
     if (pointInt < 1000) {
+      FocusManager.instance.primaryFocus?.unfocus();
       mSnackbar(message: '1000원 이상의 포인트를 충전해 주세요.');
       return;
     }

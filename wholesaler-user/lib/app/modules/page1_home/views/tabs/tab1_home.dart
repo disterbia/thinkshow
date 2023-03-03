@@ -47,7 +47,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
   RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   Future<void> _onRefresh() async {
-    //await recommendedProductCtr.init();
+    await recommendedProductCtr.init();
     await ctr.updateProducts();
 
     _refreshController.refreshCompleted();
