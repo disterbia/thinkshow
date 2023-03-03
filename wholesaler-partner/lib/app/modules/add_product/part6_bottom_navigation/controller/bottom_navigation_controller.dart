@@ -627,7 +627,6 @@ class AP_Part6Controller extends GetxController {
         return;
       }
     }
-
     print('subCategoryId ${subCategoryId}');
     Map<String, dynamic> data = {
       "product_name": productName,

@@ -44,7 +44,7 @@ class Tab1RankingView extends StatelessWidget {
                             },
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(8)),
-                            selectedColor: Colors.white,
+                            selectedColor: Colors.black,
                             fillColor: MyColors.primary,
                             color: Colors.grey,
                             constraints: const BoxConstraints(
