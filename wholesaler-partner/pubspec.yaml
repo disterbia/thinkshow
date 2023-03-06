@@ -1,12 +1,13 @@
 name: wholesaler_partner
-version: 0.2.8
-#version: 0.2.5+208
+version: 0.2.9
+#version: 0.2.5+209
 publish_to: none
 description: A new Flutter project.
 environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
+  device_info_plus: ^8.1.0
   permission_handler: ^10.2.0
   extended_image: ^6.4.1
   launch_review: ^3.0.1

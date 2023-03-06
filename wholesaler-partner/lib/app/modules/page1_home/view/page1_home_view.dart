@@ -145,7 +145,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
     return Obx(
       () => Container(
         width: Get.width,
-        height: 400,
+        height: Get.width,
         decoration: BoxDecoration(color: MyColors.grey1),
         child: ((ctr.mainStoreInfo.value.mainTopImageUrl?.value.isNotEmpty ??
                 false || ctr.isImagePicked.value)&&ctr.mainStoreInfo.value.mainTopImageUrl != null)
@@ -160,9 +160,9 @@ class Page1HomeView extends GetView<PartnerHomeController> {
       Obx(
         () => CachedNetworkImage(
           imageUrl: ctr.mainStoreInfo.value.mainTopImageUrl!.value,
-          height: 400,
+          height: Get.width ,
           width: Get.width,
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fitWidth,
           // placeholder: (context, url) => CircularProgressIndicator(),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),

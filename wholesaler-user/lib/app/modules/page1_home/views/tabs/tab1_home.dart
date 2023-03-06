@@ -12,6 +12,7 @@ import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/enum.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
+import 'package:wholesaler_user/app/constants/variables.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
 import 'package:wholesaler_user/app/modules/main/controllers/user_main_controller.dart';
 import 'package:wholesaler_user/app/modules/page1_home/controllers/page1_home_controller.dart';
@@ -259,7 +260,8 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                                   Get.find<UserMainController>()
                                                       .changeTabIndex(2),
                                               child: Container(
-                                                height: 120,
+                                                height: MyVars.isIpad()?200:120,
+                                                width: Get.width,
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),

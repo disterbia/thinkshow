@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
+import 'package:wholesaler_user/app/Constants/variables.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/models/store_model.dart';
@@ -137,7 +138,7 @@ class Tab1RankingView extends StatelessWidget {
                           //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
                           fit: BoxFit.fitHeight,
 
-                          height: 100,
+                          height: MyVars.isIpad()?300:100,
                         ),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(4),
@@ -149,7 +150,7 @@ class Tab1RankingView extends StatelessWidget {
                             clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
                             //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
                             fit: BoxFit.fitHeight,
-                        height: 100,
+                            height: MyVars.isIpad()?300:100,
                       )),
                       SizedBox(width: 2),
                       Expanded(
@@ -158,7 +159,7 @@ class Tab1RankingView extends StatelessWidget {
                             //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
                             fit: BoxFit.fitHeight,
 
-                        height: 100,
+                            height: MyVars.isIpad()?300:100,
                       )),
                       SizedBox(width: 2),
                       Expanded(
@@ -168,7 +169,7 @@ class Tab1RankingView extends StatelessWidget {
                                 clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
                                 //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
                                 fit: BoxFit.fitHeight,
-                                height: 100,
+                                height: MyVars.isIpad()?300:100,
                               ),
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(4),

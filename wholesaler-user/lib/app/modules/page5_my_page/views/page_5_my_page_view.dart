@@ -9,6 +9,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/enum.dart';
 import 'package:wholesaler_user/app/Constants/functions.dart';
+import 'package:wholesaler_user/app/Constants/variables.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
@@ -406,7 +407,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
 
   Widget _recentlyProduct() {
     return Container(
-      height: 170,
+      height: MyVars.isIpad()?400:170,
       padding: EdgeInsets.symmetric(horizontal: 15),
       // alignment : Alignment.center,
       child: ListView.separated(
@@ -417,7 +418,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
             SizedBox(width: 14),
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            width: 110,
+            width: MyVars.isIpad()?250:110,
             child: Center(
               child: ProductItemVertical(
                 product: ctr2.products[index],

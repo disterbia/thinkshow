@@ -53,7 +53,7 @@ class ProductGridViewBuilder extends StatelessWidget {
             crossAxisSpacing: 10,
             crossAxisCount: crossAxisCount,
             childAspectRatio:
-                crossAxisCount==2?
+              MyVars.isIpad()?crossAxisCount==2?12/16:11/16:crossAxisCount==2?
                 9/16:8/16// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
           ),
         ),

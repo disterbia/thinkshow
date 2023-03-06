@@ -1,12 +1,13 @@
 name: wholesaler_user
 description: A new Flutter project.
 publish_to: "none"
-version: 0.2.8
-#version: 0.2.5+208
+version: 0.2.9
+#version: 0.2.5+209
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
 dependencies:
+  device_info_plus: ^8.1.0
   firebase_dynamic_links: ^5.0.11
   permission_handler: ^10.2.0
   extended_image: ^6.4.1

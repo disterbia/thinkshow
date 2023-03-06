@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_user/app/Constants/variables.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/models/cloth_category_model.dart';
@@ -113,7 +114,7 @@ class HorizontalChipList {
     return Container(
       alignment: Alignment.center,
       width: screenWidth,
-      height: Get.height/5,
+      height: MyVars.isIpad()?Get.height/3:Get.height/5,
       // child: ListView.builder(
       //     scrollDirection: Axis.horizontal,
       //     physics: NeverScrollableScrollPhysics(),

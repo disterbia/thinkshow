@@ -1,3 +1,4 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -20,8 +21,23 @@ class MyVars {
     return Get.context!.width <= mConst.SmallPhoneWidth;
   }
 
+   static Future<void> setIpad() async{
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    IosDeviceInfo info = await deviceInfo.iosInfo;
+    final box = GetStorage();
+    if (info.model!=null && info.model!.toLowerCase().contains("ipad")) {
+      box.write("isIpad", true);
+    }
+    else box.write("isIpad", false);
+  }
+  static bool isIpad(){
+    final box = GetStorage();
+    return box.read("isIpad");
+  }
+
   static Future<void> initializeVariables() async {
     // 1. initialize isUserProject
+    await MyVars.setIpad();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String packageName = packageInfo.packageName;
     //print('packageName $packageName');

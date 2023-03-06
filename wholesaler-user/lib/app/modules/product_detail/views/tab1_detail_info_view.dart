@@ -229,7 +229,7 @@ class Tab1DetailInfo extends GetView {
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
                       childAspectRatio:
-                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                      MyVars.isIpad()?11/16:8/16
                       // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
@@ -271,7 +271,7 @@ class Tab1DetailInfo extends GetView {
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
                       childAspectRatio:
-                          context.width / 3 / (MyVars.isSmallPhone() ? 300 : 290),
+                      MyVars.isIpad()?11/16:8/16
                       // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),

@@ -166,7 +166,7 @@ class AP_Part1View extends GetView<AP_Part1Controller> {
         ),
         SizedBox(
           width: Get.width,
-          height: (Get.width - edgePadding * 2) * 4 / 3,
+          height: Get.width,
           child: TabBarView(
             controller: ctr.selectImgController,
             children: [
