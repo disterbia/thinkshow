@@ -36,7 +36,12 @@ class ExhibitionProductsView extends GetView {
                   separatorBuilder: (context, index) => SizedBox(height: 5,),
                     itemCount:ctr.bannerPicture.length ,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
                     itemBuilder: (context,index) {
-                        return ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                        return ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                            ctr.bannerPicture[index],
                             width: Get.width,
                             fit: BoxFit.fitWidth,

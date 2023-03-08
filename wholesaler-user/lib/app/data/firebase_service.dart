@@ -12,9 +12,9 @@ import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_logi
 
 class FirebaseService {
   static init() async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
     final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
     final fcmToken = await firebaseMessaging.getToken();

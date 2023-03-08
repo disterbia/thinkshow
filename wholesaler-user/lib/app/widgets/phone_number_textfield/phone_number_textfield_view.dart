@@ -59,24 +59,26 @@ class PhoneNumberPhoneVerify extends GetView {
                         Text(formatedTime(timeInSecond: ctr.verifyCount.value)),
                   ),
                   SizedBox(height: spaceBetween),
-                  CustomField(
-                    readOnly: ctr.verifyIsEnable.value,
-                    isTextKeyboard: true,
-                    fieldLabel: '인증번호 입력',
-                    fieldText: '인증번호 입력',
-                    fieldController: ctr.numberVerifyController,
-                    buttonText: 'ok'.tr,
-                    onTap: !ctr.verifyIsEnable.value
-                        ? () async{
-                            bool result=await ctr.verifyCodeBtnPressed();
-                            if(result) isPassword! ? ctr2.findPassword(): ctr2.getAccountId();
-                            FocusManager.instance.primaryFocus?.unfocus();
-                          }
-                        : null,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(6),
-                      FilteringTextInputFormatter.allow(RegExp("[0-9]"))
-                    ],
+                  Obx(
+                    ()=> CustomField(
+                      readOnly: !ctr.codeIsEnable.value,
+                      isTextKeyboard: true,
+                      fieldLabel: '인증번호 입력',
+                      fieldText: '인증번호 입력',
+                      fieldController: ctr.numberVerifyController,
+                      buttonText: 'ok'.tr,
+                      onTap: ctr.codeIsEnable.value
+                          ? () async{
+                              bool result=await ctr.verifyCodeBtnPressed();
+                              if(result) isPassword! ? ctr2.findPassword(): ctr2.getAccountId();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            }
+                          : null,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(6),
+                        FilteringTextInputFormatter.allow(RegExp("[0-9]"))
+                      ],
+                    ),
                   ),
                 ],
               )

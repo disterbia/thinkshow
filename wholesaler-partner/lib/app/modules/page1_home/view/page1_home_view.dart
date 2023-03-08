@@ -242,7 +242,9 @@ class Page1HomeView extends GetView<PartnerHomeController> {
       ],
     );
   }
-
+  Future _deleteImageFromCache(String url) async {
+    await CachedNetworkImage.evictFromCache(url);
+  }
   _top10Products() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -280,6 +282,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                       separatorBuilder: (BuildContext context, int index) =>
                           SizedBox(width: 14),
                       itemBuilder: (BuildContext context, int index) {
+                        if(index!=0) _deleteImageFromCache(ctr.bestProducts[index-1].imgUrl);
+                        if(index==ctr.bestProducts.length-1) _deleteImageFromCache(ctr.bestProducts[index].imgUrl);
                         return SizedBox(
                           width: 105,
                           child: ProductItemVertical(

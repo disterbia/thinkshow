@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_user/app/constants/languages.dart';
@@ -37,6 +38,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await DefaultCacheManager().emptyCache();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -47,6 +49,7 @@ Future<void> main() async {
 
   NotificationService().init();
   DynamicLink().setup();
+  FirebaseService.init();
 
 
   runApp(
@@ -69,14 +72,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Get.to(() => ProductDetailView(), arguments: 9659);
-      // Get.to(() => StoreDetailView(storeId: 10));
-      // Get.to(() => ProductCategoryPageView(0));
-      // Get.to(() => ExhibitionProductsView(), arguments: {'imageId': 1});
 
-      // Get.to(() => OrderInquiryAndReviewView(hasHomeButton: false, isBackEnable: true), arguments: false);
-    });
     return Container();
   }
 }

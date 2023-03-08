@@ -3,6 +3,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/Constants/styles.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
@@ -23,7 +24,12 @@ class ProductInquiryView extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+            child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
            product.images![0],
               width: 80,
               height: 80,

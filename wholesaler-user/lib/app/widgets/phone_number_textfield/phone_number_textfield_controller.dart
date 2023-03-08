@@ -18,6 +18,7 @@ class PhoneNumberPhoneVerifyController extends GetxController {
 
   RxInt verifyCount = mConst.verifyCountSecounds.obs;
   RxBool verifyIsEnable = true.obs;
+  RxBool codeIsEnable = true.obs;
 
   late Timer timer;
   void startTimer() {
@@ -60,7 +61,7 @@ class PhoneNumberPhoneVerifyController extends GetxController {
     log('verifyCode');
     // check if only number
     if (!numberController.text.contains(RegExp(r'^[0-9]*$'))) {
-      mSnackbar(message: '휴대폰 번호는 숫자만 입력하세요.');
+      mSnackbar(message: '인증번호는 숫자만 입력하세요.');
       return false;;
     }
     isPhoneVerifyFinished = await apiProvider.putPhoneNumVerify(
@@ -71,7 +72,8 @@ class PhoneNumberPhoneVerifyController extends GetxController {
     print('isPhoneVerifyFinished : $isPhoneVerifyFinished');
 
     timer.cancel();
-    verifyIsEnable.value = true;
+    verifyIsEnable.value = false;
+    if(isPhoneVerifyFinished)codeIsEnable.value=false;
     verifyCount.value = mConst.verifyCountSecounds;
     return isPhoneVerifyFinished;
   }

@@ -2,6 +2,7 @@
 
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -47,10 +48,10 @@ class ProductDetailView extends GetView {
       // print('ProductDetailView > addRecentlyViewedProduct: Get.arguments ${Get.arguments}');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     init();
-
     return Obx(
       () => Scaffold(
         bottomNavigationBar: User_BottomNavbar(),

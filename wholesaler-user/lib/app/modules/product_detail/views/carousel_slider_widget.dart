@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/modules/product_detail/controller/product_detail_controller.dart';
 
@@ -28,12 +29,14 @@ class ImagesCarouselSlider extends StatelessWidget {
                 }),
             items: [
               for (String img in ctr.product.value.images!)
-                ExtendedImage.network(img,
-                  clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+              ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
+                  img,
                   fit: BoxFit.fitWidth,width: Get.width,
-
-                  //cacheWidth:  Get.width.ceil(),
-                  // cacheHeight:  Get.width.ceil(),
                 )
             ],
           ),

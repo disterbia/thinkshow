@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/models/checkout_model/checkout_model.dart';
@@ -217,7 +218,12 @@ class Cart2PaymentView extends GetView {
 
   Widget _productImage(String imageUrl) {
     return ClipRRect(
-      child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+      child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
        imageUrl,
         width: 35,
         height: 35,

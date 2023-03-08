@@ -30,7 +30,6 @@ class UserMainView extends GetView<UserMainController> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    FirebaseService.init();
     return WillPopScope(
       onWillPop: () => ctr.onWillPop(),
       child: Scaffold(

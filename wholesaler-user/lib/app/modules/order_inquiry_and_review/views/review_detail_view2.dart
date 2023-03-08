@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/enum.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
@@ -209,11 +210,15 @@ class ReviewDetailView2 extends GetView {
                 padding: EdgeInsets.only(top : 15.0, left: 15.0, right: 15.0, bottom: 5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
-                  child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                  child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,img,
                     fit: BoxFit.fill,
                     width: Get.width,
                     height: Get.width,
-                     img,
                   ),
                 ),
               )
@@ -267,7 +272,12 @@ class ReviewDetailView2 extends GetView {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+              child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                 product.imgUrl,
                 width: 80,
                 height: 80,

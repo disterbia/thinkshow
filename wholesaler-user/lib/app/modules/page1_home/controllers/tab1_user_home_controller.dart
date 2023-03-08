@@ -54,7 +54,7 @@ class Tab1UserHomeController extends GetxController {
     products3.value =
     await _apiProvider.getAllProducts(offset: firstOffset+8, limit: 4);
     products4.value =
-    await _apiProvider.getAllProducts(offset: firstOffset+4, limit: 6);
+    await _apiProvider.getAllProducts(offset: firstOffset+8+4, limit: 6);
     products5.value =
     await _apiProvider.getAllProducts(offset: offset, limit: mConst.limit);
 
@@ -150,12 +150,12 @@ class Tab1UserHomeController extends GetxController {
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {
       print('products4, show ALL');
       products4.value = await _apiProvider.getAllProducts(
-          offset: firstOffset+4, limit: 6);
+          offset: firstOffset+8+4, limit: 6);
     } else {
       print('products4 , show categories');
       products4.value = await _apiProvider.getProductsWithCat(
           categoryId: categoryTagCtr.selectedMainCatIndex.value,
-          offset: firstOffset+4,
+          offset: firstOffset+8+4,
           limit: 6);
     }
     if (categoryTagCtr.selectedMainCatIndex.value == 0) {

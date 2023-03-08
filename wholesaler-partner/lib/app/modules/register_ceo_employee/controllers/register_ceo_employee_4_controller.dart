@@ -15,7 +15,7 @@ class RegisterCeoEmployee4Controller extends GetxController {
   TextEditingController phoneNumCtr = TextEditingController();
   TextEditingController phoneNumVerifyCtr = TextEditingController();
   int certifi_id = 0;
-  bool isPhoneVerifyFinished = false;
+  RxBool isPhoneVerifyFinished = false.obs;
 
   RxBool isAgreeAll = false.obs;
   RxBool isAgreeCondition = false.obs;
@@ -77,7 +77,7 @@ class RegisterCeoEmployee4Controller extends GetxController {
       mSnackbar(message: '인증번호를 입력하세요.');
       return;
     }
-    isPhoneVerifyFinished = await apiProvider.putPhoneNumVerify(
+    isPhoneVerifyFinished.value = await apiProvider.putPhoneNumVerify(
         phoneNumber: phoneNumCtr.text,
         phoneNumVerify: phoneNumVerifyCtr.text,
         certifi_id: certifi_id);
@@ -88,7 +88,7 @@ class RegisterCeoEmployee4Controller extends GetxController {
   }
 
   Future<void> registerBtnPressed() async {
-    if (!isPhoneVerifyFinished) {
+    if (!isPhoneVerifyFinished.value) {
       mSnackbar(message: '인증번호를 입력하세요.'.tr);
       return;
     }
@@ -113,7 +113,7 @@ class RegisterCeoEmployee4Controller extends GetxController {
   }
 
   Future<void> employeeRegisterBtnPressed() async {
-    if (!isPhoneVerifyFinished) {
+    if (!isPhoneVerifyFinished.value) {
       mSnackbar(message: "휴대폰번호를 인증 하세요.");
       return;
     }

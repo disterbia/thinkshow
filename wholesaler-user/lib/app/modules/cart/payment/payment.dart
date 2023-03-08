@@ -20,7 +20,7 @@ class Payment extends StatelessWidget {
     //     'payment build: cart2Ctr.cart2checkoutModel.value.userInfo!.email! = ${cart2Ctr.cart2checkoutModel.value.userInfo!.email}');
     return IamportPayment(
         appBar: new AppBar(
-          title: new Text('띵쇼마켓 결제'),
+          title: new Text('띵쇼마켓 결제',style: TextStyle(color: Colors.black),),
         ),
         /* 웹뷰 로딩 컴포넌트 */
         initialChild: Container(
@@ -61,7 +61,7 @@ class Payment extends StatelessWidget {
             buyerAddr: cart2Ctr.address2Controller.text, // 구매자 주소
             buyerPostcode: cart2Ctr.address1ZipCodeController.text, // 구매자 우편번호
             appScheme: 'wholesaleruser', // 앱 URL scheme
-            displayCardQuota: [2, 3] //결제창 UI 내 할부개월수 제한
+            //displayCardQuota: [2, 3] //결제창 UI 내 할부개월수 제한
             ),
         /* [필수입력] 콜백 함수 */
         callback: (Map<String, dynamic> result) {

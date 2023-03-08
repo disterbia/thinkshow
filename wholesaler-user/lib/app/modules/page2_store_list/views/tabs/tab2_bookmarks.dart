@@ -121,19 +121,6 @@ class Tab2BookmarksView extends StatelessWidget {
               ]),
               SizedBox(height: 10),
 
-              // Container(height: Get.height/6,
-              //   child: ListView.separated(physics: NeverScrollableScrollPhysics(),
-              //       itemCount: 4,
-              //       scrollDirection: Axis.horizontal,
-              //       separatorBuilder:(context, index) => SizedBox(width:2 ,) ,
-              //       itemBuilder: (context, index) {
-              //         if(store.topImagePath!.length<4){
-              //           return Container();
-              //         }
-              //       return ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,imageUrl: store.topImagePath![index],width: (Get.width/4)-10,);
-              //
-              //     },),
-              // )
             ],
           ),
         ),
@@ -152,7 +139,12 @@ class Tab2BookmarksView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
-          ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+          ? ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
           store.imgUrl!.value,
               width: 50,
               height: 50,

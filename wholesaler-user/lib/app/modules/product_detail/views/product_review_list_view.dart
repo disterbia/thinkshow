@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
@@ -113,10 +114,15 @@ class ProductReviewListView extends GetView {
             for (String img in review.images!)
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,   img,
                   fit: BoxFit.fill,
                   width: Get.width,
-                   img,
+
                 ),
               )
           ],

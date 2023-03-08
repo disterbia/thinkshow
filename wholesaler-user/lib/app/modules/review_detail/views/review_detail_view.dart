@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/main.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
@@ -335,7 +336,12 @@ class ReviewDetailView extends GetView {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+            child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
           ctr.selectedReviw!.value.product.imgUrl,
               width: 80,
               height: 80,
@@ -522,7 +528,12 @@ class ReviewDetailView extends GetView {
                         width: 80,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
-                          child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                          child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                       ctr.urlList[index],
                             width: 80,
                             height: 80,
@@ -552,7 +563,12 @@ class ReviewDetailView extends GetView {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+              child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
               ctr.reviewImageUrl.value!,
                 width: Get.width,
                 fit: BoxFit.fitWidth,

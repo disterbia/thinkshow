@@ -115,33 +115,7 @@ class CartItemsList extends StatelessWidget {
             ),
           ],
         )
-        // Row(
-        //   children: [
-        //     ClipRRect(
-        //       borderRadius: BorderRadius.circular(50),
-        //       child: store.imgUrl != null
-        //           ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-        //               imageUrl: store.imgUrl!.value,
-        //               width: 35,
-        //               height: 35,
-        //               fit: BoxFit.fill,
-        //               // placeholder: (context, url) => CircularProgressIndicator(),
-        //               errorWidget: (context, url, error) => Icon(Icons.error),
-        //             )
-        //           : Image.asset(
-        //               store.imgAssetUrl,
-        //               width: 35,
-        //             ),
-        //     ),
-        //     SizedBox(
-        //       width: 10,
-        //     ),
-        //     Text(
-        //       store.name ?? '',
-        //       style: MyTextStyles.f18_bold.copyWith(color: MyColors.black3),
-        //     )
-        //   ],
-        // ),
+
         );
   }
 

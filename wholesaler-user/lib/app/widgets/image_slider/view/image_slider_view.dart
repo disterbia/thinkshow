@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
 import 'package:wholesaler_user/app/modules/page1_home/models/image_banner_model.dart';
@@ -15,11 +16,9 @@ class ImageSliderView extends GetView<ImageSliderController> {
 
   CurrentPage currentPage;
   ImageSliderView(this.currentPage);
-
   @override
   Widget build(BuildContext context) {
     ctr.getBannerImageAPI(currentPage);
-
     return Stack(children: [
       Obx(
         () => CarouselSlider(
@@ -34,7 +33,12 @@ class ImageSliderView extends GetView<ImageSliderController> {
                 },
                 child: Container(
                   width: Get.width,
-                  child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                  child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                  image.banner_img_url,
                     fit: BoxFit.fill,
                     // //cacheHeight:Get.width.ceil(),

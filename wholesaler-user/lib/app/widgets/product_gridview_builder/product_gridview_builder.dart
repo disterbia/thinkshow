@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/variables.dart';
@@ -28,7 +29,6 @@ class ProductGridViewBuilder extends StatelessWidget {
     this.productNumbers,
     required this.isShowLoadingCircle,
   });
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => products.isEmpty?Container():Column(

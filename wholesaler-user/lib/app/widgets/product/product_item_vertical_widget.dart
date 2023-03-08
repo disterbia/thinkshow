@@ -7,6 +7,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/constants.dart';
 import 'package:wholesaler_user/app/constants/functions.dart';
@@ -43,6 +44,9 @@ class ProductItemVertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      PaintingBinding.instance.imageCache.clear();
+    });
     return InkWell(
       onTap: (() {
         //print('inside ProductItemVertical: ' + product.id.toString());
@@ -128,7 +132,12 @@ class ProductItemVertical extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: FittedBox(
-                      child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false, enableLoadState: false,
+                      child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,gaplessPlayback: true,
                         product.imgUrl,
                         //cacheWidth:(Get.width).ceil() ,
                         //cacheHeight: (product.imgHeight??Get.width/3).ceil(),
@@ -147,7 +156,12 @@ class ProductItemVertical extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: FittedBox(
-                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false, enableLoadState: false,
+                    child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                        product.imgUrl,
                       //cacheWidth:Get.width.ceil() ,
                       //cacheHeight: (product.imgHeight??Get.width/3).ceil(),

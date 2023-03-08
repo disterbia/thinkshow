@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_partner/app/models/product_inquiry_model.dart';
 import 'package:wholesaler_partner/app/modules/product_inquiry_detail/view/product_inquiry_detail_view.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 // import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/Constants/styles.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -272,10 +273,14 @@ class ProductItemHorizontal extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
       child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
         product.imgUrl.contains(",")
             ? product.imgUrl.substring(0, product.imgUrl.indexOf(','))
             : product.imgUrl,
-        clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
         //cacheWidth:70,
         //cacheHeight: 70,
         fit: BoxFit.fitWidth,

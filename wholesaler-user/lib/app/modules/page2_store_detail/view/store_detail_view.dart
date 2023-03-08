@@ -125,7 +125,12 @@ class StoreDetailView extends GetView {
   Widget _image() {
     return Obx(
       () => ctr.mainStoreModel.value.mainTopImageUrl != null
-          ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+          ? ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
              ctr.mainStoreModel.value.mainTopImageUrl!.value,
               width: Get.width,
               height: Get.width,
@@ -352,10 +357,13 @@ class StoreDetailView extends GetView {
     );
   }
 
+
   List<Widget> top10ProductItemsBuilder({required double height}) {
     List<Widget> items = [];
     for (Product product in ctr.top10Products) {
       int index = ctr.top10Products.indexOf(product);
+      if(index!=0)  (ctr.top10Products[index-1].imgUrl);
+      if(index==ctr.top10Products.length-1)  (ctr.top10Products[index].imgUrl);
       items.add(
         Container(
           width: 130,

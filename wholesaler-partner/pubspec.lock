@@ -420,7 +420,7 @@ packages:
     source: hosted
     version: "0.7.0"
   flutter_cache_manager:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
@@ -1455,7 +1455,7 @@ packages:
       path: "../wholesaler-user"
       relative: true
     source: path
-    version: "0.2.5+209"
+    version: "0.2.9"
   win32:
     dependency: transitive
     description:

@@ -133,11 +133,14 @@ class Tab1RankingView extends StatelessWidget {
                     children: [
                       Expanded(
                           child: ClipRRect(
-                        child: ExtendedImage.network( store.topImagePath![0],
-                          clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-                          //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
+                        child: ExtendedImage.network(
+                          store.topImagePath![0],
                           fit: BoxFit.fitHeight,
-
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                           height: MyVars.isIpad()?300:100,
                         ),
                         borderRadius: BorderRadius.only(
@@ -146,18 +149,26 @@ class Tab1RankingView extends StatelessWidget {
                       )),
                       SizedBox(width: 2),
                       Expanded(
-                          child: ExtendedImage.network( store.topImagePath![1],
-                            clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-                            //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
+                          child: ExtendedImage.network(
+                            store.topImagePath![1],
                             fit: BoxFit.fitHeight,
                             height: MyVars.isIpad()?300:100,
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                       )),
                       SizedBox(width: 2),
                       Expanded(
-                          child: ExtendedImage.network(store.topImagePath![2],
-                            clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-                            //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
+                          child: ExtendedImage.network(
+                            store.topImagePath![2],
                             fit: BoxFit.fitHeight,
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
 
                             height: MyVars.isIpad()?300:100,
                       )),
@@ -166,10 +177,14 @@ class Tab1RankingView extends StatelessWidget {
                           child: ClipRRect(
                               child: ExtendedImage.network(
                                 store.topImagePath![3],
-                                clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-                                //cacheHeight:100 ,//cacheWidth: (Get.width/4).ceil(),
                                 fit: BoxFit.fitHeight,
                                 height: MyVars.isIpad()?300:100,
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
+
                               ),
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(4),
@@ -181,22 +196,6 @@ class Tab1RankingView extends StatelessWidget {
               SizedBox(
                 height: 5,
               )
-              // Container(
-              //   height: Get.height/6,
-              //   child: ListView.separated(
-              //     physics: NeverScrollableScrollPhysics(),
-              //       scrollDirection: Axis.horizontal,
-              //       itemBuilder: (context, index) {
-              //         return SizedBox(width: Get.width*0.2,
-              //           child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,fit: BoxFit.fitHeight,
-              //               imageUrl: store.topImagePath![index]),
-              //         );
-              //       },
-              //       separatorBuilder: (context, index) => SizedBox(
-              //             width: 2,
-              //           ),
-              //       itemCount: store.topImagePath!.length),
-              // )
             ],
           ),
         ),
@@ -215,7 +214,12 @@ class Tab1RankingView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
-          ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+          ? ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
           store.imgUrl!.value,
               width: 50,
               height: 50,
@@ -333,7 +337,12 @@ class Tab1RankingView extends StatelessWidget {
                                                 ? Image.asset(
                                                     "assets/icons/ic_store.png",
                                                   )
-                                                : ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                                : ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                                                    ctr.mainImage[0],
                                               width: (Get.width/2)-20,
                                                     fit: BoxFit.fill,
@@ -359,7 +368,12 @@ class Tab1RankingView extends StatelessWidget {
                                                         ? Image.asset(
                                                             "assets/icons/ic_store.png",
                                                           )
-                                                        : ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                                        : ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
 
                                                                 ctr.subImage[0],
                                                           ),
@@ -402,7 +416,12 @@ class Tab1RankingView extends StatelessWidget {
                                                 ? Image.asset(
                                                     "assets/icons/ic_store.png",
                                                   )
-                                                : ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                                : ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                                                      ctr.mainImage[1],
                                               width: (Get.width/2)-20,
                                                     fit: BoxFit.fill,
@@ -428,7 +447,12 @@ class Tab1RankingView extends StatelessWidget {
                                                           "assets/icons/ic_store.png",
                                                         )
                                                       : ClipOval(
-                                                          child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                                          child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
 
                                                                 ctr.subImage[1],
                                                           ),

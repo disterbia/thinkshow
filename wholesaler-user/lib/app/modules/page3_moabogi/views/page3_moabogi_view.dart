@@ -119,7 +119,12 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                 Get.to(() => ExhibitionProductsView(),
                     arguments: {'imageId': ctr.imageBanners[index].id});
               },
-              child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+              child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                 ctr.imageBanners[index].banner_img_url,
                 width: Get.width,
                 // placeholder: (context, url) => CircularProgressIndicator(),

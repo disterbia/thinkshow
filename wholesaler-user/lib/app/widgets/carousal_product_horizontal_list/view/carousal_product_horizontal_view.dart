@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
   RxInt? sliderIndex = 0.obs;
   int repeatCount=0;
   RxBool isfullSize = true.obs;
+
   @override
   Widget build(BuildContext context) {
 
@@ -62,6 +64,8 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
     List<List<Widget>> rowList=[];
 
     for(var i=0;i<products!.length;i++){
+      if(i!=0)  (products![i-1].imgUrl);
+      if(i==products!.length-1)  (products![i].imgUrl);
         productList.add(Expanded(
           child: GestureDetector(
             onTap: () => Get.to(() => ProductDetailView(), arguments: products![i].id),

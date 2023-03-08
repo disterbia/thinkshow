@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable/expandable.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:wholesaler_partner/app/modules/add_product/part3_material_clothwash/controller/part3_material_clothwash_controller.dart';
 import 'package:wholesaler_partner/app/modules/add_product/view/widget/cloth_wash_toggle/cloth_wash_model.dart';
 import 'package:wholesaler_partner/app/modules/add_product/view/widget/cloth_wash_toggle/cloth_wash_toggle.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/Constants/enum.dart';
 import 'package:wholesaler_user/app/Constants/styles.dart';
@@ -29,6 +31,13 @@ class Tab1DetailInfo extends GetView {
   RxBool isHide = true.obs;
   // Tab1DetailInfo();
 
+  // Future<void> cacheManage(BuildContext context,int index,int len) async{
+  //  // print(productDetailCtr.lazyList[index]);
+  //   if(index!=0){
+  //     await precacheImage(CachedNetworkImageProvider(productDetailCtr.lazyList[index-1]), context);
+  //     await CachedNetworkImageProvider(productDetailCtr.lazyList[index-1]).evict().then((value) => print(value));
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     bool bestIsMore3 = productDetailCtr.bestProducts.length >= 3;
@@ -62,77 +71,91 @@ class Tab1DetailInfo extends GetView {
                 Obx(
                   () => Container(
                     height:
-                        productDetailCtr.product.value.imagesColor!.length >= 2
+                        productDetailCtr.lazyList.length >= 2
                             ? isMore.value
                                 ? null
-                                : Get.height * 1.2
+                                : Get.height
                             : null,
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 2,
-                      ),
+                    child: ListView.builder(
                       itemCount:
-                          productDetailCtr.product.value.imagesColor!.length,
+                          productDetailCtr.lazyList.length,
                       itemBuilder: (context, index) {
-                        if (index ==
-                            productDetailCtr.product.value.imagesColor!.length -
-                                1)
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: Get.width*1.1,
-                                child: ClipRRect(
-                                  borderRadius: !isMore.value && index == 1
-                                      ? BorderRadius.only(
-                                          bottomRight: Radius.circular(8),
-                                          bottomLeft: Radius.circular(8))
-                                      : BorderRadius.all(Radius.zero),
-                                  child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,cache: true,
-                                    cacheHeight: (Get.width*1.1).ceil(),
-                                    cacheWidth: Get.width.ceil(),
-                                     productDetailCtr
-                                        .product.value.imagesColor![index],
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                              QuillEditor(
-                                controller: productDetailCtr.quillController!,
-                                scrollController: ScrollController(),
-                                scrollable: true,
-                                focusNode: FocusNode(),
-                                autoFocus: true,
-                                readOnly: true,
-                                expands: false,
-                                padding: EdgeInsets.all(15),
-                                showCursor: false,
-                                enableSelectionToolbar: false,
-                                enableInteractiveSelection: false,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(keyword),
-                              ),
-                            ],
-                          );
-                        return Container(
-                          height: Get.width*1.1,
-                          child: ClipRRect(
-                            borderRadius: !isMore.value && index == 1
-                                ? BorderRadius.only(
-                                    bottomRight: Radius.circular(8),
-                                    bottomLeft: Radius.circular(8))
-                                : BorderRadius.all(Radius.zero),
-                            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,cache: true,
-                              productDetailCtr
-                                  .product.value.imagesColor![index],
-                              cacheHeight:(Get.width*1.1).ceil(),
-                              cacheWidth: Get.width.ceil(),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        );
+                      if (index == productDetailCtr.lazyList.length - 1)
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 2.0),
+                                        child: Container(
+                                          height: Get.width,
+                                          child: ClipRRect(
+                                            borderRadius: !isMore.value &&
+                                                    index == 1
+                                                ? BorderRadius.only(
+                                                    bottomRight:
+                                                        Radius.circular(8),
+                                                    bottomLeft:
+                                                        Radius.circular(8))
+                                                : BorderRadius.all(Radius.zero),
+                                            child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
+                                              productDetailCtr.lazyList[index],
+                                              fit: BoxFit.fill,
+
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      QuillEditor(
+                                        controller:
+                                            productDetailCtr.quillController!,
+                                        scrollController: ScrollController(),
+                                        scrollable: true,
+                                        focusNode: FocusNode(),
+                                        autoFocus: true,
+                                        readOnly: true,
+                                        expands: false,
+                                        padding: EdgeInsets.all(15),
+                                        showCursor: false,
+                                        enableSelectionToolbar: false,
+                                        enableInteractiveSelection: false,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10.0),
+                                        child: Text(keyword),
+                                      ),
+                                    ],
+                                  );
+                        else return Padding(
+                                    padding: const EdgeInsets.only(bottom: 2.0),
+                                    child: Container(
+                                      height: Get.width,
+                                      child: ClipRRect(
+                                        borderRadius: !isMore.value &&
+                                                index == 1
+                                            ? BorderRadius.only(
+                                                bottomRight: Radius.circular(8),
+                                                bottomLeft: Radius.circular(8))
+                                            : BorderRadius.all(Radius.zero),
+                                        child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
+                                          productDetailCtr.lazyList[index],
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+
                       },
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -140,7 +163,7 @@ class Tab1DetailInfo extends GetView {
                   ),
                 ),
                 Obx(
-                  () => productDetailCtr.product.value.imagesColor!.length >= 2
+                  () => productDetailCtr.lazyList.length >= 2
                       ? isMore.value
                           ? Container()
                           : Positioned(
@@ -221,6 +244,8 @@ class Tab1DetailInfo extends GetView {
                     shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (BuildContext context, int index) {
+                      if(index!=0)  (productDetailCtr.sameProducts[index-1].imgUrl);
+                      if(index==2)  (productDetailCtr.sameProducts[index].imgUrl);
                       return ProductItemVertical(
                         product: productDetailCtr.sameProducts[index],
                       );
@@ -264,6 +289,8 @@ class Tab1DetailInfo extends GetView {
                     shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (BuildContext context, int index) {
+                      if(index!=0)  (productDetailCtr.bestProducts[index-1].imgUrl);
+                      if(index==2)  (productDetailCtr.bestProducts[index].imgUrl);
                       return ProductItemVertical(
                           product: productDetailCtr.bestProducts[index]);
                     },

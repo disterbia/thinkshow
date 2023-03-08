@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/enum.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
@@ -162,7 +163,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 0
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                    child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                                      ctr.photoReviews[0].images![0],
                                       width: 80,
                                       height: 80,
@@ -181,7 +187,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 1
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                    child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                                       ctr.photoReviews[1].images![0],
                                       width: 80,
                                       height: 80,
@@ -200,7 +211,12 @@ class Tab2ReviewView extends GetView {
                             ctr.photoReviews.length > 2
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
-                                    child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+                                    child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
                                    ctr.photoReviews[2].images![0],
                                       width: 80,
                                       height: 80,
@@ -392,21 +408,6 @@ class Tab2ReviewView extends GetView {
           SizedBox(
             height: 10,
           ),
-          // ProductItemHorizontal(product: review.product),
-          // SizedBox(height: 5),
-          // _rate(review),
-          // _comment(review),
-          // if (review.images != null)
-          //   for (String imageUrl in review.images!) _imageBuilder(imageUrl),
-          // review.reviewImageUrl != null
-          //     ? ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
-          //         imageUrl: review.reviewImageUrl!,
-          //         fit: BoxFit.contain,
-          //         // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-          //         errorWidget: (context, url, error) => Icon(Icons.error),
-          //       )
-          //     : SizedBox.shrink(),
-          // ReviewDetailView2(review: reviewModel2),
           SizedBox(
             height: 15,
           ),
@@ -463,11 +464,16 @@ class Tab2ReviewView extends GetView {
         for (String img in review.images!)
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+            child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,img,
               fit: BoxFit.fill,
               width: Get.width,
               height: Get.width,
-             img,
+
 
             ),
           )
@@ -691,7 +697,12 @@ class Tab2ReviewView extends GetView {
       alignment: Alignment.bottomLeft,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ExtendedImage.network(clearMemoryCacheWhenDispose:true,enableMemoryCache:false,enableLoadState: false,
+        child: ExtendedImage.network(
+                  cacheHeight: 1000,
+                  cacheWidth: 1000,
+                  clearMemoryCacheWhenDispose:true,
+                  enableMemoryCache: false,
+                  enableLoadState: false,
         imageUrl,
           width: 100,
           height: 150,

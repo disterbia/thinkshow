@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
@@ -404,7 +405,6 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
       ),
     );
   }
-
   Widget _recentlyProduct() {
     return Container(
       height: MyVars.isIpad()?400:170,

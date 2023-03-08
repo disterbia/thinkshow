@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -127,7 +128,6 @@ class SearchResults extends StatelessWidget {
       ),
     );
   }
-
   Widget _RecentlyVisitedProducts() {
     return Obx(
       () => SizedBox(
@@ -138,6 +138,8 @@ class SearchResults extends StatelessWidget {
           itemCount: ctr.recentlyVisitedProducts.length,
           itemBuilder: (BuildContext context, int index) {
             // SizedBox is added just to remove unbounded error
+            if(index!=0)  (ctr.recentlyVisitedProducts[index-1].imgUrl);
+            if(index==ctr.recentlyVisitedProducts.length-1)  (ctr.recentlyVisitedProducts[index].imgUrl);
             return SizedBox(
               width: 100, // this is fake number. real width is calculated based on ProductItemVertical size
               child: ProductItemVertical(

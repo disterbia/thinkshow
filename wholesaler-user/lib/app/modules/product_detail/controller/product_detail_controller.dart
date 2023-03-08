@@ -45,12 +45,13 @@ class ProductDetailController extends GetxController
   // size table widget
   ScrollController arrowsController = ScrollController();
   RxBool isLoading = false.obs;
-
+  RxBool temp = false.obs;
   QuillController? quillController;
 
   List<String> tabTitles = ['상세정보', '리뷰', "사이즈", '문의'];
   late TabController tabController;
-
+  RxList<String> lazyList=<String>[].obs;
+  int offset=3;
   // Future<void> tempInit() async{
   //   isLoading.value=true;
   //   product.value = await _apiProvider.getProductDetail(productId: productId);
@@ -74,6 +75,12 @@ class ProductDetailController extends GetxController
   //   totalPrice.value = product.value.price!;
   //   isLoading.value = false;
   // }
+
+  @override
+  void onClose() {
+    arrowsController.removeListener(() { });
+    super.onClose();
+  }
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -89,13 +96,7 @@ class ProductDetailController extends GetxController
       return;
     }
     product.value = await _apiProvider.getProductDetail(productId: productId);
-    print(product.value.sizes![0].size);
-    print(product.value.sizes![0].size);
-    print(product.value.sizes![0].size);
-    print(product.value.sizes![0].size);
-    print(product.value.sizes![0].size);
-    print(product.value.sizes![0].size);
-
+    lazyList.value=product.value.imagesColor!;
     sameProducts.value = await _apiProvider.getSimilarCat(
         offset: 0, limit: 3, productId: productId!, sort: "latest");
     bestProducts.value =
