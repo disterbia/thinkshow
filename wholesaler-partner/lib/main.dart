@@ -18,10 +18,7 @@ import 'package:wholesaler_user/app/modules/splash_screen/view/splash_screen_vie
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,
-  );
+
 
   print("Handling a background message: ${message.messageId}");
 }
@@ -29,6 +26,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await GetStorage.init();
   await MyVars.initializeVariables();
   //bool isLogin = CacheProvider().getToken().isNotEmpty;
@@ -36,6 +36,7 @@ Future<void> main() async {
 
   NotificationService().init();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseService.init();
   runApp(
     GetMaterialApp(
         localizationsDelegates: [

@@ -34,8 +34,8 @@ class ImageSliderView extends GetView<ImageSliderController> {
                 child: Container(
                   width: Get.width,
                   child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

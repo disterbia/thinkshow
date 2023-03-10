@@ -267,8 +267,8 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 500,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

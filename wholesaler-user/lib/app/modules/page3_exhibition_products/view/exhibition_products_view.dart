@@ -37,8 +37,8 @@ class ExhibitionProductsView extends GetView {
                     itemCount:ctr.bannerPicture.length ,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
                     itemBuilder: (context,index) {
                         return ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

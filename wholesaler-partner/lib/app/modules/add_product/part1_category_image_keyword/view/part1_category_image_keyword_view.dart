@@ -291,7 +291,7 @@ class AP_Part1View extends GetView<AP_Part1Controller> {
                                   Text(
                                     '상품 사진 등록',
                                   ),
-                                  Text('(3장)')
+                                  Text('(1024 x 1024, 3장)')
                                 ],
                               ),
                             ),
@@ -449,7 +449,7 @@ class AP_Part1View extends GetView<AP_Part1Controller> {
                                   Text(
                                     '상품 사진 등록',
                                   ),
-                                  Text("(30장 이하)")
+                                  Text("(1024 x 1024, 30장 이하)")
                                 ],
                               ),
                             ),

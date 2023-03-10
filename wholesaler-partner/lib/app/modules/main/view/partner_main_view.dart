@@ -22,7 +22,6 @@ class PartnerMainView extends GetView<BottomNavbarController> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    FirebaseService.init();
     return WillPopScope(
       onWillPop: () => ctr.onWillPop(),
       child: Scaffold(

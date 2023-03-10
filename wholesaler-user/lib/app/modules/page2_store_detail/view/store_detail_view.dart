@@ -126,8 +126,8 @@ class StoreDetailView extends GetView {
     return Obx(
       () => ctr.mainStoreModel.value.mainTopImageUrl != null
           ? ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

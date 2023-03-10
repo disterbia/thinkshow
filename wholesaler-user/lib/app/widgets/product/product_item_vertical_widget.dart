@@ -44,9 +44,6 @@ class ProductItemVertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      PaintingBinding.instance.imageCache.clear();
-    });
     return InkWell(
       onTap: (() {
         //print('inside ProductItemVertical: ' + product.id.toString());
@@ -133,8 +130,8 @@ class ProductItemVertical extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: FittedBox(
                       child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,gaplessPlayback: true,
@@ -157,8 +154,8 @@ class ProductItemVertical extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   child: FittedBox(
                     child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

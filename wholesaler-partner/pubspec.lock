@@ -1455,7 +1455,7 @@ packages:
       path: "../wholesaler-user"
       relative: true
     source: path
-    version: "0.2.9"
+    version: "0.2.10+210"
   win32:
     dependency: transitive
     description:

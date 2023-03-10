@@ -20,7 +20,7 @@ class Payment extends StatelessWidget {
     //     'payment build: cart2Ctr.cart2checkoutModel.value.userInfo!.email! = ${cart2Ctr.cart2checkoutModel.value.userInfo!.email}');
     return IamportPayment(
         appBar: new AppBar(
-          title: new Text('띵쇼마켓 결제',style: TextStyle(color: Colors.black),),
+          title: new Text('띵쇼 결제',style: TextStyle(color: Colors.black),),
         ),
         /* 웹뷰 로딩 컴포넌트 */
         initialChild: Container(

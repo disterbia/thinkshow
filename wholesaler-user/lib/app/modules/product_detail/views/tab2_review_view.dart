@@ -164,8 +164,8 @@ class Tab2ReviewView extends GetView {
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
                                     child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -188,8 +188,8 @@ class Tab2ReviewView extends GetView {
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
                                     child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -212,8 +212,8 @@ class Tab2ReviewView extends GetView {
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(4),
                                     child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -465,8 +465,8 @@ class Tab2ReviewView extends GetView {
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,img,
@@ -698,8 +698,8 @@ class Tab2ReviewView extends GetView {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

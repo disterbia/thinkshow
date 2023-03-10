@@ -205,7 +205,7 @@ class BusinessRegistrationSubmitView extends GetView<BusinessRegistrationSubmitC
           text: '대표자님 본인 신분증을 생년월일 6자리와 성함만 보이게 촬영해 주세요',
         ),
         SizedBox(height: 14),
-        IconTextWidget(number: '2', text: '띵쇼마켓 사업자 인증 요청합니다 + 신청 날짜와 휴대폰 번호를 손으로 쓴 글씨와 함께 올려주세요'),
+        IconTextWidget(number: '2', text: '띵쇼 사업자 인증 요청합니다 + 신청 날짜와 휴대폰 번호를 손으로 쓴 글씨와 함께 올려주세요'),
         SizedBox(height: 14),
         IconTextWidget(number: '3', text: '법인의 경우 법인 등기부 등본도 같이 찍어주세요'),
         SizedBox(height: 30),
@@ -264,7 +264,7 @@ class BusinessRegistrationSubmitView extends GetView<BusinessRegistrationSubmitC
         SizedBox(height: 33),
         IconTextWidget(number: '1', text: '대표자님 본인 신분증을 생년월일 6자리와 성함만 보이게 촬영해 주세요'),
         SizedBox(height: 14),
-        IconTextWidget(number: '2', text: '띵쇼마켓 사업자 인증 요청합니다 + 신청 날짜와 휴대폰 번호를 손으로 쓴 글씨와 함께 올려주세요'),
+        IconTextWidget(number: '2', text: '띵쇼 사업자 인증 요청합니다 + 신청 날짜와 휴대폰 번호를 손으로 쓴 글씨와 함께 올려주세요'),
         SizedBox(height: 14),
         IconTextWidget(
           number: '3',

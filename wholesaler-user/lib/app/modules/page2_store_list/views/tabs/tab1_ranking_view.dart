@@ -136,8 +136,8 @@ class Tab1RankingView extends StatelessWidget {
                         child: ExtendedImage.network(
                           store.topImagePath![0],
                           fit: BoxFit.fitHeight,
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -153,8 +153,8 @@ class Tab1RankingView extends StatelessWidget {
                             store.topImagePath![1],
                             fit: BoxFit.fitHeight,
                             height: MyVars.isIpad()?300:100,
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -164,8 +164,8 @@ class Tab1RankingView extends StatelessWidget {
                           child: ExtendedImage.network(
                             store.topImagePath![2],
                             fit: BoxFit.fitHeight,
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -179,8 +179,8 @@ class Tab1RankingView extends StatelessWidget {
                                 store.topImagePath![3],
                                 fit: BoxFit.fitHeight,
                                 height: MyVars.isIpad()?300:100,
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -215,8 +215,8 @@ class Tab1RankingView extends StatelessWidget {
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
           ? ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -338,8 +338,8 @@ class Tab1RankingView extends StatelessWidget {
                                                     "assets/icons/ic_store.png",
                                                   )
                                                 : ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -369,8 +369,8 @@ class Tab1RankingView extends StatelessWidget {
                                                             "assets/icons/ic_store.png",
                                                           )
                                                         : ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -417,8 +417,8 @@ class Tab1RankingView extends StatelessWidget {
                                                     "assets/icons/ic_store.png",
                                                   )
                                                 : ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -448,8 +448,8 @@ class Tab1RankingView extends StatelessWidget {
                                                         )
                                                       : ClipOval(
                                                           child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

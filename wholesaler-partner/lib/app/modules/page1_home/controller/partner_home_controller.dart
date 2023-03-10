@@ -38,16 +38,20 @@ class PartnerHomeController extends GetxController {
 
   RxBool isShowSplashScreen = true.obs;
   RxBool isLoading = false.obs;
-
+  bool isFirstBuild = true;
   void init() async {
     print('PartnerHomeController init');
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // isShowSplashScreen.value = false;
       isLoading.value = true;
-      await getMainStore();
-      await getBestProducts();
-      await getAds();
-      await callGetProductsAPI();
+      if(isFirstBuild){
+        isFirstBuild=false;
+        await getMainStore();
+        await getBestProducts();
+        await getAds();
+        await callGetProductsAPI();
+        isFirstBuild=true;
+      }
       isLoading.value = false;
     });
   }
@@ -147,6 +151,7 @@ class PartnerHomeController extends GetxController {
             MyVars.isUserProject() ? bestProduct.disCountPercent : 0,
         isLiked: true.obs,
         imgUrl: bestProduct.thumbnailImageUrl!,
+        isSoldout: bestProduct.isSoldOut!.obs
       );
       bestProducts.add(tempProduct);
     }
@@ -164,8 +169,6 @@ class PartnerHomeController extends GetxController {
         sort: sort,
         offset: offset,
         limit: mConst.limit);
-    print(products.length);
-    print(raw.length);
     for (int i = 0; i < raw.length; i++) {
       Store tempStore = Store(
         id: raw[i]['store_id'],
@@ -181,6 +184,7 @@ class PartnerHomeController extends GetxController {
             MyVars.isUserProject() ? raw[i]['price_discount_percent'] : 0,
         isLiked: raw[i]['is_favorite'] ? true.obs : false.obs,
         imgUrl: raw[i]['thumbnail_image_url'],
+        isSoldout: raw[i]['is_sold_out'] ? true.obs :false.obs
       );
 
       products.add(tempProduct);

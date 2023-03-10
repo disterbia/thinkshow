@@ -70,11 +70,11 @@ class Page1HomeView extends GetView<Page1HomeController> {
     return SimpleTabBar(
       initialIndex: 0,
       tabs: [
-        Tab(text: 'home'.tr),
-        Tab(text: 'best'.tr),
-        Tab(text: 'new'.tr),
-        Tab(text: 'Dingdong'.tr),
-        Tab(text: 'dingpick'.tr)
+        Tab(text: "홈"),
+        Tab(text: "베스트"),
+        Tab(text: "신상"),
+        Tab(text: "띵동"),
+        Tab(text: "띵Pick")
       ],
       tabBarViews: [
         Tab1HomeView(),

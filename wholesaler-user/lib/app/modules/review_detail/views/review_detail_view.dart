@@ -337,8 +337,8 @@ class ReviewDetailView extends GetView {
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -529,8 +529,8 @@ class ReviewDetailView extends GetView {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
                           child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
@@ -564,8 +564,8 @@ class ReviewDetailView extends GetView {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

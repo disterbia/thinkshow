@@ -140,8 +140,8 @@ class Tab2BookmarksView extends StatelessWidget {
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
           ? ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

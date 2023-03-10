@@ -67,11 +67,11 @@ class User_LoginPageController extends GetxController {
 
   Future<void> loginBtnPressed() async {
     if (usernameController.text.isEmpty) {
-      mSnackbar(message: '아이디를 입력해주세요.'.tr);
+      mSnackbar(message: '아이디를 입력해주세요.');
       return;
     }
     if (passwordController.text.isEmpty) {
-      mSnackbar(message: '비밀번호를 입력해주세요.'.tr);
+      mSnackbar(message: '비밀번호를 입력해주세요.');
       return;
     }
 

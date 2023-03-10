@@ -17,11 +17,11 @@ class UserBottomNavbarView extends StatelessWidget {
       selectedItemColor: MyColors.black,
       onTap: userMainCtr.changeTabIndex,
       items: <BottomNavigationBarItem>[
-        ItemBuilder('home'.tr, 'assets/icons/ic_home.png', 'assets/icons/ic_home_grey.png', 0),
-        ItemBuilder('store'.tr, 'assets/icons/ic_store.png', 'assets/icons/ic_store_grey.png', 1),
-        ItemBuilder('See_all'.tr, 'assets/icons/ic_moabogi.png', 'assets/icons/ic_moabogi_grey.png', 2),
-        ItemBuilder('liked'.tr, 'assets/icons/ic_heart_empty.png', 'assets/icons/ic_heart_empty_grey.png', 3),
-        ItemBuilder('My_page'.tr, 'assets/icons/ic_my_page.png', 'assets/icons/ic_my_page_grey.png', 4),
+        ItemBuilder('홈', 'assets/icons/ic_home.png', 'assets/icons/ic_home_grey.png', 0),
+        ItemBuilder('스토어', 'assets/icons/ic_store.png', 'assets/icons/ic_store_grey.png', 1),
+        ItemBuilder('모아보기', 'assets/icons/ic_moabogi.png', 'assets/icons/ic_moabogi_grey.png', 2),
+        ItemBuilder('찜', 'assets/icons/ic_heart_empty.png', 'assets/icons/ic_heart_empty_grey.png', 3),
+        ItemBuilder('마이페이지', 'assets/icons/ic_my_page.png', 'assets/icons/ic_my_page_grey.png', 4),
       ],
     );
   }

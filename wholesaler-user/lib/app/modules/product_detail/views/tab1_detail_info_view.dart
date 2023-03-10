@@ -99,11 +99,11 @@ class Tab1DetailInfo extends GetView {
                                                         Radius.circular(8))
                                                 : BorderRadius.all(Radius.zero),
                                             child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
-                  clearMemoryCacheWhenDispose:true,
-                  enableMemoryCache: false,
-                  enableLoadState: false,
+                                                  cacheHeight: 1024,
+                                                  cacheWidth: 1024,
+                                                  clearMemoryCacheWhenDispose:true,
+                                                  enableMemoryCache: false,
+                                                  enableLoadState: false,
                                               productDetailCtr.lazyList[index],
                                               fit: BoxFit.fill,
 
@@ -144,8 +144,8 @@ class Tab1DetailInfo extends GetView {
                                                 bottomLeft: Radius.circular(8))
                                             : BorderRadius.all(Radius.zero),
                                         child: ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,

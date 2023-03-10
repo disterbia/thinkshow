@@ -271,29 +271,28 @@ class Page1HomeView extends GetView<PartnerHomeController> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: SizedBox(
-            height: 240,
+          child: Container(
+            height:MyVars.isIpad()?450: 240,
             child: Obx(
               () => ctr.bestProducts.isNotEmpty
-                  ? ListView.separated(
+                  ? ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: ctr.bestProducts.length,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(width: 14),
                       itemBuilder: (BuildContext context, int index) {
-                        if(index!=0) _deleteImageFromCache(ctr.bestProducts[index-1].imgUrl);
-                        if(index==ctr.bestProducts.length-1) _deleteImageFromCache(ctr.bestProducts[index].imgUrl);
-                        return SizedBox(
-                          width: 105,
-                          child: ProductItemVertical(
-                            product: ctr.bestProducts.elementAt(index),
-                            productNumber: ProductNumber(
-                              number: index + 1,
-                              backgroundColor:
-                                  MyColors.numberColors.length > index
-                                      ? MyColors.numberColors[index]
-                                      : MyColors.numberColors[0],
+                        return Container(
+                        width: (context.width / 3) - 10,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: MyVars.isSmallPhone() ? 3 : 3),
+                            child: ProductItemVertical(
+                              product: ctr.bestProducts.elementAt(index),
+                              productNumber: ProductNumber(
+                                number: index + 1,
+                                backgroundColor:
+                                    MyColors.numberColors.length > index
+                                        ? MyColors.numberColors[index]
+                                        : MyColors.numberColors[0],
+                              ),
                             ),
                           ),
                         );
@@ -303,6 +302,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
             ),
           ),
         ),
+
       ],
     );
   }
@@ -445,8 +445,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
-                      childAspectRatio:
-                      columnWidth /(Get.width*0.7), // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                      childAspectRatio:MyVars.isIpad()?11/16:8/16, // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
               //     ListView.separated(

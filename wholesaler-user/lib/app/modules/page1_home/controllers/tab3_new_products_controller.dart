@@ -20,7 +20,6 @@ class Tab3NewProductsController extends GetxController {
   @override
   Future<void> onInit() async {
     scrollController.value.addListener(() {
-      print('scrollController.value.addListener');
       if (scrollController.value.position.pixels ==
               scrollController.value.position.maxScrollExtent ) {
           print('scrollController end detected. isLoading.value = ${allowCallAPI.value} offset = $offset');

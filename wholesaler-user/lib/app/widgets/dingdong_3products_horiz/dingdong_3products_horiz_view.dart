@@ -19,7 +19,7 @@ class Dingdong3ProductsHorizView extends GetView<Dingdong3ProductsHorizControlle
     return Padding(
       padding: EdgeInsets.only(left: leftPadding),
       child: Container(
-        height: 240,
+        height: MyVars.isIpad()?450:240,
         child: Obx(
           () => ctr.dingDongProducts.isNotEmpty
               ? ListView.builder(

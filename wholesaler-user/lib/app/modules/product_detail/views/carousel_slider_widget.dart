@@ -30,8 +30,8 @@ class ImagesCarouselSlider extends StatelessWidget {
             items: [
               for (String img in ctr.product.value.images!)
               ExtendedImage.network(
-                  cacheHeight: 1000,
-                  cacheWidth: 1000,
+                  cacheHeight: 1024,
+                  cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
