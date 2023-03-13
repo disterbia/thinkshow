@@ -134,11 +134,11 @@ class StoreDetailView extends GetView {
              ctr.mainStoreModel.value.mainTopImageUrl!.value,
               width: Get.width,
               height: Get.width,
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.fill,
             )
           : Container(
               height: Get.width,
-              child: Center(child: Text('등록 된 사진 이 없습니다.')),
+              child: Center(child: Text('등록된 사진이 없습니다.')),
             ),
     );
   }

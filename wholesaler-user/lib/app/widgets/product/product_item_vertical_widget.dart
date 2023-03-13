@@ -58,7 +58,7 @@ class ProductItemVertical extends StatelessWidget {
             child: Stack(
               children: [
                 // Image
-                ImageBuilder(),
+                ImageBuilder(crossAxisCount),
                 // Checkbox
                 CheckboxBuilder(),
                 // TopLeft Number
@@ -112,7 +112,7 @@ class ProductItemVertical extends StatelessWidget {
     );
   }
 
-  ImageBuilder() {
+  ImageBuilder(int? crossAxisCount) {
     return Column(
       children: [
         // we need this to ensure the image is located south of the bell icon.
@@ -120,7 +120,7 @@ class ProductItemVertical extends StatelessWidget {
         product.hasBellIconAndBorder != null
             ? Obx(
                 () => Container(
-                  height: product.imgHeight??Get.width/3,
+                  height: crossAxisCount==2?Get.width/2:Get.width/3,
                   width: double.infinity,
                   // width: product.imgWidth ?? mConst.fixedImgWidth,
                   decoration: product.hasBellIconAndBorder!.isTrue
@@ -146,7 +146,7 @@ class ProductItemVertical extends StatelessWidget {
                 ),
               )
             : Container(
-                height: product.imgHeight??Get.width/3,
+                height: crossAxisCount==2?Get.width/2:Get.width/3,
                 width: double.infinity,
                 // width: product.imgWidth ?? mConst.fixedImgWidth,
                 decoration: null,
@@ -358,13 +358,13 @@ class ProductItemVertical extends StatelessWidget {
                       height: 24,
                       width: 60,
                       decoration: BoxDecoration(
-                        color: Colors.orange,
+                        color: MyColors.primary,
                         borderRadius: BorderRadius.all(Radius.circular(4)),
                       ),
                       child: Center(
                         child: Text(
                           '품절',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                     ),

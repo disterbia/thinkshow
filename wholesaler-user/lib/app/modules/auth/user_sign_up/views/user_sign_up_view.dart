@@ -21,7 +21,7 @@ class User_SignUpView extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    init();
+   if(ctr.fuckingSajad)init();
     return Scaffold(
       backgroundColor: MyColors.white,
       appBar: CustomAppbar(

@@ -571,7 +571,7 @@ class ReviewDetailView extends GetView {
                   enableLoadState: false,
               ctr.reviewImageUrl.value!,
                 width: Get.width,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
 
               ),
             )

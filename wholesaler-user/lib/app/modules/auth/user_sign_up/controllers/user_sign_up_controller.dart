@@ -39,10 +39,12 @@ class SignupOrEditController extends GetxController {
   RxBool firstConditions = false.obs;
   RxBool secondConditions = false.obs;
   bool isIdAvailable = false;
+  bool fuckingSajad=true;
 
   Rx<User> user = User(userID: '-1', userName: 'userName').obs;
 
   Future<void> init() async {
+    fuckingSajad=true;
     if (isEditing.isTrue) {
       user.value = await _apiProvider.getUserInfo();
       // set controller text values
@@ -81,6 +83,7 @@ class SignupOrEditController extends GetxController {
     if (result != null) {
       address1Controller.text = result.postCode;
       address2Controller.text = result.address;
+      fuckingSajad=false;
     }
   }
 

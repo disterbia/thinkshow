@@ -19,7 +19,7 @@ class SearchField extends StatelessWidget {
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.orange,
+            color: MyColors.primary,
           ),
         ),
         enabledBorder: OutlineInputBorder(

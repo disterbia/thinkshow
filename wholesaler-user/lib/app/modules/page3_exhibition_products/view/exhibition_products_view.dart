@@ -44,7 +44,7 @@ class ExhibitionProductsView extends GetView {
                   enableLoadState: false,
                            ctr.bannerPicture[index],
                             width: Get.width,
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.fill,
 
                           );
                       }
@@ -66,9 +66,14 @@ class ExhibitionProductsView extends GetView {
                 ),
               ),
 
-              ctr.products.isEmpty?Text(
-                  "상품 없음",
-                  style: MyTextStyles.f16_bold,
+              ctr.products.isEmpty?Column(
+                children: [
+                  ctr.bannerPicture.isEmpty?Container(height: Get.height/2-120,):Container(),
+                  Text(
+                      "상품 없음",
+                      style: MyTextStyles.f16_bold,
+                  ),
+                ],
               ):Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ProductGridViewBuilder(
@@ -105,7 +110,7 @@ class ExhibitionProductsView extends GetView {
                     badgeContent: Text(
                       ctr2.getNumberProducts().toString(),
                       style: TextStyle(
-                          color: MyColors.white,
+                          color: MyColors.black,
                           fontSize: 11,
                           fontWeight: FontWeight.bold),
                     ),

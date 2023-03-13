@@ -283,7 +283,7 @@ class ProductItemHorizontal extends StatelessWidget {
             : product.imgUrl,
         //cacheWidth:70,
         //cacheHeight: 70,
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.fill,
         height: 70,
         width: 70,
         // placeholder: (context, url) => CircularProgressIndicator(),

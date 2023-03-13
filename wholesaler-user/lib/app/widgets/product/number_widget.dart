@@ -19,7 +19,7 @@ class NumberWidget extends StatelessWidget {
       child: Center(
         child: Text(
           productNumber.number.toString(),
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );

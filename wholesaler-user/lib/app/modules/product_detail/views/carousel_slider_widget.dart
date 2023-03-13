@@ -21,7 +21,7 @@ class ImagesCarouselSlider extends StatelessWidget {
           () => CarouselSlider(
             carouselController: ctr.indicatorSliderController,
             options: CarouselOptions(
-                height: height,
+                height: Get.width,
                 autoPlay: false,
                 viewportFraction: 1,
                 onPageChanged: (index, reason) {
@@ -36,7 +36,7 @@ class ImagesCarouselSlider extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,
                   img,
-                  fit: BoxFit.fitWidth,width: Get.width,
+                  fit: BoxFit.fill,
                 )
             ],
           ),

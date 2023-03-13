@@ -24,6 +24,11 @@ class MyPageUpdatePasswordController extends GetxController {
       return;
     }
 
+    if (newPasswordCtr.text.length<8|| newPasswordCtr.text.length>20) {
+      mSnackbar(message: '새 비밀번호는 8자리 이상 20자리 이하 입니다.');
+      return;
+    }
+
     bool isSuccess = await _apiProvider.changePassword(
       originalPassword: originalPasswordCtr.text,
       newPassword: newPasswordCtr.text,

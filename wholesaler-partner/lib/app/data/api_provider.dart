@@ -1478,7 +1478,7 @@ class pApiProvider extends GetConnect {
 
   Future<ServiceCenterModel> getServiceCenter() async {
     final response = await get(
-        "https://api.thinksmk.com:3000//v1/store-api/setting/service-center",
+        "https://api.thinksmk.com:3000/v1/store-api/setting/service-center",
         headers: headers);
     if (response.statusCode == 200) {
 

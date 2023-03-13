@@ -139,13 +139,12 @@ class Tab2BookmarksView extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(50),
       child: store.imgUrl != null
-          ? ExtendedImage.network(
+          ? ExtendedImage.network(  store.imgUrl!.value,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
-          store.imgUrl!.value,
               width: 50,
               height: 50,
               fit: BoxFit.cover,

@@ -15,11 +15,19 @@ import 'package:wholesaler_user/app/modules/page2_store_list/controllers/shoppin
 class Tab1RankingView extends StatelessWidget {
   Page2StoreListController ctr = Get.put(Page2StoreListController());
   String? prevPage = "rank";
-  final RxList<bool> _selected = <bool>[true, false].obs;
-
+  List<DropdownMenuItem<String>> itemsBuilder(List<String> itemStrings) {
+    return itemStrings.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList();
+  }
   @override
   Widget build(BuildContext context) {
-    ctr.getRankedStoreData();
+    print("-=-=${ctr.selected}");
+    if (ctr.selected == 0) ctr.getMostStoreData();
+    if (ctr.selected == 1) ctr.getRankedStoreData();
     return Obx(
       () => ctr.isLoading.value
           ? LoadingWidget()
@@ -33,28 +41,40 @@ class Tab1RankingView extends StatelessWidget {
                         alignment: Alignment.topRight,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10.0, top: 10),
-                          child: ToggleButtons(
-                            //direction: vertical ? Axis.vertical : Axis.horizontal,
-                            onPressed: (int index) {
-                              if (index == 0) ctr.getMostStoreData();
-                              if (index == 1) ctr.getRankedStoreData();
-                              // The button that is tapped is set to true, and the others to false.
-                              for (int i = 0; i < _selected.length; i++) {
-                                _selected[i] = i == index;
-                              }
+                          child:
+                          DropdownButton(
+                            hint: Text(ctr.dropDownItem[ctr.selected.value]),
+                            items: itemsBuilder(ctr.dropDownItem),
+                            onChanged: (String? newValue) {
+                              ctr.selected.value =
+                                  ctr.dropDownItem.indexOf(newValue!);
+                              if (ctr.selected == 0) ctr.getMostStoreData();
+                              if (ctr.selected == 1) ctr.getRankedStoreData();
+
                             },
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
-                            selectedColor: Colors.black,
-                            fillColor: MyColors.primary,
-                            color: Colors.grey,
-                            constraints: const BoxConstraints(
-                              minHeight: 30.0,
-                              minWidth: 30.0,
-                            ),
-                            isSelected: _selected,
-                            children: [Text(" 추천순 "), Text(" 인기순 ")],
                           ),
+                          // ToggleButtons(
+                          //   //direction: vertical ? Axis.vertical : Axis.horizontal,
+                          //   onPressed: (int index) {
+                          //     if (index == 0) ctr.getMostStoreData();
+                          //     if (index == 1) ctr.getRankedStoreData();
+                          //     // The button that is tapped is set to true, and the others to false.
+                          //     for (int i = 0; i < _selected.length; i++) {
+                          //       _selected[i] = i == index;
+                          //     }
+                          //   },
+                          //   borderRadius:
+                          //       const BorderRadius.all(Radius.circular(8)),
+                          //   selectedColor: Colors.black,
+                          //   fillColor: MyColors.primary,
+                          //   color: Colors.grey,
+                          //   constraints: const BoxConstraints(
+                          //     minHeight: 30.0,
+                          //     minWidth: 30.0,
+                          //   ),
+                          //   isSelected: _selected,
+                          //   children: [Text(" 추천순 "), Text(" 인기순 ")],
+                          // ),
                         ),
                       ),
                       ListView.builder(
@@ -135,7 +155,7 @@ class Tab1RankingView extends StatelessWidget {
                           child: ClipRRect(
                         child: ExtendedImage.network(
                           store.topImagePath![0],
-                          fit: BoxFit.fitHeight,
+                          fit: BoxFit.fill,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
@@ -151,7 +171,7 @@ class Tab1RankingView extends StatelessWidget {
                       Expanded(
                           child: ExtendedImage.network(
                             store.topImagePath![1],
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.fill,
                             height: MyVars.isIpad()?300:100,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
@@ -163,7 +183,7 @@ class Tab1RankingView extends StatelessWidget {
                       Expanded(
                           child: ExtendedImage.network(
                             store.topImagePath![2],
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.fill,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
@@ -177,7 +197,7 @@ class Tab1RankingView extends StatelessWidget {
                           child: ClipRRect(
                               child: ExtendedImage.network(
                                 store.topImagePath![3],
-                                fit: BoxFit.fitHeight,
+                                fit: BoxFit.fill,
                                 height: MyVars.isIpad()?300:100,
                   cacheHeight: 1024,
                   cacheWidth: 1024,

@@ -154,7 +154,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                 badgeContent: Text(
                   ctr2.getNumberProducts().toString(),
                   style: TextStyle(
-                      color: MyColors.white,
+                      color: MyColors.black,
                       fontSize: 11,
                       fontWeight: FontWeight.bold),
                 ),
