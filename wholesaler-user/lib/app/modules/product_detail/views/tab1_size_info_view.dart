@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
@@ -102,11 +103,11 @@ class Tab4SizeInfo extends GetView {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       Text('PRODUCT INFO',
                           style: MyTextStyles.f18_bold
                               .copyWith(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 10),
+                      SizedBox(height: 10.h),
 
                       Container(
                           decoration: BoxDecoration(
@@ -147,7 +148,7 @@ class Tab4SizeInfo extends GetView {
                       // Color
                       // SizedBox(height: 20),
 
-                      SizedBox(height: 30),
+                      SizedBox(height: 30.h),
 
                       Container(
                         decoration: BoxDecoration(
@@ -173,7 +174,7 @@ class Tab4SizeInfo extends GetView {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 15),
                                       color: MyColors.grey1,
-                                      width: 80,
+                                      width: 80.w,
                                       child: Center(
                                           child: Text(
                                         '두께감',
@@ -248,7 +249,7 @@ class Tab4SizeInfo extends GetView {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 15),
                                       color: MyColors.grey1,
-                                      width: 80,
+                                      width: 80.w,
                                       child: Center(
                                           child: Text(
                                         '비침',
@@ -321,7 +322,7 @@ class Tab4SizeInfo extends GetView {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 15),
                                       color: MyColors.grey1,
-                                      width: 80,
+                                      width: 80.w,
                                       child: Center(
                                           child: Text(
                                         '신축성',
@@ -410,7 +411,7 @@ class Tab4SizeInfo extends GetView {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 15),
                                       color: MyColors.grey1,
-                                      width: 80,
+                                      width: 80.w,
                                       child: Center(
                                           child: Text(
                                         '안감',
@@ -977,8 +978,8 @@ class Tab4SizeInfo extends GetView {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
               child: Image.asset(
                 clothWash.iconPath,
                 fit: BoxFit.fill,
@@ -992,7 +993,7 @@ class Tab4SizeInfo extends GetView {
                     color: clothWash.isActive.value
                         ? MyColors.black2
                         : MyColors.grey10,
-                    fontSize: 12),
+                    fontSize: 12.sp),
                 textAlign: TextAlign.center,
               ),
             )

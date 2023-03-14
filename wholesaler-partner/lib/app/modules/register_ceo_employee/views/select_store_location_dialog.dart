@@ -20,7 +20,7 @@ SelectStoreLocationDialog() async {
       builder: (BuildContext context) => Dialog(
         child: Container(
           padding: EdgeInsets.all(20),
-          height: Get.height - 200,
+          height: 889 - 200,
           child: Obx(() => ListView.builder(
               itemCount: registerP2Ctr.storeLocations.length,
               shrinkWrap: true,

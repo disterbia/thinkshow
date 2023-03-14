@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/variables.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -49,7 +50,7 @@ class HorizontalChipList {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Wrap(
-        spacing: 10,
+        spacing: 10.w,
         crossAxisAlignment: WrapCrossAlignment.end,
         alignment: WrapAlignment.end,
         children: [...categoryChips],
@@ -99,7 +100,7 @@ class HorizontalChipList {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Wrap(
-        spacing: 10,
+        spacing: 10.w,
         crossAxisAlignment: WrapCrossAlignment.end,
         alignment: WrapAlignment.end,
         children: [...categoryChips],
@@ -108,13 +109,13 @@ class HorizontalChipList {
   }
 
   Widget getIconTextList({required Function(int) onPressed}) {
-    double screenWidth = MediaQuery.of(Get.context!).size.width;
 
     List<ClothCategory> clothCategories = ClothCategory.getAll();
     return Container(
       alignment: Alignment.center,
-      width: screenWidth,
-      height: MyVars.isIpad()?Get.height/3:Get.height/5,
+      width: 411.w,
+      height: MyVars.isIpad()?(889.h)/3:(889.h)/5,
+      //MyVars.isIpad()?889.h/3:
       // child: ListView.builder(
       //     scrollDirection: Axis.horizontal,
       //     physics: NeverScrollableScrollPhysics(),
@@ -142,8 +143,8 @@ class HorizontalChipList {
             clothCategory: clothCategories.elementAt(index),
             // height: screenWidth / clothCategories.length - 25,
             // width: screenWidth / clothCategories.length - 25,
-            height: 25,
-            width: 25,
+            height: MyVars.isIpad()?45.h:25.h,
+            width: MyVars.isIpad()?45.w:25.w,
             onTap: () => onPressed(index),
           );
         },
@@ -163,24 +164,24 @@ class HorizontalChipList {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(12.sp),
               decoration: BoxDecoration(
                   color: Color(0xFFFFF1DA),
                   borderRadius: BorderRadius.circular(15)),
               child: Image.asset(
                 clothCategory.icon,
-                // height: height,
-                // width: width,
-                fit: BoxFit.cover,
+                height: height,
+                width: width,
+                fit: BoxFit.fill,
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 5.h),
           Text(
             clothCategory.title,
             style: MyTextStyles.f12.copyWith(color: MyColors.black1),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 5.h),
         ],
       ),
     );

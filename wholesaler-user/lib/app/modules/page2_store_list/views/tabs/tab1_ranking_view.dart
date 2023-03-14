@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -91,8 +92,8 @@ class Tab1RankingView extends StatelessWidget {
                   bottom: 20,
                   right: 20,
                   child: SizedBox(
-                    width: 45,
-                    height: 45,
+                    width: 45.w,
+                    height: 45.h,
                     child: FloatingActionButton(
                       backgroundColor: Colors.white,
                       child: Icon(Icons.arrow_upward_rounded),
@@ -161,7 +162,8 @@ class Tab1RankingView extends StatelessWidget {
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
                   enableLoadState: false,
-                          height: MyVars.isIpad()?300:100,
+                          height:(411/4).w,
+                          //
                         ),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(4),
@@ -172,7 +174,7 @@ class Tab1RankingView extends StatelessWidget {
                           child: ExtendedImage.network(
                             store.topImagePath![1],
                             fit: BoxFit.fill,
-                            height: MyVars.isIpad()?300:100,
+                            height:(411/4).w,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
@@ -190,7 +192,7 @@ class Tab1RankingView extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,
 
-                            height: MyVars.isIpad()?300:100,
+                            height:(411/4).w,
                       )),
                       SizedBox(width: 2),
                       Expanded(
@@ -198,7 +200,7 @@ class Tab1RankingView extends StatelessWidget {
                               child: ExtendedImage.network(
                                 store.topImagePath![3],
                                 fit: BoxFit.fill,
-                                height: MyVars.isIpad()?300:100,
+                                height:(411/4).w,
                   cacheHeight: 1024,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
@@ -214,7 +216,7 @@ class Tab1RankingView extends StatelessWidget {
                 );
               }),
               SizedBox(
-                height: 5,
+                height: 5.h,
               )
             ],
           ),
@@ -232,7 +234,7 @@ class Tab1RankingView extends StatelessWidget {
 
   Widget _storeImage(Store store) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(50),
+      borderRadius: BorderRadius.circular(50.sp),
       child: store.imgUrl != null
           ? ExtendedImage.network(
                   cacheHeight: 1024,
@@ -243,7 +245,7 @@ class Tab1RankingView extends StatelessWidget {
           store.imgUrl!.value,
               width: 50,
               height: 50,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               // placeholder: (context, url) => CircularProgressIndicator(),
 
             )
@@ -273,7 +275,7 @@ class Tab1RankingView extends StatelessWidget {
           style: MyTextStyles.f16_bold.copyWith(color: Colors.black),
         ),
         SizedBox(
-          height: 5,
+          height: 5.h,
         ),
         Text(
           categoris.isEmpty ? "스토어 정보 없음" : category,
@@ -300,7 +302,7 @@ class Tab1RankingView extends StatelessWidget {
         context: context,
         builder: (context) {
           return Container(
-            height: 300,
+            height: 300.h,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -315,8 +317,8 @@ class Tab1RankingView extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.only(top: 8, bottom: 20),
-                      width: 60,
-                      height: 5,
+                      width: 60.w,
+                      height: 5.h,
                       decoration: BoxDecoration(
                         color: MyColors.grey3,
                         borderRadius: BorderRadius.circular(5),
@@ -328,14 +330,14 @@ class Tab1RankingView extends StatelessWidget {
                           MyTextStyles.f16_bold.copyWith(color: Colors.black),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Container(
-                      height: 180,
+                      height: 180.h,
                       child: Row(
                         children: [
                           SizedBox(
-                            width: 10,
+                            width: 10.w,
                           ),
                           Expanded(
                             child: InkWell(
@@ -364,7 +366,7 @@ class Tab1RankingView extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,
                                                    ctr.mainImage[0],
-                                              width: (Get.width/2)-20,
+                                              width: ((411.w/2)-20).w,
                                                     fit: BoxFit.fill,
                                                   ),
                                             borderRadius: BorderRadius.only(
@@ -373,7 +375,7 @@ class Tab1RankingView extends StatelessWidget {
                                                     Radius.circular(10.0)),
                                           ),
                                         ),
-                                        height: 130),
+                                        height: 130.h),
                                     Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Column(mainAxisAlignment: MainAxisAlignment.end,
@@ -402,8 +404,8 @@ class Tab1RankingView extends StatelessWidget {
                                                 radius: 50,
                                                 backgroundColor: Colors.white,
                                               )),
-                                              width: 50,
-                                              height: 50,
+                                              width: 50.w,
+                                              height: 50.h,
                                             ),
                                             Text(ctr.storeName[0]!,style: MyTextStyles.f18_bold,)
                                           ],
@@ -414,7 +416,7 @@ class Tab1RankingView extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 10.w,
                           ),
                           Expanded(
                             child: InkWell(
@@ -443,7 +445,7 @@ class Tab1RankingView extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,
                                                      ctr.mainImage[1],
-                                              width: (Get.width/2)-20,
+                                              width: ((411.w/2)-20).w,
                                                     fit: BoxFit.fill,
                                                   ),
                                             borderRadius: BorderRadius.only(
@@ -452,7 +454,7 @@ class Tab1RankingView extends StatelessWidget {
                                                     Radius.circular(10.0)),
                                           ),
                                         ),
-                                        height: 130),
+                                        height: 130.h),
                                     Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Column(mainAxisAlignment: MainAxisAlignment.end,
@@ -481,8 +483,8 @@ class Tab1RankingView extends StatelessWidget {
                                                 radius: 50,
                                                 backgroundColor: Colors.white,
                                               )),
-                                              width: 50,
-                                              height: 50,
+                                              width: 50.w,
+                                              height: 50.h,
                                             ),
                                             Text(ctr.storeName[1]!,style: MyTextStyles.f18_bold,)
                                           ],
@@ -551,7 +553,7 @@ class Tab1RankingView extends StatelessWidget {
         () => Column(
           children: [
             Image.asset(
-                height: 25,
+                height: 25.h,
                 store.isBookmarked!.isTrue ? "assets/icons/ico_star_on.png" : "assets/icons/ico_star_off.png",
               ),
 
@@ -559,7 +561,7 @@ class Tab1RankingView extends StatelessWidget {
               result.value,
               style: TextStyle(
                 color: MyColors.grey4,
-                fontSize: 12,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
               ),
             )

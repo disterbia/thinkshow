@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -16,7 +17,7 @@ class OrderTopDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width,
+      width: 411.w,
       height: 75,
       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(MyDimensions.radius)), color: MyColors.grey7),
       child: Row(

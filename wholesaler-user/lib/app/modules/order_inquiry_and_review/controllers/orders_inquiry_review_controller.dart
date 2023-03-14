@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -85,7 +86,7 @@ class OrderInquiryAndReviewController extends GetxController {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 30.h),
             SfDateRangePicker(
               onSelectionChanged: dateCtr.onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.range,

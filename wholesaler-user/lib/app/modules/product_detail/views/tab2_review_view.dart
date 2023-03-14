@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -454,7 +455,7 @@ class Tab2ReviewView extends GetView {
     return CarouselSlider(
       carouselController: ctr.indicatorSliderController[index],
       options: CarouselOptions(
-          height: Get.width,
+          height: 411.w,
           autoPlay: false,
           viewportFraction: 1,
           onPageChanged: (i, reason) {
@@ -471,8 +472,8 @@ class Tab2ReviewView extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,img,
               fit: BoxFit.fill,
-              width: Get.width,
-              height: Get.width,
+              width: 411.w,
+              height: 411.w,
 
 
             ),

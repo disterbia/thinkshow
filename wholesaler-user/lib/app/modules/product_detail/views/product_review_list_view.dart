@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -104,7 +105,7 @@ class ProductReviewListView extends GetView {
         CarouselSlider(
           carouselController: ctr.indicatorSliderController[index],
           options: CarouselOptions(
-              height: Get.height * 0.5,
+              height: 889.h * 0.5,
               autoPlay: false,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
@@ -121,7 +122,7 @@ class ProductReviewListView extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,   img,
                   fit: BoxFit.fill,
-                  width: Get.width,
+                  width: 411.w,
 
                 ),
               )

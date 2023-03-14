@@ -37,7 +37,7 @@ class MyVars {
 
   static Future<void> initializeVariables() async {
     // 1. initialize isUserProject
-    await MyVars.setIpad();
+   await MyVars.setIpad();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String packageName = packageInfo.packageName;
     //print('packageName $packageName');

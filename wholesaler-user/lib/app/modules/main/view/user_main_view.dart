@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
 import 'package:wholesaler_user/app/data/firebase_service.dart';
@@ -57,7 +58,7 @@ class UserMainView extends GetView<UserMainController> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: MyColors.black,
-            selectedFontSize: 12.0,
+            selectedFontSize: 12.0.sp,
 
           ),
         ),
@@ -71,7 +72,7 @@ class UserMainView extends GetView<UserMainController> {
       icon: Image.asset(
         ctr.tabIndex.value == itemIndex
             ? imgSelected:imgNotSelected,gaplessPlayback: true,
-              width: 22,
+              width: 22.w,
             ),
       label: label,
     );

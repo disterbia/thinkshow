@@ -466,6 +466,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.7.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -1238,7 +1245,7 @@ packages:
       path: "../wholesaler-partner"
       relative: true
     source: path
-    version: "0.2.11"
+    version: "0.2.11+212"
   win32:
     dependency: transitive
     description:

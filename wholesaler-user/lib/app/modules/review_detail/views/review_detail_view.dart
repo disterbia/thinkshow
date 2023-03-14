@@ -8,6 +8,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/main.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -452,7 +453,7 @@ class ReviewDetailView extends GetView {
     //       ],
     //     ),
     //     height: 150,
-    //     width: Get.width,
+    //     width: 411.w,
     //     decoration: BoxDecoration(
     //         border: Border.all(color: MyColors.desc),
     //         borderRadius:
@@ -570,7 +571,7 @@ class ReviewDetailView extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,
               ctr.reviewImageUrl.value!,
-                width: Get.width,
+                width: 411.w,
                 fit: BoxFit.fill,
 
               ),
@@ -644,7 +645,7 @@ class ReviewDetailView extends GetView {
                 })
             // new review
             : Container(
-                height: Get.height / 17,
+                height: 889.h / 17,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   width: double.infinity,

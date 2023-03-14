@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wholesaler_user/app/Constants/variables.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/styles.dart';
 import 'package:wholesaler_user/app/modules/page2_store_detail/view/store_detail_view.dart';
@@ -131,7 +133,7 @@ class SearchResults extends StatelessWidget {
   Widget _RecentlyVisitedProducts() {
     return Obx(
       () => SizedBox(
-        height: 270,
+        height: MyVars.isIpad()?(411/2).w:(411/1.5).w,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -141,14 +143,14 @@ class SearchResults extends StatelessWidget {
             if(index!=0)  (ctr.recentlyVisitedProducts[index-1].imgUrl);
             if(index==ctr.recentlyVisitedProducts.length-1)  (ctr.recentlyVisitedProducts[index].imgUrl);
             return SizedBox(
-              width: 100, // this is fake number. real width is calculated based on ProductItemVertical size
+              width: (411/4).w, // this is fake number. real width is calculated based on ProductItemVertical size
               child: ProductItemVertical(
                 product: ctr.recentlyVisitedProducts[index],
               ),
             );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return SizedBox(width: 10);
+            return SizedBox(width: 10.w);
           },
         ),
       ),

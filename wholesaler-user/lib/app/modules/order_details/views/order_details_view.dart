@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -165,7 +166,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
       backgroundColor: MyColors.grey1,
       borderColor: MyColors.grey1,
       textColor: MyColors.black,
-      width: Get.width,
+      width: 411.w,
     );
   }
 }

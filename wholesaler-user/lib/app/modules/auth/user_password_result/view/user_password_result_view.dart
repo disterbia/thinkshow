@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/images.dart';
@@ -24,7 +25,7 @@ class User_PasswordResultView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomButton(
-              width: Get.width,
+              width: 411.w,
               onPressed: () {
                 Get.offAll(User_LoginPageView());
               },

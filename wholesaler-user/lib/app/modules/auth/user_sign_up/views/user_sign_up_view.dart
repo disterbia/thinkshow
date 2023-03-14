@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/enum.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -141,14 +142,14 @@ class User_SignUpView extends GetView {
           },
           fieldLabel: 'address'.tr,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 10.h),
         // address fields
         CustomTextField(
           readOnly: true,
           labelText: '주소 입력',
           controller: ctr.address2Controller,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 10.h),
         CustomTextField(
           focusNode: _addressFocusNode,
           labelText: 'Address details'.tr,
@@ -165,7 +166,7 @@ class User_SignUpView extends GetView {
               PhoneNumberPhoneVerify(
                 spaceBetween: 15,
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 15.h),
             ],
           )
         : SizedBox.shrink();
@@ -234,8 +235,8 @@ class User_SignUpView extends GetView {
       () => Row(
         children: [
           SizedBox(
-            height: 24,
-            width: 24,
+            height: 24.h,
+            width: 24.w,
             child: Checkbox(
                 activeColor: MyColors.secondaryColor,
                 value: ctr.isAgreeToAll.value,
@@ -245,7 +246,7 @@ class User_SignUpView extends GetView {
                   ctr.secondConditions.value = value;
                 }),
           ),
-          SizedBox(width: 5),
+          SizedBox(width: 5.w),
           Text('전체동의'),
         ],
       ),
@@ -259,10 +260,10 @@ class User_SignUpView extends GetView {
         Row(
           children: [
             Container(
-              width: 110,
+              width: 110.w,
               child: Text('이용약관동의'),
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 10.w),
             CustomButton(
               onPressed: () {
                 Get.to(() => User_RegisterPrivacyTermsView(),
@@ -270,7 +271,7 @@ class User_SignUpView extends GetView {
               },
               text: '자세히보기',
               textColor: MyColors.black2,
-              fontSize: 12,
+              fontSize: 12.sp,
               backgroundColor: MyColors.grey1,
               borderColor: MyColors.grey1,
             )
@@ -307,12 +308,12 @@ class User_SignUpView extends GetView {
         Row(
           children: [
             Container(
-              width: 120,
+              width: 120.w,
               child: Text('개인정보취급방침'),
             ),
             CustomButton(
               textColor: MyColors.black2,
-              fontSize: 12,
+              fontSize: 12.sp,
               onPressed: () {
                 Get.to(() => User_RegisterPrivacyTermsView(),
                     arguments: PrivacyOrTerms.privacy);
@@ -349,7 +350,7 @@ class User_SignUpView extends GetView {
 
   Widget _saveButtonBuilder() {
     return CustomButton(
-      width: Get.width,
+      width: 411.w,
       onPressed: () {
         ctr.saveOrEditBtnPressed();
         // Get.back();

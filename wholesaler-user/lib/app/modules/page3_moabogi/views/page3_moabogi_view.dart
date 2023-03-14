@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -44,7 +45,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     HorizontalChipList().getIconTextList(
                         onPressed: (index) => ctr.chipPressed(index)),
                     _dingDongDeliveryBanner(),
@@ -58,10 +59,10 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
   // ####### DingDong delivery banner
   Widget _dingDongDeliveryBanner() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding:  EdgeInsets.all(20.sp),
       child: Container(
-        height: 80,
-        width: Get.width,
+        height: 80.h,
+        width: 411.w,
         decoration: BoxDecoration(
             color: MyColors.grey5,
             borderRadius:
@@ -69,18 +70,18 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
             border: Border.all(color: MyColors.grey6)),
         child: Row(
           children: [
-            SizedBox(width: 20),
+            SizedBox(width: 20.w),
             Image.asset(
               'assets/icons/ic_bell.png',
-              width: 20,
+              width: 20.w,
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 10.w),
             Text(
               '띵동 배송',
               style: MyTextStyles.f16.copyWith(color: MyColors.black2),
             ),
             SizedBox(
-              width: 20,
+              width: 20.w,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +91,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                   'order_now_receive_tomorrow'.tr,
                   style: MyTextStyles.f14,
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 5.h),
                 Text(
                   '12시전 주문시 내일 도착',
                   style: MyTextStyles.f12,
@@ -105,14 +106,14 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
 
   Widget _imageList() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding:  EdgeInsets.symmetric(horizontal: 15.sp),
       child: Obx(
         () => ListView.separated(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: ctr.imageBanners.length,
           separatorBuilder: (BuildContext context, int index) =>
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
               onTap: () {
@@ -126,7 +127,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                   enableMemoryCache: false,
                   enableLoadState: false,
                 ctr.imageBanners[index].banner_img_url,
-                width: Get.width,
+                width: 411.w,
                 // placeholder: (context, url) => CircularProgressIndicator(),
               ),
             );
@@ -155,7 +156,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                   ctr2.getNumberProducts().toString(),
                   style: TextStyle(
                       color: MyColors.black,
-                      fontSize: 11,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 toAnimate: false,

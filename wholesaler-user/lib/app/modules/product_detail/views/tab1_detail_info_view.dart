@@ -3,6 +3,7 @@ import 'package:expandable/expandable.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:wholesaler_partner/app/modules/add_product/part3_material_clothwash/controller/part3_material_clothwash_controller.dart';
@@ -65,7 +66,7 @@ class Tab1DetailInfo extends GetView {
 
           // ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0.sp),
             child: Stack(
               children: [
                 Obx(
@@ -74,7 +75,7 @@ class Tab1DetailInfo extends GetView {
                         productDetailCtr.lazyList.length >= 2
                             ? isMore.value
                                 ? null
-                                : Get.height
+                                : 1000.h
                             : null,
                     child: ListView.builder(
                       itemCount:
@@ -88,7 +89,7 @@ class Tab1DetailInfo extends GetView {
                                       Padding(
                                         padding: EdgeInsets.only(bottom: 2.0),
                                         child: Container(
-                                          height: Get.width,
+                                          height: 548.w,
                                           child: ClipRRect(
                                             borderRadius: !isMore.value &&
                                                     index == 1
@@ -99,7 +100,7 @@ class Tab1DetailInfo extends GetView {
                                                         Radius.circular(8))
                                                 : BorderRadius.all(Radius.zero),
                                             child: ExtendedImage.network(
-                                                  cacheHeight: 1024,
+                                                  cacheHeight: 1365,
                                                   cacheWidth: 1024,
                                                   clearMemoryCacheWhenDispose:true,
                                                   enableMemoryCache: false,
@@ -135,7 +136,7 @@ class Tab1DetailInfo extends GetView {
                         else return Padding(
                                     padding: const EdgeInsets.only(bottom: 2.0),
                                     child: Container(
-                                      height: Get.width,
+                                      height: 548.w,
                                       child: ClipRRect(
                                         borderRadius: !isMore.value &&
                                                 index == 1
@@ -144,7 +145,7 @@ class Tab1DetailInfo extends GetView {
                                                 bottomLeft: Radius.circular(8))
                                             : BorderRadius.all(Radius.zero),
                                         child: ExtendedImage.network(
-                  cacheHeight: 1024,
+                  cacheHeight: 1365,
                   cacheWidth: 1024,
                   clearMemoryCacheWhenDispose:true,
                   enableMemoryCache: false,
@@ -180,13 +181,13 @@ class Tab1DetailInfo extends GetView {
                                       ],
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter)),
-                                  height: 80,
-                                  width: Get.width,
+                                  height: 80.h,
+                                  width: 548.w,
                                 ),
                                 Container(
-                                  height: 60,
+                                  height: 60.h,
                                   child: CustomButton(
-                                      width: Get.width,
+                                      width: 411.w,
                                       onPressed: () {
                                         isMore.value = true;
                                       },
@@ -214,7 +215,7 @@ class Tab1DetailInfo extends GetView {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           // Obx(() => SizedBox(
           //       height: isMore.value ? 0 : 30,
@@ -224,7 +225,7 @@ class Tab1DetailInfo extends GetView {
             color: MyColors.grey3,
           ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           sameIsMore3 && MyVars.isUserProject()
               ? Padding(
@@ -251,10 +252,9 @@ class Tab1DetailInfo extends GetView {
                       );
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
+                      crossAxisSpacing: 10.w,
                       crossAxisCount: 3,
-                      childAspectRatio:
-                      MyVars.isIpad()?11/16:8/16
+                      childAspectRatio:1/2
                       // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
@@ -268,7 +268,7 @@ class Tab1DetailInfo extends GetView {
               : Container(),
           sameIsMore3 && MyVars.isUserProject()
               ? SizedBox(
-                  height: 20,
+                  height: 20.h,
                 )
               : Container(),
           bestIsMore3 && MyVars.isUserProject()
@@ -282,7 +282,7 @@ class Tab1DetailInfo extends GetView {
               : Container(),
           bestIsMore3 && MyVars.isUserProject()
               ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     primary: false,
@@ -295,10 +295,9 @@ class Tab1DetailInfo extends GetView {
                           product: productDetailCtr.bestProducts[index]);
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
+                      crossAxisSpacing: 10.w,
                       crossAxisCount: 3,
-                      childAspectRatio:
-                      MyVars.isIpad()?11/16:8/16
+                      childAspectRatio:9/16
                       // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
@@ -345,7 +344,7 @@ class Tab1DetailInfo extends GetView {
                       builder: (context) {
                         String str=productDetailCtr.product.value.return_exchange_info!;
                         List<String> result = str.split('\n');
-                        return ListView.separated(separatorBuilder: (context, index) => SizedBox(height: 5,),
+                        return ListView.separated(separatorBuilder: (context, index) => SizedBox(height: 5.h,),
                           padding: EdgeInsets.zero,physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
                           itemCount: result.length,
                           itemBuilder: (context, index) {
@@ -367,7 +366,7 @@ class Tab1DetailInfo extends GetView {
   Widget EnableButton(String text, bool isSelected) {
     return Expanded(
       child: Container(
-        height: 35,
+        height: 35.h,
         decoration: BoxDecoration(
             color: isSelected ? MyColors.primary : MyColors.white,
             borderRadius: BorderRadius.circular(5),

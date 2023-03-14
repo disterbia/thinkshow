@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
@@ -222,7 +223,7 @@ class InquityRegisterView extends GetView {
               color: MyColors.grey1,
             ),
             Container(
-              height: Get.height / 17,
+              height: 889.h / 17,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 width: double.infinity,

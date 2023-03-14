@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/business_name/controller/business_name_controller.dart';
 import 'package:wholesaler_partner/app/modules/page3_my_page/controllers/page3_my_page_controller.dart';
@@ -97,7 +98,7 @@ class BusinessInfo extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomButton(
-                      width: Get.width,
+                      width: 411.w,
                       onPressed: ctr.saveCompanyName,
                       text: 'register'.tr,
                     ),

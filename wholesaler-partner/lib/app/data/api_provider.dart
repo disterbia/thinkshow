@@ -693,6 +693,57 @@ class pApiProvider extends GetConnect {
     }
   }
 
+  Future<ProductImageModel2> uploadProductImageCrop(
+      {required List<File> pickedImage}) async {
+    var dio = mDio.Dio();
+
+    dio.options.headers["Authorization"] =
+        "Bearer " + CacheProvider().getToken();
+    String url = mConst.API_BASE_URL +
+        "/v1/store-api/product/detail/image-multi";
+    List<File> images = [];
+    List<String> imageNames = [];
+    for (int i = 0; i < pickedImage.length; i++) {
+      File image = File(pickedImage[i].path);
+      String imageName = image.path.substring(image.path.length - 19);
+      images.add(image);
+      imageNames.add(imageName);
+      log('image: $image');
+      log('imageName: $imageName');
+    }
+    List<mDio.MultipartFile> temp = [];
+    for (int i = 0; i < images.length; i++) {
+      print("11111111");
+      temp.add(await mDio.MultipartFile.fromFile(images[i].path,
+          filename: imageNames[i]));
+      print("22222222");
+    }
+    mDio.FormData formData = mDio.FormData.fromMap({"image[]": temp});
+    print("33333");
+    final response = await dio.post(
+      url,
+      data: formData,
+    );
+    print(
+        ' postUploadBusinessRegisterImage -> response ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      var json = response.data;
+      return ProductImageModel2(
+          message: '업로드 완료',
+          statusCode: response.statusCode!,
+          url: json['url'],
+          path: json['file_path']);
+    }
+    if (response.statusCode == 400) {
+      mSnackbar(message: jsonDecode(response.data!)['description']);
+      return Future.error(response.statusMessage!);
+    } else {
+      mSnackbar(message: response.statusMessage!);
+      return Future.error(response.statusMessage!);
+    }
+  }
+
   Future<StatusModel> uploadStoreThumbnailImage(
       {required Map<String, dynamic> data}) async {
     String url = mConst.API_BASE_URL +

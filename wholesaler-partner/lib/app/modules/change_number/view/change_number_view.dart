@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/change_number/controller/change_number_controller.dart';
 import 'package:wholesaler_user/app/widgets/custom_appbar.dart';
@@ -30,7 +31,7 @@ class ChangeNumberView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: CustomButton(
-              width: Get.width,
+              width: 411.w,
               onPressed: ()  {
                 FocusManager.instance.primaryFocus?.unfocus();
                 ctr.editBtnPressed();},

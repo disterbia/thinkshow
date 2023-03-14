@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_button.dart';
 
@@ -26,17 +27,17 @@ class TwoButtons extends StatelessWidget {
             text: leftBtnText,
             backgroundColor: MyColors.white,
             borderColor: MyColors.primary,
-            fontSize: 14,
+            fontSize: 14.sp,
           ),
         ),
-        SizedBox(width: 10),
+        SizedBox(width: 10.w),
         Expanded(
           child: isLoadingRight ?? false ? LoadingWidget() : CustomButton(
             onPressed: rBtnOnPressed,
             text: rightBtnText,
             backgroundColor: MyColors.primary,
             borderColor: MyColors.primary,
-            fontSize: 14,
+            fontSize: 14.sp,
           ),
         )
       ],

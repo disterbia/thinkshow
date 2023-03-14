@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_user/app/constants/languages.dart';
@@ -46,22 +47,32 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await GetStorage.init();
   await MyVars.initializeVariables();
-
+  // await ScreenUtil.ensureScreenSize();
   NotificationService().init();
   DynamicLink().setup();
   FirebaseService.init();
 
+  print(Get.width);
+  print(Get.height);
 
   runApp(
-    GetMaterialApp(
-      translations: uLanguages(),
-      locale: const Locale('ko', 'KR'),
-      fallbackLocale: const Locale('ko', 'KR'),
-      theme: appThemeDataLight,
-      debugShowCheckedModeBanner: false,
-      title: "Wholesale User App",
-      // home: UserMainView(),
-      home: SplashScreenPageView(),
+    ScreenUtilInit(designSize:Size(411, 889),minTextAdapt:true,
+        builder: (context,child) {
+          return GetMaterialApp(builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+            child: child!,
+          ),
+            translations: uLanguages(),
+            locale: const Locale('ko', 'KR'),
+            fallbackLocale: const Locale('ko', 'KR'),
+            theme: appThemeDataLight,
+            debugShowCheckedModeBanner: false,
+            title: "Wholesale User App",
+            // home: UserMainView(),
+            home: SplashScreenPageView(),
+
+          );
+        }
 
     ),
   );

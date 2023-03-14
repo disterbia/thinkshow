@@ -465,7 +465,7 @@ class ProductItemHorizontal extends StatelessWidget {
       return Column(
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width - 150,
+            width: 411 - 150,
             child: Text(
               inquiry!.question,
               overflow: TextOverflow.ellipsis,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IconTextContainer extends StatelessWidget {
   String title;
@@ -15,8 +16,8 @@ class IconTextContainer extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 40,
-              height: 40,
+              width: 40.w,
+              height: 40.h,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(4),
@@ -26,11 +27,11 @@ class IconTextContainer extends StatelessWidget {
             Icon(Icons.arrow_forward),
           ],
         ),
-        SizedBox(height: 3),
+        SizedBox(height: 3.h),
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 10),
+          style: TextStyle(fontSize: 10.sp),
         ),
       ],
     );

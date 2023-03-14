@@ -24,7 +24,7 @@ class AdImpressionView extends GetView {
           child: Obx(
             () => ctr.isLoading.value
                 ? Container(
-                    height: Get.height -
+                    height: 889 -
                         CustomAppbar(isBackEnable: true, title: '쇼핑에드')
                             .preferredSize
                             .height,

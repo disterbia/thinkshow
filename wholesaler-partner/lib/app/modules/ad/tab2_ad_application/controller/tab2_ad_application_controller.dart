@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/src/calendar/common/event_args.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
@@ -81,8 +82,8 @@ class Tab2AdApplicationController extends GetxController {
       builder: (BuildContext context) => Dialog(
         insetPadding: EdgeInsets.all(0),
         child: Container(
-          width: Get.width * 0.9,
-          height: Get.height * 0.8,
+          width: 411.w * 0.9,
+          height: 889 * 0.8,
           padding: EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -90,7 +91,7 @@ class Tab2AdApplicationController extends GetxController {
               Text('광고정책 및 약관'),
               SizedBox(height: 20),
               Container(
-                height: Get.height * 0.6,
+                height: 889 * 0.6,
                 child: WebViewWidget(
                     url: mConst.API_BASE_URL +
                         '/web/staff/advertisement-policy'),

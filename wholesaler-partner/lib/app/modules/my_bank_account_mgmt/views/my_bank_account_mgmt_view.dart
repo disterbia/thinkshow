@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/appbar_widget.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -51,7 +52,7 @@ class MyBankAccountMgmtView extends GetView<MyBankAccountMgmtController> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CustomButton(
-                          width: Get.width,
+                          width: 411.w,
                           onPressed: ctr.saveAccountInfo,
                           text: 'register'.tr,
                         ),

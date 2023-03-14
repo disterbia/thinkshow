@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/variables.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
@@ -13,7 +14,7 @@ class ProductGridViewBuilder extends StatelessWidget {
   // ProductGridViewBuilderController ctr = Get.put(ProductGridViewBuilderController());
 
   int crossAxisCount;
-  int productHeight;
+  //int productHeight;
   RxList<Product> products;
   void Function(int)? addProductsId;
   VoidCallback? showBottomNavbar; // 상품관리 product mgmt page -> bottom navbar
@@ -22,7 +23,7 @@ class ProductGridViewBuilder extends StatelessWidget {
 
   ProductGridViewBuilder({
     required this.crossAxisCount,
-    required this.productHeight,
+    //required this.productHeight,
     required this.products,
     this.addProductsId,
     this.showBottomNavbar,
@@ -50,11 +51,10 @@ class ProductGridViewBuilder extends StatelessWidget {
             );
           },
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 10,
+            crossAxisSpacing: 10.w,
             crossAxisCount: crossAxisCount,
-            childAspectRatio:
-              MyVars.isIpad()?crossAxisCount==2?12/16:11/16:crossAxisCount==2?
-                9/16:8/16// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+            childAspectRatio:crossAxisCount==2?MyVars.isIpad()?10/16:9/16:MyVars.isIpad()?10/16:1/2
+              // MyVars.isIpad()?crossAxisCount==2?12/16:11/16:crossAxisCount==2?10/16:9/16// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
           ),
         ),
         Obx(() => isShowLoadingCircle.isTrue

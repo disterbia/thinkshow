@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
@@ -60,11 +61,11 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20.sp),
                     child: Column(
                       children: [
                         _headerStore(),
-                        SizedBox(height: 14),
+                        SizedBox(height: 14.h),
                         // Like, Total products, manage my info
                         _threeButtons(),
                       ],
@@ -72,7 +73,7 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    height: 6,
+                    height: 6.h,
                     child: const DecoratedBox(
                       decoration: BoxDecoration(color: MyColors.grey3),
                     ),
@@ -80,7 +81,7 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                   _itemList1(),
                   SizedBox(
                     width: double.infinity,
-                    height: 6,
+                    height: 6.h,
                     child: const DecoratedBox(
                       decoration: BoxDecoration(color: MyColors.grey3),
                     ),
@@ -88,19 +89,19 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                   _itemList2(),
                   SizedBox(
                     width: double.infinity,
-                    height: 6,
+                    height: 6.h,
                     child: const DecoratedBox(
                       decoration: BoxDecoration(color: MyColors.grey3),
                     ),
                   ),
                   _itemList3(),
-                  SizedBox(height: 18),
+                  SizedBox(height: 18.h),
                   _kakaoChannel(),
-                  SizedBox(height: 22),
+                  SizedBox(height: 22.h),
                   _logoutButton(),
-                  SizedBox(height: 22),
+                  SizedBox(height: 22.h),
                   _withdrawButton(),
-                  SizedBox(height: 67),
+                  SizedBox(height: 67.h),
                 ],
               ),
             );
@@ -111,8 +112,8 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
     return Row(
       children: [
         Container(
-          height: 60,
-          width: 60,
+          height: 60.h,
+          width: 60.w,
           child: ctr.store.imgUrl == null ||
                   ctr.store.imgUrl != null && ctr.store.imgUrl == ''
               ? CircleAvatar(
@@ -125,8 +126,8 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
               : CachedNetworkImage(
                   imageUrl: ctr.store.imgUrl!.value,
                   imageBuilder: (context, imageProvider) => Container(
-                    width: 60.0,
-                    height: 60.0,
+                    width: 60.0.w,
+                    height: 60.0.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -137,7 +138,7 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
         ),
-        SizedBox(width: 14),
+        SizedBox(width: 14.w),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -156,7 +157,7 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                 ),
               ],
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 10.w),
             ctr.isOwner ? Text('CEO'.tr) : Text('employee'.tr),
           ],
         ),
@@ -173,15 +174,15 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                   child: TwoTextContainer(
                       topText: 'number_of_likes'.tr,
                       bottomText: ctr.store.totalStoreLiked.toString() + '회')),
-              SizedBox(width: 20),
+              SizedBox(width: 20.w),
               Expanded(
                   child: TwoTextContainer(
                       topText: 'All_products'.tr,
                       bottomText: ctr.store.totalProducts.toString())),
-              SizedBox(width: 20),
+              SizedBox(width: 20.w),
               Expanded(
                 child: SizedBox(
-                  width: 100,
+                  width: 100.w,
                   child: ElevatedButton(
                     onPressed: () {
                       Get.delete<MyInfoMgmtController>();
@@ -189,7 +190,7 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
                     },
                     child: Text(
                       '내 정보 관리',
-                      style: MyTextStyles.f12.copyWith(color: MyColors.black2),
+                      style: MyTextStyles.f12.copyWith(color: MyColors.black2,fontSize: 13.sp),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: MyColors.grey1,

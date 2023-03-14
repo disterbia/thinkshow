@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/colors.dart';
@@ -13,7 +14,7 @@ class ImagesCarouselSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = Get.width;
+    double height = 411.w;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
@@ -21,7 +22,7 @@ class ImagesCarouselSlider extends StatelessWidget {
           () => CarouselSlider(
             carouselController: ctr.indicatorSliderController,
             options: CarouselOptions(
-                height: Get.width,
+                height: 411.w,
                 autoPlay: false,
                 viewportFraction: 1,
                 onPageChanged: (index, reason) {

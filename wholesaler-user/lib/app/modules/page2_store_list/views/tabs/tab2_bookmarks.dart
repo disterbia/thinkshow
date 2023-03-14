@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -27,31 +28,31 @@ class Tab2BookmarksView extends StatelessWidget {
               ? Container(
                   child: Column(children: [
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
-                    Image.asset("assets/images/mark.png", height: 70),
+                    Image.asset("assets/images/mark.png", height: 70.h),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Text(
                       "아직 즐겨찾기를 한 스토어가 없어요",
                       style: TextStyle(color: Colors.grey),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 5.h,
                     ),
                     Text("랭킹에서 즐겨찾기를 해보세요",
                         style: TextStyle(color: Colors.grey)),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     InkWell(
                         onTap: () =>
                             Get.find<UserMainController>().changeTabIndex(1),
                         child: Container(
-                            width: Get.width * 0.6,
+                            width: 411.w * 0.6,
                             color: MyColors.grey3,
-                            height: 50,
+                            height: 50.h,
                             child: Center(
                                 child: Text("스토어 구경하러 가기",
                                     style: TextStyle(color: Colors.grey)))))

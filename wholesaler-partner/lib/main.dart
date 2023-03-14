@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_partner/app/Constant/languages.dart';
@@ -38,25 +39,33 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseService.init();
   runApp(
-    GetMaterialApp(
-        localizationsDelegates: [
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('ko', 'KR'),
-        ],
-        translations: pLanguages(),
-        locale: const Locale('ko', 'KR'),
-        fallbackLocale: const Locale('ko', 'KR'),
-        theme: appThemeDataLight,
-        debugShowCheckedModeBanner: false,
-        title: "Wholesale Partner App",
-        home: SplashScreenPageView(),
-        // getPages: [
-        //   GetPage(name: '/login', page: () => User_LoginPageView()),
-        // ]
+    ScreenUtilInit(designSize:Size(411, 889),minTextAdapt:true,
+        builder: (context,child) {
+          return GetMaterialApp(
+              builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                child: child!,
+              ),
+              localizationsDelegates: [
+                GlobalCupertinoLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: [
+                const Locale('ko', 'KR'),
+              ],
+              translations: pLanguages(),
+              locale: const Locale('ko', 'KR'),
+              fallbackLocale: const Locale('ko', 'KR'),
+              theme: appThemeDataLight,
+              debugShowCheckedModeBanner: false,
+              title: "Wholesale Partner App",
+              home: SplashScreenPageView(),
+              // getPages: [
+              //   GetPage(name: '/login', page: () => User_LoginPageView()),
+              // ]
+          );
+        }
     ),
   );
 }

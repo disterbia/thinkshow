@@ -2,6 +2,7 @@
 
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -51,7 +52,7 @@ class Page4FavoriteProductsView extends GetView {
                 _title(),
                 ProductGridViewBuilder(
                   crossAxisCount: 3,
-                  productHeight: (Get.width*0.7).floor(),
+                  //productHeight: (411.w*0.7).floor(),
                   products: ctr.products,
                   isShowLoadingCircle: false.obs,
                 ),
@@ -96,7 +97,7 @@ class Page4FavoriteProductsView extends GetView {
                       ctr2.getNumberProducts().toString(),
                       style: TextStyle(
                           color: MyColors.black,
-                          fontSize: 11,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.bold),
                     ),
                     toAnimate: false,

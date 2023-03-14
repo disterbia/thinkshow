@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
 import 'package:wholesaler_partner/app/modules/add_product/add_product_view.dart';
@@ -38,7 +39,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
   @override
   Widget build(BuildContext context) {
     init();
-    columnWidth = context.width / 3;
+    columnWidth = 411 / 3;
     return Obx(
       () =>ctr.isLoading.value ? LoadingWidget() :
       // ctr.isShowSplashScreen.isTrue
@@ -144,8 +145,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
   _topBannerImage() {
     return Obx(
       () => Container(
-        width: Get.width,
-        height: Get.width,
+        width: 411.w,
+        height: 411.w,
         decoration: BoxDecoration(color: MyColors.grey1),
         child: ((ctr.mainStoreInfo.value.mainTopImageUrl?.value.isNotEmpty ??
                 false || ctr.isImagePicked.value)&&ctr.mainStoreInfo.value.mainTopImageUrl != null)
@@ -160,8 +161,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
       Obx(
         () => CachedNetworkImage(
           imageUrl: ctr.mainStoreInfo.value.mainTopImageUrl!.value,
-          height: Get.width ,
-          width: Get.width,
+          height: 411.w ,
+          width: 411.w,
           fit: BoxFit.fitWidth,
           // placeholder: (context, url) => CircularProgressIndicator(),
           errorWidget: (context, url, error) => Icon(Icons.error),
@@ -272,7 +273,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Container(
-            height:MyVars.isIpad()?450: 240,
+            height:240.h,
+            //MyVars.isIpad()?450: 240,
             child: Obx(
               () => ctr.bestProducts.isNotEmpty
                   ? ListView.builder(
@@ -281,7 +283,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                       itemCount: ctr.bestProducts.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                        width: (context.width / 3) - 10,
+                        width: (411 / 3 - 10).w,
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: MyVars.isSmallPhone() ? 3 : 3),
                             child: ProductItemVertical(
@@ -330,7 +332,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
             ],
           ),
         ),
-        SizedBox(height: 13),
+        SizedBox(height: 13.h),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
@@ -353,10 +355,10 @@ class Page1HomeView extends GetView<PartnerHomeController> {
             ],
           ),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 20.h),
         SizedBox(
           width: double.infinity,
-          height: 10,
+          height: 10.h,
           child: DecoratedBox(
             decoration: BoxDecoration(color: MyColors.grey3),
           ),
@@ -399,10 +401,10 @@ class Page1HomeView extends GetView<PartnerHomeController> {
             onSubmitted: (searchText) =>
                 ctr.callGetProductsAPI(searchContent: searchText),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 10.h),
           ProductGridViewBuilder(
             crossAxisCount: 3,
-            productHeight: (Get.width*0.7).floor(),
+            //productHeight: (411.w*0.7).floor(),
             products: ctr.products,
             isShowLoadingCircle: ctr.allowCallAPI,
           ),
@@ -429,7 +431,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: SizedBox(
-            height: 480,
+            height: 480.h,
             child: Obx(
               () =>
                   GridView.builder(
@@ -445,7 +447,8 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
-                      childAspectRatio:MyVars.isIpad()?11/16:8/16, // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
+                      childAspectRatio:1/2
+                      //MyVars.isIpad()?11/16:8/16, // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),
               //     ListView.separated(

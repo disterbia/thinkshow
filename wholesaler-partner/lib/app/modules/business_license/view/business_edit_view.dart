@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/business_license/controller/business_license_controller.dart';
 import 'package:wholesaler_partner/app/modules/business_registration_submit/controllers/business_registration_submit_controller.dart';
@@ -46,7 +47,7 @@ class BusinessEditView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomButton(
-              width: Get.width,
+              width: 411.w,
               onPressed: ()=>
                 ctr.validateLicense(),
 

@@ -43,7 +43,7 @@ class SalesMgmtView extends GetView {
                     ),
                   ),
                   Container(
-                    height: context.height - 180,
+                    height: 411 - 180,
                     decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey, width: 0.5))),
                     child: TabBarView(
                       controller: ctr.productTabController,

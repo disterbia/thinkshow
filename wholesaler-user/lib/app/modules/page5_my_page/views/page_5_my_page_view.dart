@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -407,7 +408,7 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
   }
   Widget _recentlyProduct() {
     return Container(
-      height: MyVars.isIpad()?400:170,
+      height: (411/2.5).w,
       padding: EdgeInsets.symmetric(horizontal: 15),
       // alignment : Alignment.center,
       child: ListView.separated(
@@ -415,10 +416,10 @@ class Page5MyPageView extends GetView<Page5MyPageController> {
         shrinkWrap: true,
         itemCount: ctr2.products.length,
         separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(width: 14),
+            SizedBox(width: 14.w),
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            width: MyVars.isIpad()?250:110,
+            width:(411/3).w,
             child: Center(
               child: ProductItemVertical(
                 product: ctr2.products[index],

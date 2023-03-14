@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
@@ -34,13 +35,13 @@ class AdOrderView extends GetView {
                       () => ctr.adOrderModel.value.imageUrl != null
                           ? CachedNetworkImage(
                               imageUrl: ctr.adOrderModel.value.imageUrl!,
-                              width: Get.width,
+                              width: 411.w,
                               // placeholder: (context, url) => CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             )
                           : SizedBox.shrink(),
                     ),
-                    SizedBox(height: 18),
+                    SizedBox(height: 18.h),
                     Row(
                       children: [
                         Obx(
@@ -52,7 +53,7 @@ class AdOrderView extends GetView {
                         ),
                       ],
                     ),
-                    SizedBox(height: 21),
+                    SizedBox(height: 21.h),
                     // Two Buttons: left: Apply history. Right: Ad application
                     Row(
                       children: [
@@ -64,7 +65,7 @@ class AdOrderView extends GetView {
                             child: Text('Application_history'.tr),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        SizedBox(width: 10.w),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
@@ -75,13 +76,13 @@ class AdOrderView extends GetView {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                   ],
                 ),
               ),
               // Divider
-              Container(height: 6, width: double.infinity, color: MyColors.grey3),
-              SizedBox(height: 10),
+              Container(height: 6.h, width: double.infinity, color: MyColors.grey3),
+              SizedBox(height: 10.h),
               // Bulletin : 공지사항
               Container(
                 padding: EdgeInsets.all(15),
@@ -90,13 +91,13 @@ class AdOrderView extends GetView {
                 //   borderRadius: BorderRadius.circular(8),
                 // ),
                 child: SizedBox(
-                  height: 400,
+                  height: 400.h,
                   child: WebViewWidget(
                     url: mConst.API_BASE_URL + '/web/staff/advertisement-guide',
                   ),
                 ),
               ),
-              SizedBox(height: 80),
+              SizedBox(height: 80.h),
             ],
           ),
         ),

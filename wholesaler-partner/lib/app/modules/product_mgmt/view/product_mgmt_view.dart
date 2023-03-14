@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab1_ad_status/controller/tab1_ad_status_controller.dart';
 import 'package:wholesaler_partner/app/modules/main/view/partner_main_view.dart';
@@ -75,18 +76,18 @@ class ProductMgmtView extends GetView {
                           //     onPressed: (selectedItem) => ctr.sortDropDownChanged(selectedItem),
                           //   ),
                           // ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           ctr.products.length == 0
                               ? Container()
                               : _selectAllCheckBox(),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           SearchField(
                             controller: ctr.searchController,
                             hint: '상품명 검색',
                             onSubmitted: (searchText) =>
                                 ctr.searchBtnPressed(searchText),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Row(
                             children: [
                               Spacer(),
@@ -96,15 +97,15 @@ class ProductMgmtView extends GetView {
                                 },
                                 icon: Image.asset(
                                   'assets/icons/ic_filter.png',
-                                  width: 24,
-                                  height: 24,
+                                  width: 24.w,
+                                  height: 24.h,
                                 ),
                               )
                             ],
                           ),
                           ProductGridViewBuilder(
                             crossAxisCount: 3,
-                            productHeight: (Get.width*0.7).floor(),
+                           // productHeight: (411.w*0.7).floor(),
                             products: ctr.products,
                             addProductsId: (int id) {
                               var temp = ctr.productsId;
@@ -128,7 +129,7 @@ class ProductMgmtView extends GetView {
                             //ctr.allowCallAPI,
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 30.h,
                           )
                         ],
                       ),

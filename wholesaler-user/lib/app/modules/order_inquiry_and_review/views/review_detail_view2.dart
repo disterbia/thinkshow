@@ -4,6 +4,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -198,7 +199,7 @@ class ReviewDetailView2 extends GetView {
         CarouselSlider(
           carouselController: ctr.indicatorSliderController,
           options: CarouselOptions(
-              height: Get.width,
+              height: 411.w,
               autoPlay: false,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
@@ -217,8 +218,8 @@ class ReviewDetailView2 extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,img,
                     fit: BoxFit.fill,
-                    width: Get.width,
-                    height: Get.width,
+                    width: 411.w,
+                    height: 411.w,
                   ),
                 ),
               )

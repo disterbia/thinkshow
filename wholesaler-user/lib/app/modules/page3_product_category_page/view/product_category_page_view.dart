@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -58,7 +59,7 @@ class ProductCategoryPageView extends GetView<ProductCategoryPageController> {
                   ctr2.getNumberProducts().toString(),
                   style: TextStyle(
                       color: MyColors.black,
-                      fontSize: 11,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 toAnimate: false,
@@ -99,7 +100,7 @@ class ProductCategoryPageView extends GetView<ProductCategoryPageController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: HorizontalChipList().getAllSubcat(
@@ -110,14 +111,14 @@ class ProductCategoryPageView extends GetView<ProductCategoryPageController> {
                           ctr.subCatChipPressed(selectedSubcat),
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   dropdownBuilder(),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: ProductGridViewBuilder(
                       crossAxisCount: 3,
-                      productHeight: (Get.width*0.7).floor(),
+                      //productHeight: (411.w*0.7).floor(),
                       products: ctr.products,
                       isShowLoadingCircle: ctr.allowCallAPI,
                     ),

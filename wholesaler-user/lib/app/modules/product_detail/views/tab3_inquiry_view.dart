@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/Constants/functions.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -73,7 +74,7 @@ class Tab3InquiryView extends GetView {
     // );
 
     return Container(
-      height: Get.height / 17,
+      height: 889.h / 17,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         width: double.infinity,

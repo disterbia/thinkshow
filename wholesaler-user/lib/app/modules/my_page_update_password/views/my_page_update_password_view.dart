@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/modules/my_page_update_password/controllers/my_page_update_password_controller.dart';
 import 'package:wholesaler_user/app/widgets/custom_appbar.dart';
@@ -24,14 +25,14 @@ class MyPageUpdatePasswordView extends GetView<MyPageUpdatePasswordController> {
                 fieldController: ctr.originalPasswordCtr,
                 isObscureText: true,
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 15.h),
               CustomField(
                 fieldLabel: 'enter_password'.tr,
                 fieldText: 'enter_new_password'.tr,
                 fieldController: ctr.newPasswordCtr,
                 isObscureText: true,
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 15.h),
               CustomField(
                 fieldLabel: 'verify_new_password'.tr,
                 fieldText: 'verify_new_password'.tr,

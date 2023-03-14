@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -32,7 +33,7 @@ class ImageSliderView extends GetView<ImageSliderController> {
                   }
                 },
                 child: Container(
-                  width: Get.width,
+                  width: 411.w,
                   child: ExtendedImage.network(
                   cacheHeight: 1024,
                   cacheWidth: 1024,
@@ -41,8 +42,8 @@ class ImageSliderView extends GetView<ImageSliderController> {
                   enableLoadState: false,
                  image.banner_img_url,
                     fit: BoxFit.fill,
-                    // //cacheHeight:Get.width.ceil(),
-                    // //cacheWidth:Get.width.ceil() ,
+                    // //cacheHeight:411.w.ceil(),
+                    // //cacheWidth:411.w.ceil() ,
                     // placeholder: (context, url) => CircularProgressIndicator(),
 
                   ),
@@ -57,7 +58,7 @@ class ImageSliderView extends GetView<ImageSliderController> {
             autoPlay: true,autoPlayInterval: Duration(seconds: 3),
             enlargeCenterPage: true,
             viewportFraction: 1,
-            height: Get.width*0.56
+            height: 411.w*0.56
           ),
         ),
       ),

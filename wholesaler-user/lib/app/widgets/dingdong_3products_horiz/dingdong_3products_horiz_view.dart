@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/page1_home/controller/partner_home_controller.dart';
 import 'package:wholesaler_user/app/constants/variables.dart';
@@ -15,11 +16,11 @@ class Dingdong3ProductsHorizView extends GetView<Dingdong3ProductsHorizControlle
 
   @override
   Widget build(BuildContext context) {
-    double leftPadding = 10;
     return Padding(
-      padding: EdgeInsets.only(left: leftPadding),
+      padding: EdgeInsets.only(left: 10),
       child: Container(
-        height: MyVars.isIpad()?450:240,
+        height:MyVars.isIpad()?450.h:240.h,
+        //MyVars.isIpad()?450:240,
         child: Obx(
           () => ctr.dingDongProducts.isNotEmpty
               ? ListView.builder(
@@ -29,7 +30,7 @@ class Dingdong3ProductsHorizView extends GetView<Dingdong3ProductsHorizControlle
                   itemCount: ctr.dingDongProducts.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      width: (context.width / 3) - leftPadding,
+                      width: (411 / 3 - 10).w,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: MyVars.isSmallPhone() ? 3 : 3),
                         child: ProductItemVertical(

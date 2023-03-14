@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -109,7 +110,7 @@ class ProductDetailView extends GetView {
                         storeInfo(),
                         Divider(),
                         _titleRatingPrice(context),
-                        SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         Divider(thickness: 3,color: MyColors.grey3,),
                         TabBar(
                           controller: ctr.tabController,
@@ -293,7 +294,7 @@ class ProductDetailView extends GetView {
   }
 
   Widget _productImages() {
-    // double height = Get.width * 4 / 3;
+    // double height = 411.w * 4 / 3;
     return Container(
       child: Obx(
         () => ctr.product.value.images!.isNotEmpty
@@ -331,7 +332,7 @@ class ProductDetailView extends GetView {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Image.asset(
-                        "assets/icons/ic_share.png",height: 25,
+                        "assets/icons/ic_share.png",height: 25.h,
                       ),
                     ))
                 : SizedBox.shrink()
@@ -345,7 +346,7 @@ class ProductDetailView extends GetView {
                 child: ctr.product.value.totalRating == null
                     ? Container()
                     : RatingBar.builder(
-                        itemSize: 17,
+                        itemSize: 17.sp,
                         ignoreGestures: true,
                         initialRating: ctr.product.value.totalRating!.value,
                         minRating: 1,
@@ -362,7 +363,7 @@ class ProductDetailView extends GetView {
                       ),
               ),
               SizedBox(
-                width: 5,
+                width: 5.w,
               ),
               ctr.product.value.totalRating == null
                   ? Container()
@@ -395,7 +396,7 @@ class ProductDetailView extends GetView {
             children: [
               Text(
                 "띵 할인가 ",
-                style: TextStyle(fontSize: 15, color: Colors.redAccent),
+                style: TextStyle(fontSize: 15.sp, color: Colors.redAccent),
               ),
               Text(
                 Utils.numberFormat(
@@ -405,7 +406,7 @@ class ProductDetailView extends GetView {
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontFamily: 'SpoqaHanSansNeo-Medium',
-                    fontSize: 15.0,
+                    fontSize: 15.0.sp,
                     decoration: TextDecoration.lineThrough),
               ),
             ],
@@ -419,14 +420,14 @@ class ProductDetailView extends GetView {
                 (ctr.product.value.priceDiscountPercent ?? 0).toString()+"% ",
                 style: MyTextStyles.f18_bold.copyWith(
                     color: MyColors.primary2,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 Utils.numberFormat(
                     number: ctr.product.value.price ?? 0, suffix: '원'),
                 style: MyTextStyles.f18_bold
-                    .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+                    .copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -452,7 +453,7 @@ class ProductDetailView extends GetView {
                   : Container(),
               ctr.product.value.hasBellIconAndBorder!.value
                   ? SizedBox(
-                      width: 10,
+                      width: 10.w,
                     )
                   : Container(),
               Text("무료배송",
@@ -512,7 +513,7 @@ class ProductDetailView extends GetView {
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Container(
-                      height: 50,
+                      height: 50.h,
                       child: CustomButton(
                         textColor: MyColors.black,
                         text: MyVars.isUserProject() ? '구매하기' : '수정하기',
@@ -559,7 +560,7 @@ class ProductDetailView extends GetView {
                                 ctr2.getNumberProducts().toString(),
                                 style: TextStyle(
                                     color: MyColors.black,
-                                    fontSize: 11,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                               toAnimate: false,

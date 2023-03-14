@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/enum.dart';
@@ -60,7 +61,7 @@ class User_RegisterPrivacyTermsView extends GetView {
           ? LoadingWidget()
           : SingleChildScrollView(
               child: Container(
-                height: Get.height,
+                height: 889.h,
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
                 ),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/functions.dart';
@@ -68,7 +69,7 @@ class StoreDetailView extends GetView {
                       _starStore(),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   // 띵동배송
                   Obx(() => ctr.privilateProductsNotEmpty()
                       ? Column(
@@ -78,7 +79,7 @@ class StoreDetailView extends GetView {
                               Get.to(() => Tab4DingDongView());
                             }),
                             Dingdong3ProductsHorizView(),
-                            SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                           ],
                         )
                       : SizedBox()),
@@ -86,9 +87,9 @@ class StoreDetailView extends GetView {
                   // 우리매장 베스트
                   titleBuilder('Best_in_store'.tr, 'manage'.tr, () {}),
                   _top10Products(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Divider(thickness: 10, color: MyColors.grey3),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   // Product Category Chips
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
@@ -101,21 +102,21 @@ class StoreDetailView extends GetView {
                               ctr.updateProducts(isScrolling: false)),
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   dropdownBuilder(),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   // Products list
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: ProductGridViewBuilder(
                       crossAxisCount: 2,
-                      productHeight: (Get.width*0.8).floor(),
+                      //productHeight: (411.w*0.8).floor(),
                       products: ctr.products,
                       isShowLoadingCircle: ctr.allowCallAPI,
                     ),
                   ),
 
-                  SizedBox(height: 80),
+                  SizedBox(height: 80.h),
                 ],
               ),
             ),
@@ -132,12 +133,12 @@ class StoreDetailView extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,
              ctr.mainStoreModel.value.mainTopImageUrl!.value,
-              width: Get.width,
-              height: Get.width,
+              width: 411.w,
+              height: 411.w,
               fit: BoxFit.fill,
             )
           : Container(
-              height: Get.width,
+              height: 411.w,
               child: Center(child: Text('등록된 사진이 없습니다.')),
             ),
     );
@@ -236,16 +237,16 @@ class StoreDetailView extends GetView {
           child: Obx(
             () => ctr.top10Products.isNotEmpty
                 ? SizedBox(
-                    height: 240,
+                    height: 240.h,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: ctr.top10Products.length,
                       separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(width: 14),
+                          SizedBox(width: 14.w),
                       itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
-                          width: Get.width/3-30,
+                          width: (411.w/3-30).w,
                           child: ProductItemVertical(
                             product: ctr.top10Products.elementAt(index),
                             productNumber: ProductNumber(
@@ -304,7 +305,7 @@ class StoreDetailView extends GetView {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      leadingWidth: 100,
+      leadingWidth: 100.w,
       backgroundColor: MyColors.white,
       title: Obx(
         () => Text(
@@ -366,7 +367,7 @@ class StoreDetailView extends GetView {
       if(index==ctr.top10Products.length-1)  (ctr.top10Products[index].imgUrl);
       items.add(
         Container(
-          width: 130,
+          width: 130.w,
           height: height,
           padding: const EdgeInsets.only(right: 10),
           child: ProductItemVertical(

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
 import 'package:wholesaler_partner/app/models/bulletin_model.dart';
@@ -22,11 +23,11 @@ class AdvertisementItemVertical extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 145,
-            width: 116,
+            height: 145.h,
+            width: 116.w,
             child: CachedNetworkImage(
               imageUrl: advertisement.imgURL,
-              width: Get.width,
+              width: 411.w,
               // placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
@@ -36,7 +37,7 @@ class AdvertisementItemVertical extends StatelessWidget {
             advertisement.title,
             style: MyTextStyles.f14.copyWith(color: MyColors.black1),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Text(
             Utils.numberFormat(number: advertisement.cost, suffix: '원'),
             style: MyTextStyles.f16.copyWith(color: MyColors.black2),

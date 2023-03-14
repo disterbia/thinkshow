@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
 import 'package:wholesaler_user/app/widgets/custom_appbar.dart';
@@ -49,7 +50,7 @@ class QuestionAndAnswerView extends GetView<QuestionAndAnswerController> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: CustomButton(
-        width: Get.width,
+        width: 411.w,
         onPressed: () {},
         text: '등록',
       ),

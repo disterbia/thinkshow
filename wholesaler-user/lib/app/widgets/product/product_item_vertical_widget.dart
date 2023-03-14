@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
@@ -77,7 +78,7 @@ class ProductItemVertical extends StatelessWidget {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     // Store Name
                     StoreNameBuilder(),
                     Row(
@@ -89,7 +90,7 @@ class ProductItemVertical extends StatelessWidget {
                         //Top10TextBuilder(),
                       ],
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: 5.h),
                     // Price
                     PriceBuilder(),
                   ],
@@ -120,8 +121,8 @@ class ProductItemVertical extends StatelessWidget {
         product.hasBellIconAndBorder != null
             ? Obx(
                 () => Container(
-                  height: crossAxisCount==2?Get.width/2:Get.width/3,
-                  width: double.infinity,
+                  height: (crossAxisCount==2?411/2*1.05:411/3*1.05).w,
+                  width: (crossAxisCount==2?411/2:411/3).w,
                   // width: product.imgWidth ?? mConst.fixedImgWidth,
                   decoration: product.hasBellIconAndBorder!.isTrue
                       ? GoldenBorderDecorationBuilder()
@@ -136,8 +137,8 @@ class ProductItemVertical extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,gaplessPlayback: true,
                         product.imgUrl,
-                        //cacheWidth:(Get.width).ceil() ,
-                        //cacheHeight: (product.imgHeight??Get.width/3).ceil(),
+                        //cacheWidth:(411.w).ceil() ,
+                        //cacheHeight: (product.imgHeight??411.w/3).ceil(),
                         // placeholder: (context, url) => null,
                       ),
                       fit: BoxFit.fill,
@@ -146,8 +147,8 @@ class ProductItemVertical extends StatelessWidget {
                 ),
               )
             : Container(
-                height: crossAxisCount==2?Get.width/2:Get.width/3,
-                width: double.infinity,
+          height: (crossAxisCount==2?411/2*1.05:411/3*1.05).w,
+          width: (crossAxisCount==2?411/2:411/3).w,
                 // width: product.imgWidth ?? mConst.fixedImgWidth,
                 decoration: null,
                 child: ClipRRect(
@@ -160,8 +161,8 @@ class ProductItemVertical extends StatelessWidget {
                   enableMemoryCache: false,
                   enableLoadState: false,
                        product.imgUrl,
-                      //cacheWidth:Get.width.ceil() ,
-                      //cacheHeight: (product.imgHeight??Get.width/3).ceil(),
+                      //cacheWidth:411.w.ceil() ,
+                      //cacheHeight: (product.imgHeight??411.w/3).ceil(),
                       // placeholder: (context, url) => null,
                     ),
                     fit: BoxFit.fill,
@@ -256,7 +257,7 @@ class ProductItemVertical extends StatelessWidget {
       return Obx(() => product.isTop10 == true
           ? Text(
               'TOP10',
-              style: TextStyle(color: Colors.red, fontSize: 12),
+              style: TextStyle(color: Colors.red, fontSize: 12.sp),
             )
           : SizedBox.shrink());
     }
@@ -268,7 +269,7 @@ class ProductItemVertical extends StatelessWidget {
       return Text(
         product.store.name!,
         maxLines: 1,
-        style: MyTextStyles.f14.copyWith(color:Colors.black,fontSize: crossAxisCount==2?16:14),
+        style: MyTextStyles.f14.copyWith(color:Colors.black,fontSize: crossAxisCount==2?16.sp:14.sp),
         overflow: TextOverflow.ellipsis,
       );
     }
@@ -281,7 +282,7 @@ class ProductItemVertical extends StatelessWidget {
         product.title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: MyTextStyles.f12.copyWith(color: MyColors.black1,fontSize: crossAxisCount==2?14:12),
+        style: MyTextStyles.f12.copyWith(color: MyColors.black1,fontSize: crossAxisCount==2?14.sp:12.sp),
       ),
     );
   }
@@ -297,7 +298,7 @@ class ProductItemVertical extends StatelessWidget {
               Flexible(
                   child: Text(maxLines: 1,
                 "띵 할인가 ",
-                style: TextStyle(fontSize: crossAxisCount==2?14:12, color: Colors.redAccent,overflow: TextOverflow.ellipsis,),
+                style: TextStyle(fontSize: crossAxisCount==2?14.sp:12.sp, color: Colors.redAccent,overflow: TextOverflow.ellipsis,),
               )),
               Flexible(
                 child: Text(maxLines: 1,
@@ -308,7 +309,7 @@ class ProductItemVertical extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontFamily: 'SpoqaHanSansNeo-Medium',
-                      fontSize: crossAxisCount==2?14:12,
+                      fontSize: crossAxisCount==2?14.sp:12.sp,
                       decoration: TextDecoration.lineThrough),
                 ),
               ),
@@ -323,7 +324,7 @@ class ProductItemVertical extends StatelessWidget {
                   //     number: product.priceDiscountPercent ?? 0, suffix: '% ').toString(),
                   style: MyTextStyles.f18_bold.copyWith(
                       color: MyColors.primary2,
-                      fontSize: crossAxisCount==2?16:14,
+                      fontSize: crossAxisCount==2?16.sp:14.sp,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -336,7 +337,7 @@ class ProductItemVertical extends StatelessWidget {
                     number: product.price ?? 0,
                   ),
                   style: MyTextStyles.f18_bold
-                      .copyWith(fontSize: crossAxisCount==2?16:14, fontWeight: FontWeight.bold),
+                      .copyWith(fontSize: crossAxisCount==2?16.sp:14.sp, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

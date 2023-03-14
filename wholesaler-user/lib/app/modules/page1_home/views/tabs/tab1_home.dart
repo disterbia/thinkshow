@@ -6,6 +6,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -149,7 +150,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                 : Container(),
                         // Divider(thickness: 5, color: MyColors.grey3),
                         ctr.isLoading.value
-                            ? Container(height: 200, child: LoadingWidget())
+                            ? Container(height: 200.h, child: LoadingWidget())
                             : Container(
                                 child: Column(
                                   children: [
@@ -158,7 +159,6 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: (Get.width*0.8).floor(),
                                           products: ctr.products1,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -203,7 +203,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: (Get.width*0.8).floor(),
+                                         // productHeight: (411.w*0.8).floor(),
                                           products: ctr.products2,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -247,7 +247,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: (Get.width*0.8).floor(),
+                                         // productHeight: (411.w*0.8).floor(),
                                           products: ctr.products3,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -261,8 +261,9 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                                   Get.find<UserMainController>()
                                                       .changeTabIndex(2),
                                               child: Container(
-                                                height: MyVars.isIpad()?200:120,
-                                                width: Get.width,
+                                                height:MyVars.isIpad()?200.h:120.h,
+
+                                                width: 411.w,
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -285,7 +286,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: (Get.width*0.8).floor(),
+                                          //productHeight: (411.w*0.8).floor(),
                                           products: ctr.products4,
                                           isShowLoadingCircle: false.obs
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -329,7 +330,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                           horizontal: 15),
                                       child: ProductGridViewBuilder(
                                           crossAxisCount: 2,
-                                          productHeight: (Get.width*0.8).floor(),
+                                         // productHeight: (411.w*0.8).floor(),
                                           products: ctr.products5,
                                           isShowLoadingCircle: ctr.allowCallAPI
                                           // isShowLoadingCircle: ctr.allowCallAPI,
@@ -346,8 +347,8 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                   bottom: 20,
                   right: 20,
                   child: SizedBox(
-                    width: 45,
-                    height: 45,
+                    width: 45.w,
+                    height: 45.h,
                     child: FloatingActionButton(
                       backgroundColor: Colors.white,
                       child: Icon(Icons.arrow_upward_rounded),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/top_10_products/controllers/top_10_products_controller.dart';
 import 'package:wholesaler_partner/app/modules/top_10_products/views/top_10_item_widget.dart';
@@ -18,7 +19,7 @@ class Top10ProductsView extends GetView<Top10ProductsController> {
       bottomNavigationBar: BottomAppBar(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          height: 50.0,
+          height: 50.0.h,
           width: double.maxFinite,
           child: ElevatedButton(
             onPressed: ctr.addProductManual,
@@ -35,7 +36,7 @@ class Top10ProductsView extends GetView<Top10ProductsController> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             // 추천상품 자동등록 Button
             TwoButtons(
               leftBtnText: '베스트 상품 자동등록',
@@ -43,7 +44,7 @@ class Top10ProductsView extends GetView<Top10ProductsController> {
               lBtnOnPressed: ctr.getBestProductsRecommended,
               rBtnOnPressed: ctr.productManual,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -51,17 +52,17 @@ class Top10ProductsView extends GetView<Top10ProductsController> {
                   'top'.tr,
                   style: MyTextStyles.f14.copyWith(color: MyColors.black2),
                 ),
-                SizedBox(width: 22),
+                SizedBox(width: 22.w),
                 Text(
                   'delete'.tr,
                   style: MyTextStyles.f14.copyWith(color: MyColors.black2),
                 ),
-                SizedBox(width: 22),
+                SizedBox(width: 22.w),
                 Text(
                   'move'.tr,
                   style: MyTextStyles.f14.copyWith(color: MyColors.black2),
                 ),
-                SizedBox(width: 12),
+                SizedBox(width: 12.w),
               ],
             ),
             Expanded(

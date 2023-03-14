@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -236,7 +237,7 @@ class Cart2PaymentView extends GetView {
 
   Widget _phoneNumberBody() {
     return SizedBox(
-      width: Get.width - 20,
+      width: 411.w - 20,
       child: Column(
         children: [
           Row(
@@ -324,7 +325,7 @@ class Cart2PaymentView extends GetView {
 
   Widget _paymentButton() {
     return CustomButton(
-      width: Get.width,
+      width: 411.w,
       onPressed: () async {
         ctr.paymentBtnPressed();
       },

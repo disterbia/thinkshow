@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -43,7 +44,7 @@ class ExhibitionProductsView extends GetView {
                   enableMemoryCache: false,
                   enableLoadState: false,
                            ctr.bannerPicture[index],
-                            width: Get.width,
+                            width: 411.w,
                             fit: BoxFit.fill,
 
                           );
@@ -68,7 +69,7 @@ class ExhibitionProductsView extends GetView {
 
               ctr.products.isEmpty?Column(
                 children: [
-                  ctr.bannerPicture.isEmpty?Container(height: Get.height/2-120,):Container(),
+                  ctr.bannerPicture.isEmpty?Container(height: 889.h/2-120,):Container(),
                   Text(
                       "상품 없음",
                       style: MyTextStyles.f16_bold,
@@ -78,12 +79,12 @@ class ExhibitionProductsView extends GetView {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ProductGridViewBuilder(
                   crossAxisCount: 3,
-                  productHeight: (Get.width*0.7).floor(),
+                  //productHeight: (411.w*0.7).floor(),
                   products: ctr.products,
                   isShowLoadingCircle: false.obs,
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 50.h),
             ],
           ),
         ),
@@ -111,7 +112,7 @@ class ExhibitionProductsView extends GetView {
                       ctr2.getNumberProducts().toString(),
                       style: TextStyle(
                           color: MyColors.black,
-                          fontSize: 11,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.bold),
                     ),
                     toAnimate: false,

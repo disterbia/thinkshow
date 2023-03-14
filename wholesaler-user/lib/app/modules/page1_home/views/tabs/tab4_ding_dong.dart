@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/models/product_model.dart';
@@ -59,7 +60,7 @@ class Tab4DingDongView extends GetView<Tab4DingDongController> {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: ProductGridViewBuilder(
                           crossAxisCount: 3,
-                          productHeight: (Get.width*0.7).floor(),
+                          //productHeight: (411.w*0.7).floor(),
                           products: ctr.products,
                           // products: <Product>[].obs,
                           isShowLoadingCircle: ctr.allowCallAPI,
@@ -72,8 +73,8 @@ class Tab4DingDongView extends GetView<Tab4DingDongController> {
                   bottom: 20,
                   right: 20,
                   child: SizedBox(
-                    width: 45,
-                    height: 45,
+                    width: 45.w,
+                    height: 45.h,
                     child: FloatingActionButton(
                       backgroundColor: Colors.white,
                       child: Icon(Icons.arrow_upward_rounded),

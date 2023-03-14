@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/ad/controllers/ad_controller.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab1_ad_status/view/tab1_ad_status_view.dart';
@@ -25,7 +26,7 @@ class AdView extends StatelessWidget {
         initialIndex: ctr.currentTab.value,
         child: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Container(
               child: TabBar(
                 controller: ctr.tabController,
@@ -39,7 +40,7 @@ class AdView extends StatelessWidget {
               ),
             ),
             Container(
-              height: context.height - 190,
+              height: (Get.height-200).h,
               decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey, width: 0.5)),
               ),

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/models/product_number_model.dart';
@@ -33,7 +34,7 @@ class Tab2BestView extends GetView<Tab2BestController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: HorizontalChipList2().getAllMainCat(
@@ -43,18 +44,18 @@ class Tab2BestView extends GetView<Tab2BestController> {
                         onTapped: () {
                           ctr.updateProducts();
                         })),
-                SizedBox(height: 5),
+                SizedBox(height: 5.5),
                 _button(),
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 ctr.isLoading.value
                     ? LoadingWidget()
                     : Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: ProductGridViewBuilder(
                               crossAxisCount: 2,
-                              productHeight:(Get.width*0.8).floor(),
+                              //productHeight:(411.w*0.8).floor(),
                               products: ctr.products,
                               isShowLoadingCircle: ctr.allowCallAPI,
                             ),
@@ -68,8 +69,8 @@ class Tab2BestView extends GetView<Tab2BestController> {
             bottom: 20,
             right: 20,
             child: SizedBox(
-              width: 45,
-              height: 45,
+              width: 45.w,
+              height: 45.h,
               child: FloatingActionButton(
                 backgroundColor: Colors.white,
                 child: Icon(Icons.arrow_upward_rounded),

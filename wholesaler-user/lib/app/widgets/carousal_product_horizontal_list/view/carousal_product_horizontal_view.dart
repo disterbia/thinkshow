@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/Constants/variables.dart';
@@ -121,7 +122,8 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
             carouselController: carouselController,
             options: CarouselOptions(
                 enableInfiniteScroll: false,padEnds: false,
-                height:MyVars.isIpad()?Get.height/3:250,
+                height:MyVars.isIpad()?350.h:250.h,
+                //MyVars.isIpad()?889.h.h/3:250.h,
                 autoPlay: false,
                 viewportFraction: isfullSize.value?1:0.95,
                 onPageChanged: (index, reason) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/add_product/controller/add_product_controller.dart';
 import 'package:wholesaler_partner/app/modules/add_product/part1_category_image_keyword/view/part1_category_image_keyword_view.dart';
@@ -88,7 +89,7 @@ Widget bottomSheet() {
   return Container(
     color: MyColors.white,
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-    width: Get.width,
+    width: 411.w,
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
