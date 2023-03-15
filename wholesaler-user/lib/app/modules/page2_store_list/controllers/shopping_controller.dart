@@ -21,8 +21,25 @@ class Page2StoreListController extends GetxController {
   RxList<String> storeName=<String>[].obs;
   RxList<int> sameId=<int>[].obs;
   RxInt selected = 0.obs;
-  final RxList<String> dropDownItem= <String>["인기순","추천순"].obs;
-  Future<void> getRankedStoreData() async {
+  final RxList<String> dropDownItem= <String>["최신순","인기순","리뷰순"].obs;
+
+  ///추천순 안씀 ///
+  // Future<void> getRankedStoreData() async {
+  //   Future.delayed(Duration.zero, () => isLoading.value = true);
+  //
+  //   bool result = await uApiProvider().chekToken();
+  //
+  //   if (!result) {
+  //     print('logout');
+  //     mSnackbar(message: '로그인 후 이용 가능합니다.');
+  //      mFuctions.userLogout();
+  //   } else {
+  //     stores.value = await _apiProvider.getStoreRanking(offset: 0, limit: 80);
+  //   }
+  //   Future.delayed(Duration.zero, () =>  isLoading.value = false);
+  // }
+
+  Future<void> getNewestStoreData() async {
     Future.delayed(Duration.zero, () => isLoading.value = true);
 
     bool result = await uApiProvider().chekToken();
@@ -30,12 +47,13 @@ class Page2StoreListController extends GetxController {
     if (!result) {
       print('logout');
       mSnackbar(message: '로그인 후 이용 가능합니다.');
-       mFuctions.userLogout();
+      mFuctions.userLogout();
     } else {
-      stores.value = await _apiProvider.getStoreRanking(offset: 0, limit: 80);
+      stores.value = await _apiProvider.getNewestStoreData(offset: 0, limit: 80);
     }
     Future.delayed(Duration.zero, () =>  isLoading.value = false);
   }
+
   Future<void> getMostStoreData() async {
     Future.delayed(Duration.zero, () => isLoading.value = true);
 
@@ -47,6 +65,21 @@ class Page2StoreListController extends GetxController {
        mFuctions.userLogout();
     } else {
       stores.value = await _apiProvider.getMostStoreData(offset: 0, limit: 80);
+    }
+    Future.delayed(Duration.zero, () =>  isLoading.value = false);
+  }
+
+  Future<void> getReviewStoreData() async {
+    Future.delayed(Duration.zero, () => isLoading.value = true);
+
+    bool result = await uApiProvider().chekToken();
+
+    if (!result) {
+      print('logout');
+      mSnackbar(message: '로그인 후 이용 가능합니다.');
+      mFuctions.userLogout();
+    } else {
+      stores.value = await _apiProvider.getReviewStoreData(offset: 0, limit: 80);
     }
     Future.delayed(Duration.zero, () =>  isLoading.value = false);
   }

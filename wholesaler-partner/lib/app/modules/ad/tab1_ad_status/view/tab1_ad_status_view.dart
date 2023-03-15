@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab1_ad_status/controller/tab1_ad_status_controller.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab1_ad_status/view/ad_item_list_view.dart';
@@ -30,7 +31,7 @@ class Tab1AdStatusView extends GetView {
           Divider(thickness: 6, color: MyColors.grey3),
           _part2(),
           Divider(thickness: 6, color: MyColors.grey3),
-          SizedBox(height: 12),
+          SizedBox(height: 12.h),
           _part3(),
         ],
       ),
@@ -46,12 +47,12 @@ class Tab1AdStatusView extends GetView {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   Text(
                     '광고효과 보고서',
                     style: MyTextStyles.f16.copyWith(color: MyColors.black2),
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   RangeDatePicker(
                     startDateController: ctr.startDateController,
                     endDateController: ctr.endDateController,
@@ -59,7 +60,7 @@ class Tab1AdStatusView extends GetView {
                       ctr.callGetAdEffectiveReportAPI(ctr.startDateController.text, ctr.endDateController.text);
                     },
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   _twoText('매장 방문수', '${ctr.adEffectiveReportModel.value.store_visit_count}명'),
                   _twoText('주문 금액', '${ctr.adEffectiveReportModel.value.order_total_amount}원'),
                   _twoText('띵동 주문 금액', '${ctr.adEffectiveReportModel.value.privilge_order_total_amount}원'),
@@ -105,16 +106,16 @@ class Tab1AdStatusView extends GetView {
                 ctr.selectedAdTagIndex.value = index;
                 ctr.callGetAdExposureProducts(adTagIndex: index);
               }),
-          SizedBox(height: 25),
+          SizedBox(height: 25.h),
           Obx(
             () => Text(
               ctr.adTags[ctr.selectedAdTagIndex.value],
               style: MyTextStyles.f16.copyWith(color: MyColors.black2),
             ),
           ),
-          SizedBox(height: 19),
+          SizedBox(height: 19.h),
 
-          SizedBox(height: 13),
+          SizedBox(height: 13.h),
           // Product List
           _adListBuilder(),
         ],

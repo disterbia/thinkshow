@@ -112,8 +112,8 @@ class Page3MyPageView extends GetView<Page3MyPageController> {
     return Row(
       children: [
         Container(
-          height: 60.h,
-          width: 60.w,
+          height: 60,
+          width: 60,
           child: ctr.store.imgUrl == null ||
                   ctr.store.imgUrl != null && ctr.store.imgUrl == ''
               ? CircleAvatar(

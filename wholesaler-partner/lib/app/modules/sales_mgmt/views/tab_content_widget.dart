@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
@@ -28,7 +29,7 @@ class SalesMgmtContentTabWidget extends GetView {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Text(
                       '내 상품이 얼마나 ${titles.elementAt(currentSalesTab.index)} 되었을까?',
                       style: MyTextStyles.f16.copyWith(color: MyColors.black3),
@@ -49,12 +50,12 @@ class SalesMgmtContentTabWidget extends GetView {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 15.h),
                     Text(
                       '${titles.elementAt(currentSalesTab.index)}수 TOP${ctr.products.length}',
                       style: MyTextStyles.f16.copyWith(color: MyColors.black3),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -93,7 +94,7 @@ class SalesMgmtContentTabWidget extends GetView {
                       'everyday_from_00_00_until_23_59'.tr,
                       style: MyTextStyles.f12.copyWith(color: MyColors.grey2),
                     ),
-                    SizedBox(height: 100),
+                    SizedBox(height: 100.h),
                   ],
                 ),
               ),

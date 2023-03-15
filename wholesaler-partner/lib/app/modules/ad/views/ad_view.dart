@@ -40,7 +40,7 @@ class AdView extends StatelessWidget {
               ),
             ),
             Container(
-              height: (Get.height-200).h,
+              height: (889-200).h,
               decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey, width: 0.5)),
               ),

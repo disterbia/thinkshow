@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/constant/enums.dart';
 import 'package:wholesaler_partner/app/modules/sales_mgmt/controllers/sales_mgmt_controller.dart';
@@ -43,7 +44,7 @@ class SalesMgmtView extends GetView {
                     ),
                   ),
                   Container(
-                    height: 411 - 180,
+                    height: (889 - 180).h,
                     decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.grey, width: 0.5))),
                     child: TabBarView(
                       controller: ctr.productTabController,

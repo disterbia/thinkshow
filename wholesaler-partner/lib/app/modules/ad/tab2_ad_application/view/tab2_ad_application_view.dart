@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab2_ad_application/controller/tab2_ad_application_controller.dart';
 import 'package:wholesaler_partner/app/modules/ad/tab2_ad_application/view/calendar_view.dart';
@@ -34,17 +35,17 @@ class Tab2AdApplicationView extends GetView {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Obx(
                             () => Text(
                               ctr.tab2AdApplyModel.value.title ?? '',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18.sp),
                               textAlign: TextAlign.center,
                             ),
                           ),
 
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Obx(
                             () => Text(
                               ctr.tab2AdApplyModel.value.content ?? '',
@@ -52,7 +53,7 @@ class Tab2AdApplicationView extends GetView {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           InkWell(
                             onTap: () => ctr.adPolicyBtnPressed(),
                             child: Text(
@@ -63,7 +64,7 @@ class Tab2AdApplicationView extends GetView {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 20.h),
                           // Calendar Title: 6월
                           Obx(
                             () => Center(
@@ -75,20 +76,20 @@ class Tab2AdApplicationView extends GetView {
                             ),
                           ),
 
-                          SizedBox(height: 10),
+                          SizedBox(height: 10.h),
 
                           Obx(
                             () => ctr.tab2AdApplyModel.value
                                         .target_month_start_date !=
                                     null
                                 ? Container(
-                                    height: 300,
+                                    height: 300.h,
                                     child: mCalendarView(),
                                   )
                                 : SizedBox.shrink(),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           )
                         ],
                       ),
@@ -123,7 +124,7 @@ class Tab2AdApplicationView extends GetView {
                               ),
                             ],
                           ),
-                          SizedBox(height: 50),
+                          SizedBox(height: 50.h),
                           CustomButton(
                             onPressed: () => ctr.applyBtnPressed(),
                             text: '신청하기',

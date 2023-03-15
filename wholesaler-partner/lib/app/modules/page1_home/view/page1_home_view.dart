@@ -271,19 +271,21 @@ class Page1HomeView extends GetView<PartnerHomeController> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.only(left: 10),
           child: Container(
-            height:240.h,
+            height:MyVars.isIpad()?350.h:240.h,
             //MyVars.isIpad()?450: 240,
             child: Obx(
               () => ctr.bestProducts.isNotEmpty
-                  ? ListView.builder(
+                  ? ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: ctr.bestProducts.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    SizedBox(width: 5.w),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                        width: (411 / 3 - 10).w,
+                        width: (411 / 3 - 15).w,
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: MyVars.isSmallPhone() ? 3 : 3),
                             child: ProductItemVertical(
@@ -429,9 +431,9 @@ class Page1HomeView extends GetView<PartnerHomeController> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 10),
           child: SizedBox(
-            height: 480.h,
+            height: MyVars.isIpad()?800.h:480.h,
             child: Obx(
               () =>
                   GridView.builder(
@@ -447,7 +449,7 @@ class Page1HomeView extends GetView<PartnerHomeController> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 10,
                       crossAxisCount: 3,
-                      childAspectRatio:1/2
+                      childAspectRatio:MyVars.isIpad()?10/16:1/2
                       //MyVars.isIpad()?11/16:8/16, // explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
                     ),
                   ),

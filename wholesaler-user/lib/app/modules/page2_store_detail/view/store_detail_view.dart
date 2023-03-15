@@ -18,6 +18,7 @@ import 'package:wholesaler_user/app/modules/auth/user_login_page/views/user_logi
 import 'package:wholesaler_user/app/modules/page1_home/views/tabs/tab4_ding_dong.dart';
 import 'package:wholesaler_user/app/modules/page2_store_detail/controller/store_detail_controller.dart';
 import 'package:wholesaler_user/app/modules/page2_store_list/controllers/shopping_controller.dart';
+import 'package:wholesaler_user/app/modules/page2_store_list/controllers/shopping_controller2.dart';
 import 'package:wholesaler_user/app/widgets/category_tags/category_tags.dart';
 import 'package:wholesaler_user/app/widgets/category_tags/category_tags4.dart';
 import 'package:wholesaler_user/app/widgets/category_tags/cloth_category.dart';
@@ -163,11 +164,16 @@ class StoreDetailView extends GetView {
                     print('new value ${!value}');
                     ctr.starIconPressed().then((_) {
                       if (prevPage != null) {
-                        print(prevPage);
-                        if (prevPage == 'rank') {
-                          ctr2.getRankedStoreData();
-                        } else if (prevPage == 'bookmark')
-                          ctr2.getBookmarkedStoreData();
+                        print('-=-=${prevPage}');
+                        if (prevPage == '최신순') {
+                          ctr2.getNewestStoreData();
+                        }else if (prevPage == '인기순') {
+                          ctr2.getMostStoreData();
+                        }else if (prevPage == '리뷰순') {
+                          ctr2.getReviewStoreData();
+                        }
+                        else if (prevPage == 'bookmark')
+                          Get.find<Page2StoreListController2>().getBookmarkedStoreData();
                       }
                     });
                   },
@@ -233,20 +239,20 @@ class StoreDetailView extends GetView {
       children: [
         // 우리매장 베스트
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 10),
           child: Obx(
             () => ctr.top10Products.isNotEmpty
                 ? SizedBox(
-                    height: 240.h,
+                    height: MyVars.isIpad()?350.h:240.h,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: ctr.top10Products.length,
                       separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(width: 14.w),
+                          SizedBox(width: 10.w),
                       itemBuilder: (BuildContext context, int index) {
                         return SizedBox(
-                          width: (411.w/3-30).w,
+                          width: (411/3-25).w,
                           child: ProductItemVertical(
                             product: ctr.top10Products.elementAt(index),
                             productNumber: ProductNumber(
