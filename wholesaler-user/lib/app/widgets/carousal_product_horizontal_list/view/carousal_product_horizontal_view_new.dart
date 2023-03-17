@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_partner/app/widgets/loading_widget.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
@@ -25,19 +26,19 @@ class CarousalProductHorizontalViewNew extends GetView<CarousalProductHorizontal
     return Obx(
       ()
       {
-        if(ctr.isLoading.value) return SizedBox(height:240,child: LoadingWidget());
+        if(ctr.isLoading.value) return SizedBox(height:240.h,child: LoadingWidget());
         return
         SizedBox(
-          height: 240,
+          height: 240.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemCount: ctr.products.length,
             separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(width: 14),
+                SizedBox(width: 14.w),
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                width: 110,
+                width: 110.w,
                 child: ProductItemVertical(
                   product: ctr.products[index],
                   // productNumber: ProductNumber(

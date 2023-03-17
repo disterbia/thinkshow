@@ -58,7 +58,7 @@ class Tab3NewProductsView extends GetView<Tab3NewProductsController> {
                             )
                           : Container(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                         child: ctr.isLoading.value
                             ? LoadingWidget()
                             : ProductGridViewBuilder(

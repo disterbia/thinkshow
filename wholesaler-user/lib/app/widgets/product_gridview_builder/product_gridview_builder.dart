@@ -53,7 +53,7 @@ class ProductGridViewBuilder extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 10.w,
             crossAxisCount: crossAxisCount,
-            childAspectRatio:crossAxisCount==2?MyVars.isIpad()?10/16:9/16:MyVars.isIpad()?10/16:1/2
+            childAspectRatio:crossAxisCount==2?MyVars.isIpad()?10/16:9/16:MyVars.isIpad()?9/16:1/2
               // MyVars.isIpad()?crossAxisCount==2?12/16:11/16:crossAxisCount==2?10/16:9/16// explanation: add productheight +10 for small screen sizes, if we don't, on small screen the product height is too short
           ),
         ),

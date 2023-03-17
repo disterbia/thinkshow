@@ -114,7 +114,7 @@ class HorizontalChipList {
     return Container(
       alignment: Alignment.center,
       width: 411.w,
-      height: MyVars.isIpad()?(889.h)/3:(889.h)/5,
+      height: MyVars.isIpad()?(889.h)/3:(889.w)/5,
       //MyVars.isIpad()?889.h/3:
       // child: ListView.builder(
       //     scrollDirection: Axis.horizontal,
@@ -164,14 +164,15 @@ class HorizontalChipList {
         children: [
           Expanded(
             child: Container(
+              
               padding: EdgeInsets.all(12.sp),
               decoration: BoxDecoration(
                   color: Color(0xFFFFF1DA),
                   borderRadius: BorderRadius.circular(15)),
               child: Image.asset(
                 clothCategory.icon,
-                height: height,
-                width: width,
+                // height: height,
+                // width: width,
                 fit: BoxFit.fill,
               ),
             ),

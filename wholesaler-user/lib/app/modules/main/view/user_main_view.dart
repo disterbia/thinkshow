@@ -58,7 +58,7 @@ class UserMainView extends GetView<UserMainController> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: MyColors.black,
-            selectedFontSize: 12.0.sp,
+            selectedFontSize: 12.0,
 
           ),
         ),
@@ -72,7 +72,7 @@ class UserMainView extends GetView<UserMainController> {
       icon: Image.asset(
         ctr.tabIndex.value == itemIndex
             ? imgSelected:imgNotSelected,gaplessPlayback: true,
-              width: 22.w,
+              width: 20   ,
             ),
       label: label,
     );

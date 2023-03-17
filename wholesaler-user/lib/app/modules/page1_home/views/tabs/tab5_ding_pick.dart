@@ -27,7 +27,7 @@ class Tab5DingPickView extends GetView<Tab5DingPickController> {
                 SingleChildScrollView(
                   controller: ctr.scrollController.value,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                     child: Column(
                       children: [
                         ProductGridViewBuilder(

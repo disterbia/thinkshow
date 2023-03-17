@@ -59,7 +59,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
   // ####### DingDong delivery banner
   Widget _dingDongDeliveryBanner() {
     return Padding(
-      padding:  EdgeInsets.all(20.sp),
+      padding:  EdgeInsets.all(20),
       child: Container(
         height: 80.h,
         width: 411.w,
@@ -88,7 +88,7 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'order_now_receive_tomorrow'.tr,
+                  '지금 주문하면 내일 도착',
                   style: MyTextStyles.f14,
                 ),
                 SizedBox(height: 5.h),
@@ -127,7 +127,10 @@ class Page3MoabogiView extends GetView<Page3MoabogiController> {
                   enableMemoryCache: false,
                   enableLoadState: false,
                 ctr.imageBanners[index].banner_img_url,
+                fit: BoxFit.fill,
                 width: 411.w,
+                height:  411.w*0.56,
+                // width: 411.w,
                 // placeholder: (context, url) => CircularProgressIndicator(),
               ),
             );

@@ -75,7 +75,7 @@ class Tab1DetailInfo extends GetView {
                         productDetailCtr.lazyList.length >= 2
                             ? isMore.value
                                 ? null
-                                : 1000.h
+                                : 1096.w
                             : null,
                     child: ListView.builder(
                       itemCount:
@@ -141,8 +141,8 @@ class Tab1DetailInfo extends GetView {
                                         borderRadius: !isMore.value &&
                                                 index == 1
                                             ? BorderRadius.only(
-                                                bottomRight: Radius.circular(8),
-                                                bottomLeft: Radius.circular(8))
+                                                bottomRight: Radius.circular(20),
+                                                bottomLeft: Radius.circular(20))
                                             : BorderRadius.all(Radius.zero),
                                         child: ExtendedImage.network(
                   cacheHeight: 1365,
@@ -182,11 +182,11 @@ class Tab1DetailInfo extends GetView {
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter)),
                                   height: 80.h,
-                                  width: 548.w,
+                                  width: 411.w,
                                 ),
                                 Container(
                                   height: 60.h,
-                                  child: CustomButton(
+                                  child: CustomButton(isProductDetail: true,
                                       width: 411.w,
                                       onPressed: () {
                                         isMore.value = true;
@@ -221,7 +221,7 @@ class Tab1DetailInfo extends GetView {
           //       height: isMore.value ? 0 : 30,
           //     )),
           Divider(
-            thickness: 10,
+            thickness: 10.h,
             color: MyColors.grey3,
           ),
           SizedBox(
@@ -262,7 +262,7 @@ class Tab1DetailInfo extends GetView {
               : Container(),
           sameIsMore3 && MyVars.isUserProject()
               ? Divider(
-                  thickness: 10,
+                  thickness: 10.h,
                   color: MyColors.grey3,
                 )
               : Container(),
@@ -306,7 +306,7 @@ class Tab1DetailInfo extends GetView {
           // 반품교환정보
           bestIsMore3 && MyVars.isUserProject()
               ? Divider(
-                  thickness: 10,
+                  thickness: 10.h,
                   color: MyColors.grey3,
                 )
               : Container(),
@@ -357,7 +357,7 @@ class Tab1DetailInfo extends GetView {
                   )
                 : SizedBox.shrink(),
           ),
-          SizedBox(height: 10,)
+          SizedBox(height: 10.h,)
         ],
       ),
     );

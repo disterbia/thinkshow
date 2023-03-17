@@ -52,7 +52,7 @@ class ProductItemVertical extends StatelessWidget {
         Get.to(() => ProductDetailView(), arguments: product.id, preventDuplicates: false);
       }),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Align(alignment: Alignment.center,

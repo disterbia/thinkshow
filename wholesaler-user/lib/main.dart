@@ -56,7 +56,7 @@ Future<void> main() async {
   print(Get.height);
 
   runApp(
-    ScreenUtilInit(designSize:Size(411, 889),minTextAdapt:true,
+    ScreenUtilInit(designSize:Size(411, 889),
         builder: (context,child) {
           return GetMaterialApp(builder: (context, child) => MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1),

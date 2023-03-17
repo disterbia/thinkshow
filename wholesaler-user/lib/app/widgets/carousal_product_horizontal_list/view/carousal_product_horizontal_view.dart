@@ -122,7 +122,7 @@ class CarousalProductHorizontalView extends GetView<CarousalProductHorizontalCon
             carouselController: carouselController,
             options: CarouselOptions(
                 enableInfiniteScroll: false,padEnds: false,
-                height:MyVars.isIpad()?350.h:250.h,
+                height:MyVars.isIpad()?350.h:250.w,
                 //MyVars.isIpad()?889.h.h/3:250.h,
                 autoPlay: false,
                 viewportFraction: isfullSize.value?1:0.95,

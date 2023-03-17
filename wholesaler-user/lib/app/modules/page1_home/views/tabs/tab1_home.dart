@@ -132,7 +132,7 @@ class Tab1HomeView extends GetView<Tab1UserHomeController> {
                                               top: 20,
                                               left: 5,
                                               right: 5,
-                                              bottom: 5),
+                                              bottom: 10),
                                           child: Text(
                                             recommendedProductCtr
                                                 .exhibitTitle1.value,

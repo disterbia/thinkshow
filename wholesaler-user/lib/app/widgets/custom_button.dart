@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
   final Widget? child;
   final double? fontSize;
+  final bool? isProductDetail;
   final EdgeInsetsGeometry? padding;
 
   const CustomButton({
@@ -24,6 +25,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     this.child,
     this.padding,
+    this.isProductDetail
   }) : super(key: key);
 
   @override
@@ -40,8 +42,12 @@ class CustomButton extends StatelessWidget {
       // onPrimary: textColor ?? MyColors.white,
       onPrimary : MyColors.black,
       shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(MyDimensions.radius),
+          borderRadius: BorderRadius.only(
+            topRight:  Radius.circular(isProductDetail==null?MyDimensions.radius:0),
+            bottomRight:  Radius.circular(isProductDetail==null?MyDimensions.radius:8),
+            topLeft: Radius.circular(isProductDetail==null?MyDimensions.radius:0),
+            bottomLeft:
+            Radius.circular(isProductDetail==null?MyDimensions.radius:8),
           ),
           side: BorderSide(
             color: onPressed == null ? MyColors.desc2 : borderColor ?? MyColors.primary,

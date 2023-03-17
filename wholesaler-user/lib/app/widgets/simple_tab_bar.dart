@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wholesaler_user/app/constants/colors.dart';
 import 'package:wholesaler_user/app/constants/dimens.dart';
@@ -59,7 +60,7 @@ class _SimpleTabBarState extends State<SimpleTabBar> with SingleTickerProviderSt
               //   bottom: BorderSide(color: MyColors.grey1),
               // ),
             ),
-            height: 45,
+            height: 45.h,
             child: TabBar(onTap: (index) {
               if (index == 3)
                 categoryTagCtr.isDingDongTab.value = true;
